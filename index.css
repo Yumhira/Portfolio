@@ -1,19 +1,21 @@
-/* --- CONFIGURATION GLOBALE (Fige la page) --- */
+/* --- CONFIGURATION GLOBALE & ANIMATIONS --- */
+
+/* Nécessaire pour animer l'angle du néon de manière fluide */
+@property --angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+}
+
 html,
 body {
     margin: 0;
     padding: 0;
     height: 100vh;
-    /* 100% hauteur fenêtre */
     width: 100vw;
-    /* 100% largeur fenêtre */
     overflow: hidden;
-    /* INTERDIT le scroll global */
-    background-color: #f4f4f4;
-    /* Fond gris clair */
-    font-family: sans-serif;
-
-    /* Centre le bento principal */
+    background-color: black;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -21,96 +23,259 @@ body {
 }
 
 #bento-grid-container {
-    /* On passe de -80px à -40px pour réduire les marges latérales */
     width: calc(100vw - 40px);
-
-    /* Augmenter le max-width pour les très grands écrans (écrans 2K/4K) */
-    max-width: 1900px;
-
-    /* Le reste du code inchangé */
-    height: calc(100vh - 80px);
-    margin: 0;
+    max-width: 1800px;
+    height: calc(100vh - 60px);
     display: grid;
     grid-template-columns: 1.2fr 1fr;
     gap: 20px;
-    box-sizing: border-box;
 }
 
-/* --- STYLE COMMUN DES TUILES --- */
+/* --- STYLE DES TUILES (DESIGN APPLE/GLASS) --- */
 .bento-tile {
-    background-color: white;
-    border-radius: 15px;
-    /* Coins arrondis */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-    /* Ombre douce */
+    background-color: #1a1a1a;
+    border-radius: 20px;
     padding: 20px;
-    box-sizing: border-box;
+    color: white;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    overflow: hidden;
-    color: #333;
+    box-sizing: border-box;
+    /* Bordure grise très fine et subtile */
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    /* Micro reflet interne en haut */
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.05);
 }
 
-/* --- COLONNE GAUCHE (Déséquilibrée verticalement) --- */
-.column-left {
+/* --- SECTION PROFIL --- */
+#tile-profil {
+    padding: 25px;
+}
+
+.profil-grid {
     display: grid;
-    /* 3 lignes égales pour que le profil soit imposant */
-    grid-template-rows: 1fr 1fr 1fr;
-    gap: 20px;
+    grid-template-columns: 240px 1fr auto;
+    grid-template-rows: 1fr auto;
+    gap: 25px;
+    width: 100%;
     height: 100%;
 }
 
-/* --- SOUS-GRILLES GAUCHE --- */
+.profil-photo {
+    grid-row: 1 / 3;
+    width: 240px;
+    height: 100%;
+    border-radius: 15px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #121212;
+}
+
+.profil-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profil-info {
+    grid-column: 2 / 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.profil-name { margin: 0; font-size: 1.8rem; font-weight: bold; }
+.profil-title { margin: 5px 0; color: #888; }
+
+.profil-socials {
+    margin-top: 10px;
+    display: flex;
+    gap: 15px;
+}
+
+.profil-socials a {
+    color: #aaa;
+    text-decoration: none;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: 0.3s;
+}
+
+.profil-socials a:hover { color: white; }
+
+/* Bouton CV (Haut Droite) */
+.profil-cv {
+    grid-column: 3 / 4;
+    align-self: start;
+}
+
+.btn-cv {
+    background: white;
+    color: black;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Bouton Contact (Bas - Remplit l'espace) */
+.profil-contact {
+    grid-column: 2 / 4;
+    grid-row: 2 / 3;
+    align-self: end;
+}
+
+.btn-contact {
+    width: 100%;
+    height: 55px;
+    background: #1a1a1a; /* Fond sombre identique aux tuiles */
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.08); /* Bordure fine */
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    transition: all 0.3s ease;
+}
+
+/* Le petit carré violet pour l'icône */
+.icon-bg-purple {
+    background-color: #b197fc; /* Couleur violette pastel de l'image */
+    color: #1a1a1a; /* Icône sombre sur fond clair */
+    width: 28px;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px; /* Coins arrondis du badge icône */
+    font-size: 0.9rem;
+}
+
+.btn-contact:hover {
+    background: #252525;
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.btn-contact:hover .icon-bg-purple {
+    transform: scale(1.05);
+}
+
+/* --- BADGES NÉON (ROTATION LENTE & LONGUE) --- */
+.skill-bloc {
+    flex-direction: column;
+}
+
+.skill-bloc h3 {
+    font-size: 0.85rem;
+    color: #555;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+}
+
+.skill-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.skill-pill {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 18px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    background: #121212;
+    z-index: 1;
+    border: 1.5px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 0 15px -5px var(--neon-color);
+}
+
+.skill-pill::before {
+    content: "";
+    position: absolute;
+    inset: -1.5px;
+    border-radius: 50px;
+    padding: 1.5px;
+    background: conic-gradient(from var(--angle), transparent 30%, var(--neon-color));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    animation: rotate-border 8s linear infinite;
+}
+
+.skill-pill i {
+    font-size: 1.2rem;
+    z-index: 2;
+    filter: drop-shadow(0 0 5px var(--neon-color));
+}
+
+@keyframes rotate-border {
+    to { --angle: 360deg; }
+}
+
+/* Couleurs Néon */
+.border-html    { --neon-color: #FF3D00; }
+.border-css     { --neon-color: #00B0FF; }
+.border-js      { --neon-color: #FFEA00; }
+.border-angular { --neon-color: #FF002E; }
+.border-wp      { --neon-color: #FFFFFF; }
+.border-php     { --neon-color: #9C27B0; }
+.border-symfony { --neon-color: #FFFFFF; }
+.border-mysql   { --neon-color: #00B8D4; }
+.border-packet  { --neon-color: #00E676; }
+.border-ip      { --neon-color: #2979FF; }
+.border-glpi    { --neon-color: #FFC400; }
+.border-virtual { --neon-color: #D500F9; }
+
+/* Forcer la couleur des icônes réseau */
+.skill-pill[class*="border-packet"] i,
+.skill-pill[class*="border-ip"] i,
+.skill-pill[class*="border-glpi"] i,
+.skill-pill[class*="border-virtual"] i {
+    color: var(--neon-color);
+}
+
+/* --- STRUCTURE DES GRILLES --- */
+.column-left {
+    display: grid;
+    grid-template-rows: 1.2fr 1fr 1fr;
+    gap: 20px;
+}
+
 #grid-skills {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    /* 3 colonnes égales */
     gap: 15px;
 }
 
 #grid-dual {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    /* 2 colonnes égales */
+    grid-template-columns: 1fr 1fr;
     gap: 15px;
 }
 
-/* --- COLONNE DROITE (Grille en L) --- */
 .column-right-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    /* 2 colonnes */
     grid-template-rows: 1fr 1fr;
-    /* 2 lignes */
     gap: 20px;
-    height: 100%;
 }
 
-/* --- POSITIONNEMENT DES BLOCS DROITS --- */
-
-/* Veille occupe le haut gauche (cellule 1,1) */
-#tile-veille {
-    grid-column: 1 / 2;
-    grid-row: 1 / 2;
-}
-
-/* Certifications occupe le haut droit (cellule 1,2) - Ton Carré */
-#tile-certifs {
-    grid-column: 2 / 3;
-    grid-row: 1 / 2;
-}
-
-/* Réalisations occupe toute la rangée du bas (cellules 2,1 et 2,2) - Le "L" */
 #tile-realisations {
     grid-column: 1 / 3;
-    /* S'étend sur les deux colonnes */
-    grid-row: 2 / 3;
-    /* Reste sur la ligne du bas */
-
-    /* Alignement spécifique pour lister tes projets proprement */
-    justify-content: flex-start;
-    align-items: center;
-    padding-left: 40px;
 }
