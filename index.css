@@ -50,12 +50,12 @@ body {
     letter-spacing: 0.5px;
 }
 
-/* --- PROFIL --- */
+/* --- PROFIL (COMPACTÉ) --- */
 .profil-grid {
     display: grid;
     grid-template-columns: 240px 1fr auto;
-    grid-template-rows: 1fr auto;
-    gap: 25px;
+    grid-template-rows: auto 1fr;
+    gap: 10px 25px;
     width: 100%;
 }
 
@@ -82,33 +82,6 @@ body {
     padding-top: 5px;
 }
 
-.profil-location {
-    margin: 5px 0 0 0;
-}
-
-/* On stylise le lien pour qu'il s'intègre parfaitement */
-.profil-location a {
-    color: #888;
-    font-size: 0.9rem;
-    text-decoration: none;
-    /* Enlève le souligné */
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    transition: color 0.3s ease;
-    width: fit-content;
-}
-
-/* L'icône reste rouge */
-.profil-location i {
-    color: #ff1744;
-}
-
-/* Petit effet quand on passe la souris dessus */
-.profil-location a:hover {
-    color: #fff;
-}
-
 .available-badge {
     display: inline-flex;
     align-items: center;
@@ -119,9 +92,8 @@ body {
     border-radius: 50px;
     font-size: 0.75rem;
     color: #eee;
-    margin-bottom: 12px;
+    margin-bottom: 8px;
     width: fit-content;
-    /* C'est cette ligne qui l'empêche de s'étirer */
 }
 
 .status-dot {
@@ -134,17 +106,8 @@ body {
 }
 
 @keyframes pulse-red {
-
-    0%,
-    100% {
-        opacity: 1;
-        transform: scale(1);
-    }
-
-    50% {
-        opacity: 0.5;
-        transform: scale(1.2);
-    }
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.2); }
 }
 
 .profil-name {
@@ -155,29 +118,56 @@ body {
 }
 
 .profil-title {
-    margin: 8px 0;
+    margin: 2px 0 10px 0;
     color: #888;
     font-size: 1rem;
 }
 
+.profil-details-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* Passage de 4px à 8px pour aérer légèrement */
+    margin-top: 4px; /* Un tout petit peu d'espace sous le titre BTS */
+}
+
+.profil-location {
+    margin: 0 !important;
+}
+
 .profil-socials {
-    margin-top: 10px;
     display: flex;
     gap: 15px;
+    margin-top: 2px; /* Petit ajustement pour décoller les icônes de la ville */
 }
 
+.profil-location a, 
 .profil-socials a {
-    color: #aaa;
+    color: #888;
+    font-size: 0.85rem;
     text-decoration: none;
-    font-size: 0.9rem;
-    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.3s ease;
 }
 
-.profil-socials a:hover {
-    color: white;
+.profil-location i { color: #ff1744; }
+.profil-location a:hover, .profil-socials a:hover { color: #fff; }
+
+/* BOUTONS CV & CONTACT */
+.profil-cv {
+    grid-column: 3 / 4;
+    grid-row: 1 / 2;
+    align-self: start;
 }
 
-/* --- BOUTONS --- */
+.profil-contact {
+    grid-column: 2 / 4;
+    grid-row: 2 / 3;
+    align-self: end;
+    margin-top: 10px;
+}
+
 .btn-premium {
     display: flex;
     align-items: center;
@@ -192,16 +182,7 @@ body {
     transition: all 0.3s ease;
 }
 
-.btn-message {
-    width: 100%;
-    height: 55px;
-    justify-content: center;
-}
-
-.profil-contact {
-    grid-column: 2 / 4;
-    align-self: end;
-}
+.btn-message { width: 100%; height: 55px; justify-content: center; }
 
 .icon-wrap {
     width: 32px;
@@ -212,34 +193,15 @@ body {
     border-radius: 10px;
 }
 
-.icon-wrap.purple {
-    background: rgba(177, 151, 252, 0.15);
-    color: #b197fc;
-    border: 1px solid rgba(177, 151, 252, 0.3);
-}
+.icon-wrap.purple { background: rgba(177, 151, 252, 0.15); color: #b197fc; border: 1px solid rgba(177, 151, 252, 0.3); }
+.icon-wrap.cyan { background: rgba(0, 229, 255, 0.15); color: #00e5ff; border: 1px solid rgba(0, 229, 255, 0.3); }
 
-.icon-wrap.cyan {
-    background: rgba(0, 229, 255, 0.15);
-    color: #00e5ff;
-    border: 1px solid rgba(0, 229, 255, 0.3);
-}
+.btn-premium:hover { transform: translateY(-2px); border-color: rgba(255, 255, 255, 0.2); background: #222; }
 
-.btn-premium:hover {
-    transform: translateY(-2px);
-    border-color: rgba(255, 255, 255, 0.2);
-    background: #222;
-}
-
-/* --- NÉON BADGES & COULEURS LOGOS (LA SEULE CHOSE MODIFIÉE) --- */
-.skill-bloc {
-    flex-direction: column;
-}
-
-.skill-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-}
+/* --- SKILLS PILLS & NEON --- */
+#grid-skills { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+.skill-bloc { flex-direction: column; }
+.skill-list { display: flex; flex-wrap: wrap; gap: 10px; }
 
 .skill-pill {
     position: relative;
@@ -253,9 +215,7 @@ body {
     align-items: center;
     gap: 8px;
     color: white;
-    /* Assure que le texte reste blanc */
     box-shadow: 0 0 15px -4px var(--neon-color);
-    /* Lueur vibrante */
 }
 
 .skill-pill::before {
@@ -271,7 +231,6 @@ body {
     animation: rotate-border 6s linear infinite;
 }
 
-/* Logos Néon ultra-saturés forcés */
 .skill-pill i {
     z-index: 2;
     font-size: 1.2rem;
@@ -279,234 +238,39 @@ body {
     filter: drop-shadow(0 0 5px var(--neon-color)) !important;
 }
 
-@keyframes rotate-border {
-    to {
-        --angle: 360deg;
-    }
-}
+@keyframes rotate-border { to { --angle: 360deg; } }
 
-/* Variables Néon (Couleurs vibrantes) */
-.border-html {
-    --neon-color: #ff3d00;
-}
+/* Variables Néon */
+.border-html { --neon-color: #ff3d00; }
+.border-css { --neon-color: #00b0ff; }
+.border-js { --neon-color: #ffea00; }
+.border-angular { --neon-color: #ff003c; }
+.border-wp { --neon-color: #ffffff; }
+.border-php { --neon-color: #a259ff; }
+.border-symfony { --neon-color: #ffffff; }
+.border-mysql { --neon-color: #00e5ff; }
+.border-packet { --neon-color: #00e676; }
+.border-ip { --neon-color: #2979ff; }
+.border-glpi { --neon-color: #ffc400; }
+.border-virtual { --neon-color: #ea00ff; }
+.border-openvpn { --neon-color: #ff9100; }
 
-.border-css {
-    --neon-color: #00b0ff;
-}
-
-.border-js {
-    --neon-color: #ffea00;
-}
-
-.border-angular {
-    --neon-color: #ff003c;
-}
-
-.border-wp {
-    --neon-color: #ffffff;
-}
-
-.border-php {
-    --neon-color: #a259ff;
-}
-
-.border-symfony {
-    --neon-color: #ffffff;
-}
-
-.border-mysql {
-    --neon-color: #00e5ff;
-}
-
-.border-packet {
-    --neon-color: #00e676;
-}
-
-.border-ip {
-    --neon-color: #2979ff;
-}
-
-.border-glpi {
-    --neon-color: #ffc400;
-}
-
-.border-virtual {
-    --neon-color: #ea00ff;
-}
-
-.border-openvpn {
-    --neon-color: #ff9100;
-}
-
-/* --- PARCOURS (LIGNE DROITE CORRIGÉE) --- */
-#tile-parcours {
-    flex-direction: column;
-    justify-content: flex-start;
-    padding: 25px;
-}
-
-.timeline {
-    position: relative;
-    margin-left: 10px;
-    padding-left: 30px;
-    border-left: 2px solid rgba(255, 255, 255, 0.1);
-}
-
-.timeline-item {
-    position: relative;
-    margin-bottom: 25px;
-}
-
-.timeline-dot {
-    position: absolute;
-    left: -39px;
-    /* L'alignement parfait est ici */
-    top: 4px;
-    width: 12px;
-    height: 12px;
-    background: #444;
-    border: 2px solid #1a1a1a;
-    border-radius: 50%;
-    z-index: 2;
-}
-
-.timeline-dot.special {
-    background: #b197fc;
-    box-shadow: 0 0 10px #b197fc;
-    border-color: #b197fc;
-}
-
-.timeline-date {
-    font-size: 0.7rem;
-    color: #888;
-    margin-bottom: 4px;
-}
-
-.timeline-content h4 {
-    font-size: 0.85rem;
-    margin: 0;
-    color: #fff;
-}
-
-.timeline-content p {
-    font-size: 0.75rem;
-    color: #aaa;
-    margin: 4px 0 0 0;
-    line-height: 1.4;
-}
-
-/* --- MODALE --- */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(8px);
-    justify-content: center;
-    align-items: center;
-}
-
-.modal-content {
-    width: 90%;
-    max-width: 500px;
-    padding: 40px !important;
-    animation: modalAppear 0.4s ease-out;
-    flex-direction: column;
-}
-
-@keyframes modalAppear {
-    from {
-        transform: scale(0.8);
-        opacity: 0;
-    }
-
-    to {
-        transform: scale(1);
-        opacity: 1;
-    }
-}
-
-.close-modal {
-    position: absolute;
-    top: 20px;
-    right: 25px;
-    color: #555;
-    font-size: 28px;
-    cursor: pointer;
-}
-
-#contact-form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    width: 100%;
-}
-
-.form-group input,
-.form-group textarea {
-    width: 100%;
-    padding: 12px;
-    background: #121212;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    color: white;
-    font-family: inherit;
-    box-sizing: border-box;
-}
+/* --- PARCOURS --- */
+#tile-parcours { flex-direction: column; justify-content: flex-start; padding: 25px; }
+.timeline { position: relative; margin-left: 10px; padding-left: 30px; border-left: 2px solid rgba(255, 255, 255, 0.1); }
+.timeline-item { position: relative; margin-bottom: 25px; }
+.timeline-dot { position: absolute; left: -39px; top: 4px; width: 12px; height: 12px; background: #444; border: 2px solid #1a1a1a; border-radius: 50%; z-index: 2; }
+.timeline-dot.special { background: #b197fc; box-shadow: 0 0 10px #b197fc; border-color: #b197fc; }
+.timeline-date { font-size: 0.7rem; color: #888; margin-bottom: 4px; }
+.timeline-content h4 { font-size: 0.85rem; margin: 0; color: #fff; }
+.timeline-content p { font-size: 0.75rem; color: #aaa; margin: 4px 0 0 0; line-height: 1.4; }
 
 /* --- GRILLES --- */
-.column-left {
-    display: grid;
-    grid-template-rows: 1.2fr 1fr 1fr;
-    gap: 20px;
-}
-
-#grid-skills {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
-}
-
-#grid-dual {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
-}
-
-#tile-about,
-#tile-certifs-small {
-    flex-direction: column;
-    padding: 25px;
-}
-
-#tile-about p {
-    font-size: 0.9rem;
-    color: #ccc;
-    line-height: 1.5;
-    margin-bottom: 12px;
-}
-
-.column-right-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1.5fr 1fr;
-    gap: 20px;
-}
-
-#tile-parcours {
-    grid-column: 2 / 3;
-    grid-row: 1 / 2;
-}
-
-#tile-veille {
-    grid-column: 1 / 2;
-    grid-row: 1 / 2;
-}
-
-#tile-realisations {
-    grid-column: 1 / 3;
-}
+.column-left { display: grid; grid-template-rows: 1.2fr 1fr 1fr; gap: 20px; }
+#grid-dual { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+#tile-about, #tile-certifs-small { flex-direction: column; padding: 25px; }
+#tile-about p { font-size: 0.9rem; color: #ccc; line-height: 1.5; margin-bottom: 12px; }
+.column-right-grid { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1.5fr 1fr; gap: 20px; }
+#tile-parcours { grid-column: 2 / 3; grid-row: 1 / 2; }
+#tile-veille { grid-column: 1 / 2; grid-row: 1 / 2; }
+#tile-realisations { grid-column: 1 / 3; }

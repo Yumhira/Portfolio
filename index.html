@@ -8,8 +8,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
     <link rel="stylesheet" href="index.css">
+    <!-- On charge aussi le CSS de la modale ici -->
+    <link rel="stylesheet" href="Modals/contact-modal.css">
     <script src="script.js" defer></script>
-    <title>Bento Portfolio SISR</title>
+    <title>Haytham CLEMENT - Portfolio</title>
 </head>
 
 <body>
@@ -29,16 +31,24 @@
                         <div class="available-badge">
                             <span class="status-dot red"></span> Indisponible pour le moment
                         </div>
+
                         <h1 class="profil-name">Haytham CLEMENT</h1>
                         <p class="profil-title">Étudiant BTS SIO option SISR</p>
-                        <p class="profil-location">
-                            <a href="https://www.google.com/maps/search/?api=1&query=Gentilly+94250" target="_blank">
-                                <i class="fa-solid fa-location-dot"></i> Gentilly 94250
-                            </a>
-                        </p>
-                        <div class="profil-socials">
-                            <a href="https://www.linkedin.com/in/haythamclement" target="_blank"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
-                            <a href="https://github.com/Yumhira" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
+
+                        <div class="profil-details-stack">
+                            <p class="profil-location">
+                                <a href="https://www.google.com/maps/search/?api=1&query=Gentilly+94250" target="_blank">
+                                    <i class="fa-solid fa-location-dot"></i> Gentilly 94250
+                                </a>
+                            </p>
+                            <div class="profil-socials">
+                                <a href="https://www.linkedin.com/in/haythamclement" target="_blank">
+                                    <i class="fa-brands fa-linkedin"></i> LinkedIn
+                                </a>
+                                <a href="https://github.com/Yumhira" target="_blank">
+                                    <i class="fa-brands fa-github"></i> GitHub
+                                </a>
+                            </div>
                         </div>
                     </div>
 
@@ -70,8 +80,7 @@
                         <div class="skill-pill border-html"><i class="devicon-html5-plain colored"></i> HTML</div>
                         <div class="skill-pill border-css"><i class="devicon-css3-plain colored"></i> CSS</div>
                         <div class="skill-pill border-js"><i class="devicon-javascript-plain colored"></i> JS</div>
-                        <div class="skill-pill border-angular"><i class="devicon-angularjs-plain colored"></i> Angular
-                        </div>
+                        <div class="skill-pill border-angular"><i class="devicon-angularjs-plain colored"></i> Angular</div>
                         <div class="skill-pill border-wp"><i class="devicon-wordpress-plain"></i> WP</div>
                     </div>
                 </div>
@@ -102,10 +111,8 @@
                 <div class="dual-bloc bento-tile" id="tile-about">
                     <h3>À Propos</h3>
                     <div class="about-content">
-                        <p>Fort d'une expérience de 3 ans en développement web, j'ai acquis une solide maîtrise des
-                            logiques applicatives.</p>
-                        <p>Aujourd'hui, je me réoriente vers l'<strong>administration SISR</strong> pour maîtriser
-                            l'infrastructure de bout en bout.</p>
+                        <p>Fort d'une expérience de 3 ans en développement web, j'ai acquis une solide maîtrise des logiques applicatives.</p>
+                        <p>Aujourd'hui, je me réoriente vers l'<strong>administration SISR</strong> pour maîtriser l'infrastructure de bout en bout.</p>
                         <p>Mon objectif : devenir <strong>consultant en cybersécurité</strong>.</p>
                     </div>
                 </div>
@@ -168,24 +175,9 @@
 
     </div>
 
-    <!-- MODALE DE CONTACT -->
-    <div id="contact-modal" class="modal">
-        <div class="modal-content bento-tile">
-            <span class="close-modal">&times;</span>
-            <h3>Contactez-moi</h3>
-            <form id="contact-form">
-                <div class="form-group"><input type="text" placeholder="Nom complet" required></div>
-                <div class="form-group"><input type="email" placeholder="Votre Email" required></div>
-                <div class="form-group"><textarea placeholder="Votre message..." rows="5" required></textarea></div>
-                <button type="submit" class="btn-premium">
-                    <span class="icon-wrap purple"><i class="fa-solid fa-paper-plane"></i></span>
-                    Envoyer
-                </button>
-            </form>
-        </div>
-    </div>
+    <!-- CONTAINER POUR LES MODALES CHARGÉES EN JS -->
+    <div id="contact-modal-container"></div>
 
-    <script src="script.js"></script>
 </body>
 
 </html>
