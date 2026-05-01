@@ -1,25 +1,17 @@
-/* --- CONFIGURATION GLOBALE & ANIMATIONS --- */
-
-/* Nécessaire pour animer l'angle du néon de manière fluide */
+/* --- CONFIGURATION GLOBALE --- */
 @property --angle {
     syntax: '<angle>';
     initial-value: 0deg;
     inherits: false;
 }
 
-html,
-body {
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-    width: 100vw;
+html, body {
+    margin: 0; padding: 0;
+    height: 100vh; width: 100vw;
     overflow: hidden;
     background-color: black;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-sizing: border-box;
+    display: flex; justify-content: center; align-items: center;
 }
 
 #bento-grid-container {
@@ -31,251 +23,141 @@ body {
     gap: 20px;
 }
 
-/* --- STYLE DES TUILES (DESIGN APPLE/GLASS) --- */
+/* --- STYLE DES TUILES --- */
 .bento-tile {
     background-color: #1a1a1a;
     border-radius: 20px;
     padding: 20px;
     color: white;
     display: flex;
-    box-sizing: border-box;
-    /* Bordure grise très fine et subtile */
     border: 1px solid rgba(255, 255, 255, 0.08);
-    /* Micro reflet interne en haut */
     box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.05);
+    box-sizing: border-box;
+    position: relative;
 }
 
-/* --- SECTION PROFIL --- */
-#tile-profil {
-    padding: 25px;
-}
-
+/* --- PROFIL --- */
 .profil-grid {
     display: grid;
     grid-template-columns: 240px 1fr auto;
     grid-template-rows: 1fr auto;
     gap: 25px;
     width: 100%;
-    height: 100%;
 }
 
 .profil-photo {
     grid-row: 1 / 3;
     width: 240px;
-    height: 100%;
     border-radius: 15px;
     overflow: hidden;
     border: 1px solid rgba(255, 255, 255, 0.1);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #121212;
+    background: #121212;
 }
-
-.profil-photo img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
+.profil-photo img { width: 100%; height: 100%; object-fit: cover; }
 
 .profil-info {
     grid-column: 2 / 3;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    display: flex; flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 5px;
 }
 
-.profil-name { margin: 0; font-size: 1.8rem; font-weight: bold; }
+.available-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 4px 12px; border-radius: 50px;
+    font-size: 0.75rem; color: #eee; margin-bottom: 12px;
+    width: fit-content;
+}
+
+.status-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background-color: #ff1744; box-shadow: 0 0 8px #ff1744;
+    animation: pulse-red 2s infinite;
+}
+
+@keyframes pulse-red {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.2); }
+}
+
+.profil-name { margin: 0; font-size: 1.8rem; font-weight: bold; line-height: 1.2; }
 .profil-title { margin: 5px 0; color: #888; }
-
-.profil-socials {
-    margin-top: 10px;
-    display: flex;
-    gap: 15px;
-}
-
-.profil-socials a {
-    color: #aaa;
-    text-decoration: none;
-    font-size: 0.9rem;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    transition: 0.3s;
-}
-
+.profil-socials { margin-top: 10px; display: flex; gap: 15px; }
+.profil-socials a { color: #aaa; text-decoration: none; font-size: 0.9rem; transition: 0.3s; }
 .profil-socials a:hover { color: white; }
 
-/* Bouton CV (Haut Droite) */
-.profil-cv {
-    grid-column: 3 / 4;
-    align-self: start;
+/* --- BOUTONS PREMIUM --- */
+.btn-premium {
+    display: flex; align-items: center; gap: 12px;
+    padding: 8px 16px;
+    background: linear-gradient(145deg, #1e1e1e, #161616);
+    color: white; border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px; font-weight: 600; font-size: 0.95rem;
+    cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.btn-cv {
-    background: white;
-    color: black;
-    border: none;
-    padding: 10px 18px;
-    border-radius: 10px;
-    font-weight: bold;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+.btn-message { width: 100%; height: 55px; justify-content: center; }
+.profil-contact { grid-column: 2 / 4; align-self: end; }
+
+.icon-wrap {
+    width: 32px; height: 32px; display: flex;
+    justify-content: center; align-items: center;
+    border-radius: 10px; font-size: 1rem; transition: transform 0.3s ease;
 }
 
-/* Bouton Contact (Bas - Remplit l'espace) */
-.profil-contact {
-    grid-column: 2 / 4;
-    grid-row: 2 / 3;
-    align-self: end;
-}
+.icon-wrap.purple { background: rgba(177, 151, 252, 0.15); color: #b197fc; border: 1px solid rgba(177, 151, 252, 0.3); }
+.icon-wrap.cyan { background: rgba(0, 229, 255, 0.15); color: #00e5ff; border: 1px solid rgba(0, 229, 255, 0.3); }
 
-.btn-contact {
-    width: 100%;
-    height: 55px;
-    background: #1a1a1a; /* Fond sombre identique aux tuiles */
-    color: white;
-    border: 1px solid rgba(255, 255, 255, 0.08); /* Bordure fine */
-    border-radius: 12px;
-    font-weight: 600;
-    font-size: 1rem;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 12px;
-    transition: all 0.3s ease;
-}
+.btn-premium:hover { background: #222; border-color: rgba(255, 255, 255, 0.2); transform: translateY(-2px); }
+.btn-premium:hover .icon-wrap { transform: scale(1.1) rotate(-5deg); }
+.btn-message:hover { box-shadow: 0 0 15px -5px #b197fc; }
+.btn-download:hover { box-shadow: 0 0 15px -5px #00e5ff; }
 
-/* Le petit carré violet pour l'icône */
-.icon-bg-purple {
-    background-color: #b197fc; /* Couleur violette pastel de l'image */
-    color: #1a1a1a; /* Icône sombre sur fond clair */
-    width: 28px;
-    height: 24px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 8px; /* Coins arrondis du badge icône */
-    font-size: 0.9rem;
-}
-
-.btn-contact:hover {
-    background: #252525;
-    border-color: rgba(255, 255, 255, 0.2);
-}
-
-.btn-contact:hover .icon-bg-purple {
-    transform: scale(1.05);
-}
-
-/* --- BADGES NÉON (ROTATION LENTE & LONGUE) --- */
-.skill-bloc {
-    flex-direction: column;
-}
-
-.skill-bloc h3 {
-    font-size: 0.85rem;
-    color: #555;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 15px;
-}
-
-.skill-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-}
+/* --- BADGES NÉON --- */
+.skill-bloc { flex-direction: column; }
+.skill-bloc h3 { font-size: 0.85rem; color: #555; text-transform: uppercase; margin-bottom: 15px; }
+.skill-list { display: flex; flex-wrap: wrap; gap: 10px; }
 
 .skill-pill {
-    position: relative;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 8px 18px;
-    border-radius: 50px;
-    font-size: 0.85rem;
-    background: #121212;
-    z-index: 1;
+    position: relative; display: flex; align-items: center; gap: 8px;
+    padding: 6px 14px; border-radius: 50px; font-size: 0.8rem;
+    background: #121212; z-index: 1;
     border: 1.5px solid rgba(255, 255, 255, 0.05);
-    box-shadow: 0 0 15px -5px var(--neon-color);
+    box-shadow: 0 0 12px -5px var(--neon-color);
 }
 
 .skill-pill::before {
-    content: "";
-    position: absolute;
-    inset: -1.5px;
-    border-radius: 50px;
-    padding: 1.5px;
-    background: conic-gradient(from var(--angle), transparent 30%, var(--neon-color));
+    content: ""; position: absolute; inset: -1.5px; border-radius: 50px;
+    padding: 1.5px; background: conic-gradient(from var(--angle), transparent 30%, var(--neon-color));
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
+    -webkit-mask-composite: xor; mask-composite: exclude;
     animation: rotate-border 8s linear infinite;
 }
 
-.skill-pill i {
-    font-size: 1.2rem;
-    z-index: 2;
-    filter: drop-shadow(0 0 5px var(--neon-color));
-}
-
-@keyframes rotate-border {
-    to { --angle: 360deg; }
-}
+@keyframes rotate-border { to { --angle: 360deg; } }
+.skill-pill i { font-size: 1.1rem; z-index: 2; filter: drop-shadow(0 0 5px var(--neon-color)); }
 
 /* Couleurs Néon */
-.border-html    { --neon-color: #FF3D00; }
-.border-css     { --neon-color: #00B0FF; }
-.border-js      { --neon-color: #FFEA00; }
-.border-angular { --neon-color: #FF002E; }
-.border-wp      { --neon-color: #FFFFFF; }
-.border-php     { --neon-color: #9C27B0; }
-.border-symfony { --neon-color: #FFFFFF; }
-.border-mysql   { --neon-color: #00B8D4; }
-.border-packet  { --neon-color: #00E676; }
-.border-ip      { --neon-color: #2979FF; }
-.border-glpi    { --neon-color: #FFC400; }
-.border-virtual { --neon-color: #D500F9; }
+.border-html { --neon-color: #FF3D00; } .border-css { --neon-color: #00B0FF; }
+.border-js { --neon-color: #FFEA00; } .border-angular { --neon-color: #FF002E; }
+.border-wp { --neon-color: #00E5FF; } .border-php { --neon-color: #9C27B0; }
+.border-symfony { --neon-color: #FFFFFF; } .border-mysql { --neon-color: #00B8D4; }
+.border-packet { --neon-color: #00E676; } .border-ip { --neon-color: #2979FF; }
+.border-glpi { --neon-color: #FFC400; } .border-virtual { --neon-color: #D500F9; }
+.border-openvpn { --neon-color: #ea7e20; }
 
-/* Forcer la couleur des icônes réseau */
-.skill-pill[class*="border-packet"] i,
-.skill-pill[class*="border-ip"] i,
-.skill-pill[class*="border-glpi"] i,
-.skill-pill[class*="border-virtual"] i {
-    color: var(--neon-color);
-}
+/* --- À PROPOS --- */
+#tile-about { flex-direction: column; justify-content: center; padding: 30px; }
+#tile-about h3 { font-size: 0.85rem; color: #555; text-transform: uppercase; margin-bottom: 15px; margin-top: 0; }
+#tile-about p { font-size: 0.95rem; line-height: 1.6; color: #ccc; margin-bottom: 10px; }
+#tile-about strong { color: white; font-weight: 600; }
 
-/* --- STRUCTURE DES GRILLES --- */
-.column-left {
-    display: grid;
-    grid-template-rows: 1.2fr 1fr 1fr;
-    gap: 20px;
-}
-
-#grid-skills {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
-}
-
-#grid-dual {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
-}
-
-.column-right-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    gap: 20px;
-}
-
-#tile-realisations {
-    grid-column: 1 / 3;
-}
+/* --- STRUCTURE GRILLES --- */
+.column-left { display: grid; grid-template-rows: 1.2fr 1fr 1fr; gap: 20px; }
+#grid-skills { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+#grid-dual { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.column-right-grid { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 20px; }
+#tile-realisations { grid-column: 1 / 3; }
