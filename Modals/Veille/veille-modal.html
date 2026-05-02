@@ -1,0 +1,123 @@
+<div id="veille-modal-overlay" class="veille-overlay">
+    <div class="veille-modal giant-modal">
+        <!-- HEADER -->
+        <div class="veille-modal-header">
+            <div class="veille-header-left">
+                <span class="veille-header-icon"><i class="fa-solid fa-satellite-dish"></i></span>
+                <div class="veille-header-text">
+                    <h2>Veille Technologique : L'écosystème DevOps</h2>
+                    <p>Culture, automatisation, sécurité et actualités en temps réel</p>
+                </div>
+            </div>
+            <button class="veille-close-btn" id="veille-close-btn">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <!-- BODY EN 2 COLONNES -->
+        <div class="veille-modal-body">
+            <div class="veille-split-layout">
+                
+                <!-- COLONNE GAUCHE : THÉORIE & SCHÉMAS -->
+                <div class="veille-theory-section">
+                    
+                    <!-- SECTION DEVOPS & CI/CD -->
+                    <div class="theory-card">
+                        <h3><i class="fa-solid fa-infinity"></i> Qu'est-ce que le DevOps ?</h3>
+                        <p>Le <strong>DevOps</strong> est une philosophie culturelle et technique qui unifie le développement logiciel (Dev) et l'administration des infrastructures (Ops). L'objectif est d'automatiser et de surveiller toutes les étapes (CI/CD) pour des déploiements plus rapides, itératifs et fiables. Cela repose sur deux piliers majeurs :</p>
+                        
+                        <h4 style="color: #00e5ff; font-size: 1rem; margin: 15px 0 10px 0;"><i class="fa-solid fa-arrows-spin"></i> Continuous Integration (CI)</h4>
+                        <ul class="theory-list">
+                            <li><strong>Planification :</strong> Recueillir et documenter les exigences en écoutant les besoins de l'entreprise.</li>
+                            <li><strong>Code :</strong> Programmation et ingénierie logicielles (écriture de code).</li>
+                            <li><strong>Construction :</strong> Compilation du code sur un serveur CI dédié plutôt qu'en local.</li>
+                            <li><strong>Test :</strong> Vérification de la qualité du code et traduction des exigences commerciales en spécifications techniques.</li>
+                            <li><strong>Publication :</strong> Déploiement sur un serveur de <em>staging</em> pour valider le code avant la production.</li>
+                        </ul>
+
+                        <h4 style="color: #00e5ff; font-size: 1rem; margin: 15px 0 10px 0;"><i class="fa-solid fa-truck-fast"></i> Continuous Delivery (CD)</h4>
+                        <ul class="theory-list">
+                            <li><strong>Déploiement (Deploy) :</strong> Déploiement sur serveurs de production ou infrastructure cloud (ex: AWS, Azure, GCP) via des pipelines automatisés.</li>
+                            <li><strong>Exploitation (Operate) :</strong> L'application est déployée et exécutée en production.</li>
+                            <li><strong>Surveillance (Monitor) :</strong> Mesure des performances, de la disponibilité et d'autres métriques pour identifier tout problème en production.</li>
+                        </ul>
+                        
+                        <!-- Schéma DevOps (Zoomable) -->
+                        <div class="schema-container" style="background: transparent; border: none; margin-top: 20px;">
+                            <img src="assets/Veille/DevOps.png" alt="La boucle infinie du CI/CD DevOps" style="border-radius: 8px;" class="zoomable-image">
+                        </div>
+                    </div>
+
+                    <!-- SECTION DEVSECOPS & TESTS SÉCURITÉ -->
+                    <div class="theory-card">
+                        <h3><i class="fa-solid fa-shield-halved"></i> L'évolution : le DevSecOps</h3>
+                        <p>Aujourd'hui, face à la multiplication des cybermenaces, le standard évolue vers le <strong>DevSecOps</strong>. Il s'agit d'intégrer la sécurité (Sec) de manière automatisée dès le début du cycle de développement (approche <em>"Shift-Left"</em>). La sécurité n'est plus une validation finale, mais une responsabilité continue.</p>
+                        
+                        <h4 style="color: #ff9100; font-size: 1rem; margin: 15px 0 10px 0;"><i class="fa-solid fa-user-shield"></i> Une Approche Préventive</h4>
+                        <p>Sécurité dès le début, plus seulement à la fin. Approche préventive. On n'attend pas la fin du projet pour découvrir une faille. Pour cela, on utilise différents types de tests automatisés :</p>
+                        
+                        <ul class="theory-list">
+                            <li><strong>SAST (Static Application Security Testing) :</strong> Un robot analyse le code source (Java, Python, PHP...) pendant l'écriture pour repérer des erreurs bêtes (ex: mot de passe en clair).</li>
+                            <li><strong>SCA (Software Composition Analysis) :</strong> Le robot vérifie si les bibliothèques/frameworks importés (via npm, pip...) n'ont pas de failles connues.</li>
+                            <li><strong>DAST (Dynamic Application Security Testing) :</strong> Une fois l'application lancée, un scanner simule une attaque de hacker pour tester sa résistance.</li>
+                        </ul>
+
+                        <!-- Schéma DevSecOps (Zoomable) -->
+                        <div class="schema-container" style="background: transparent; border: none; margin-top: 20px;">
+                            <img src="assets/Veille/DevSecOps.png" alt="Le modèle Shift-Left du DevSecOps" style="border-radius: 8px;" class="zoomable-image">
+                        </div>
+                    </div>
+
+                    <!-- SECTION JIRA & AGILITÉ -->
+                    <div class="theory-card">
+                        <h3><i class="fa-brands fa-jira"></i> Jira & Méthodologies Agiles</h3>
+                        <p>Dans un écosystème DevOps, l'outillage technique ne suffit pas : l'organisation est vitale. <strong>Jira</strong> s'impose comme le standard de l'industrie pour orchestrer le travail en équipe, en s'appuyant sur les frameworks agiles :</p>
+                        
+                        <ul class="theory-list">
+                            <li><strong>Scrum :</strong> Approche itérative basée sur des cycles courts appelés <em>Sprints</em> (généralement 2 à 4 semaines). Elle intègre des cérémonies clés (Daily meeting, Sprint Planning, Rétrospective) pour garantir une livraison continue et une adaptation rapide aux changements.</li>
+                        </ul>
+
+                        <!-- Schéma Scrum 1 (SANS ZOOM NI FILTRE) -->
+                        <div class="schema-container" style="background: transparent; border: none; margin-bottom: 20px;">
+                            <img src="assets/Veille/Scrum1.png" alt="Schéma du cycle Scrum" style="border-radius: 8px;" class="zoomable-image">
+                        </div>
+
+                        <ul class="theory-list">
+                            <li><strong>Le cycle de vie d'une itération :</strong> De la spécification à la validation, chaque sprint est une boucle complète impliquant le client et aboutissant à un produit ou un incrément.</li>
+                        </ul>
+
+                         <!-- Schéma Scrum 2 (AVEC ZOOM) -->
+                        <div class="schema-container" style="background: transparent; border: none; margin-bottom: 20px;">
+                             <img src="assets/Veille/Scrum2.png" alt="Schéma d'une itération/sprint de 2 à 4 semaines" style="border-radius: 8px;" class="zoomable-image">
+                        </div>
+
+                        <p>En contexte DevOps, Jira fait le lien parfait : il connecte les tickets (features, bugs, incidents) directement aux pipelines CI/CD (commits Git, déploiements), offrant une traçabilité totale de l'idée jusqu'à la mise en production. Aujourd'hui, on utilise des outils comme <strong>Jira</strong> ou <strong>Trello</strong> boostés à l'IA pour estimer le temps de travail.</p>
+                    </div>
+
+                </div>
+
+                <!-- COLONNE DROITE : FLUX RSS MULTIPLES -->
+                <div class="veille-feed-section">
+                    <div class="feed-header">
+                        <h3><i class="fa-solid fa-rss"></i> Actualités DevOps & Agile</h3>
+                        <span class="live-badge"><span class="live-dot"></span> En direct</span>
+                    </div>
+                    
+                    <div id="veille-loader" class="veille-loader">
+                        <i class="fa-solid fa-circle-notch fa-spin"></i>
+                        <p>Synchronisation des flux...</p>
+                    </div>
+                    
+                    <div id="rss-feed-container" class="veille-feed-list" style="display: none;"></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- LA LIGHTBOX POUR LE ZOOM DES IMAGES -->
+<div id="image-lightbox-overlay" class="lightbox-overlay">
+    <span class="lightbox-close"><i class="fa-solid fa-xmark"></i></span>
+    <img id="lightbox-img" src="" alt="Schéma en plein écran">
+</div>
