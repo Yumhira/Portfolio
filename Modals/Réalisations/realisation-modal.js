@@ -1,7 +1,7 @@
-export function initCertifModal() {
-    const overlay = document.getElementById('certif-modal-overlay');
-    const closeBtn = document.getElementById('certif-close-btn');
-    const openBtn = document.getElementById('btn-open-certif');
+export function initRealModal() {
+    const overlay = document.getElementById('real-modal-overlay');
+    const closeBtn = document.getElementById('real-close-btn');
+    const openBtn = document.getElementById('btn-open-real');
 
     if (!overlay || !openBtn) return;
 

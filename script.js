@@ -1,17 +1,52 @@
 document.addEventListener("DOMContentLoaded", () => {
+
     // Charger la modale de contact
-    fetch('Modals/contact-modal.html')
+    fetch('Modals/Contact/contact-modal.html')
         .then(response => response.text())
         .then(data => {
             document.getElementById('contact-modal-container').innerHTML = data;
-            
-            // Une fois le HTML injecté, on importe et lance le JS de la modale
-            import('./Modals/contact-modal.js').then(module => {
+            import('./Modals/Contact/contact-modal.js').then(module => {
                 module.initContactModal();
             });
         });
 
-    // Ton code existant pour le téléchargement du CV
+    // Charger la modale certif
+    fetch('Modals/Certif/certif-modal.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('certif-modal-container').innerHTML = data;
+            import('./Modals/Certif/certif-modal.js').then(module => {
+                module.initCertifModal();
+            });
+        });
+
+    // Charger la modale réalisations
+    fetch('Modals/Réalisations/realisation-modal.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('real-modal-container').innerHTML = data;
+            import('./Modals/Réalisations/realisation-modal.js').then(module => {
+                module.initRealModal();
+            });
+        });
+    
+    // Charger la modale veille
+    fetch('Modals/Veille/veille-modal.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('veille-modal-container').innerHTML = data;
+            // On charge aussi le CSS dynamiquement
+            const link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = 'Modals/Veille/veille-modal.css';
+            document.head.appendChild(link);
+            
+            import('./Modals/Veille/veille-modal.js').then(module => {
+                module.initVeilleModal();
+            });
+        });
+
+    // Téléchargement CV
     const downloadBtn = document.querySelector(".btn-download");
     if (downloadBtn) {
         downloadBtn.addEventListener("click", () => {

@@ -1,10 +1,96 @@
-<div id="certif-modal" class="modal-overlay">
-    <div class="modal-content bento-tile modal-large">
-        <span class="close-certif">&times;</span>
-        <div class="modal-body-empty">
-            <!-- Modal vide au clic -->
-            <h3>Certifications & Diplômes</h3>
-            <p>Contenu en cours de rédaction...</p>
+<div id="certif-modal-overlay" class="certif-overlay">
+    <div class="certif-modal giant-modal">
+        
+        <!-- HEADER -->
+        <div class="certif-modal-header">
+            <div class="certif-header-left">
+                <span class="certif-header-icon"><i class="fa-solid fa-award"></i></span>
+                <div class="certif-header-text">
+                    <h2>Portefeuille de Compétences</h2>
+                    <p>Diplômes, Certifications et Langues</p>
+                </div>
+            </div>
+            <button class="certif-close-btn" id="certif-close-btn">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <!-- BODY -->
+        <div class="certif-modal-body">
+            <div class="certif-grid">
+                
+                <!-- CARTE : BAC -->
+                <div class="certif-card">
+                    <div class="certif-card-top">
+                        <div class="certif-logo academic"><i class="fa-solid fa-graduation-cap"></i></div>
+                        <div class="certif-badge badge-obtained">Diplôme Obtenu</div>
+                    </div>
+                    <div class="certif-card-body">
+                        <h4>Baccalauréat STMG</h4>
+                        <p>Lycée de l'Arc - Mention Bien.</p>
+                    </div>
+                    <div class="certif-card-footer">
+                        <a href="assets/Certif/Diplôme_Bac_Haytham.pdf" target="_blank" class="btn-view-doc">
+                            <i class="fa-solid fa-eye"></i> Consulter le diplôme
+                        </a>
+                    </div>
+                </div>
+
+                <!-- CARTE : VOLTAIRE -->
+                <div class="certif-card">
+                    <div class="certif-card-top">
+                        <div class="certif-logo lang"><i class="fa-solid fa-spell-check"></i></div>
+                        <div class="certif-badge badge-score">Score : [En attente]</div>
+                    </div>
+                    <div class="certif-card-body">
+                        <h4>Certificat Voltaire</h4>
+                        <p>Maîtrise de l'orthographe et de l'expression française.</p>
+                    </div>
+                    <div class="certif-card-footer">
+                        <a href="#" target="_blank" class="btn-view-doc">
+                            <i class="fa-solid fa-eye"></i> Voir le certificat
+                        </a>
+                    </div>
+                </div>
+
+                <!-- CARTE : TOEIC -->
+                <div class="certif-card">
+                    <div class="certif-card-top">
+                        <div class="certif-logo toeic"><i class="fa-solid fa-earth-americas"></i></div>
+                        <div class="certif-badge badge-score">Score : 605</div>
+                    </div>
+                    <div class="certif-card-body">
+                        <h4>TOEIC Listening & Reading</h4>
+                        <p>Évaluation internationale du niveau d'anglais professionnel.</p>
+                    </div>
+                    <div class="certif-card-footer">
+                        <a href="assets/Certif/Toeic_Result.pdf" target="_blank" class="btn-view-doc">
+                            <i class="fa-solid fa-eye"></i> Consulter le score
+                        </a>
+                    </div>
+                </div>
+
+                <!-- CARTE : CISCO HARDWARE BASICS (NOUVEAU) -->
+                <div class="certif-card">
+                    <div class="certif-card-top">
+                        <!-- On enlève la classe "cisco" pour laisser l'image prendre toute la place -->
+                        <div class="certif-logo">
+                            <img src="assets/Certif/Badge/Cisco_Computer_Hardware_Basics.png" alt="Badge Cisco Computer Hardware Basics">
+                        </div>
+                        <div class="certif-badge badge-obtained">Badge Obtenu</div>
+                    </div>
+                    <div class="certif-card-body">
+                        <h4>Computer Hardware Basics</h4>
+                        <p>Cisco Networking Academy : Fondamentaux du matériel, montage, réparation et dépannage.</p>
+                    </div>
+                    <div class="certif-card-footer">
+                        <a href="https://www.credly.com/badges/e53cee06-1fb1-413c-bf10-9c67c0471ce7/linked_in_profile" target="_blank" class="btn-view-doc">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i> Voir le badge Credly
+                        </a>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </div>
 </div>
