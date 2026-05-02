@@ -4,12 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Icônes : Font Awesome + DevIcon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
     <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="Modals/Contact/contact-modal.css">
+    <link rel="stylesheet" href="Modals/Certif/certif-modal.css">
+    <link rel="stylesheet" href="Modals/Realisations/real-modal.css">
+    <link rel="stylesheet" href="Modals/Veille/veille-modal.css">
     <script src="script.js" defer></script>
-    <title>Bento Portfolio SISR</title>
+    <title>Haytham CLEMENT - Portfolio</title>
 </head>
 
 <body>
@@ -31,14 +34,20 @@
                         </div>
                         <h1 class="profil-name">Haytham CLEMENT</h1>
                         <p class="profil-title">Étudiant BTS SIO option SISR</p>
-                        <p class="profil-location">
-                            <a href="https://www.google.com/maps/search/?api=1&query=Gentilly+94250" target="_blank">
-                                <i class="fa-solid fa-location-dot"></i> Gentilly 94250
-                            </a>
-                        </p>
-                        <div class="profil-socials">
-                            <a href="https://www.linkedin.com/in/haythamclement" target="_blank"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
-                            <a href="https://github.com/Yumhira" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
+                        <div class="profil-details-stack">
+                            <p class="profil-location">
+                                <a href="https://www.google.com/maps/search/?api=1&query=Gentilly+94250" target="_blank">
+                                    <i class="fa-solid fa-location-dot"></i> Gentilly 94250
+                                </a>
+                            </p>
+                            <div class="profil-socials">
+                                <a href="https://www.linkedin.com/in/haythamclement" target="_blank">
+                                    <i class="fa-brands fa-linkedin"></i> LinkedIn
+                                </a>
+                                <a href="https://github.com/Yumhira" target="_blank">
+                                    <i class="fa-brands fa-github"></i> GitHub
+                                </a>
+                            </div>
                         </div>
                     </div>
 
@@ -53,10 +62,11 @@
 
                     <div class="profil-contact">
                         <button class="btn-premium btn-message">
-                            <span class="icon-wrap purple">
+                            <span class="icon-wrap">
                                 <i class="fa-solid fa-paper-plane"></i>
                             </span>
                             Contactez-moi
+                            <span class="arrow-wrap"><i class="fa-solid fa-arrow-right"></i></span>
                         </button>
                     </div>
                 </div>
@@ -65,53 +75,86 @@
             <!-- COMPÉTENCES -->
             <div id="grid-skills">
                 <div class="skill-bloc bento-tile">
-                    <h3>Front-End</h3>
-                    <div class="skill-list">
-                        <div class="skill-pill border-html"><i class="devicon-html5-plain colored"></i> HTML</div>
-                        <div class="skill-pill border-css"><i class="devicon-css3-plain colored"></i> CSS</div>
-                        <div class="skill-pill border-js"><i class="devicon-javascript-plain colored"></i> JS</div>
-                        <div class="skill-pill border-angular"><i class="devicon-angularjs-plain colored"></i> Angular
+
+                    <div class="skill-col skill-col--frontend">
+                        <h3 class="tile-title"><i class="fa-solid fa-desktop"></i> Front-End</h3>
+                        <div class="skill-list">
+                            <div class="skill-pill border-html"><i class="devicon-html5-plain colored"></i> HTML</div>
+                            <div class="skill-pill border-css"><i class="devicon-css3-plain colored"></i> CSS</div>
+                            <div class="skill-pill border-js"><i class="devicon-javascript-plain colored"></i> JS</div>
+                            <div class="skill-pill border-angular"><i class="devicon-angularjs-plain colored"></i> Angular</div>
+                            <div class="skill-pill border-wp"><i class="devicon-wordpress-plain"></i> WordPress</div>
                         </div>
-                        <div class="skill-pill border-wp"><i class="devicon-wordpress-plain"></i> WP</div>
                     </div>
-                </div>
 
-                <div class="skill-bloc bento-tile">
-                    <h3>Back-End</h3>
-                    <div class="skill-list">
-                        <div class="skill-pill border-php"><i class="devicon-php-plain colored"></i> PHP</div>
-                        <div class="skill-pill border-symfony"><i class="devicon-symfony-original"></i> Symfony</div>
-                        <div class="skill-pill border-mysql"><i class="devicon-mysql-plain colored"></i> MySQL</div>
-                    </div>
-                </div>
+                    <div class="skill-divider"></div>
 
-                <div class="skill-bloc bento-tile">
-                    <h3>Réseau & Infra</h3>
-                    <div class="skill-list">
-                        <div class="skill-pill border-packet"><i class="fa-solid fa-diagram-project"></i> Packet</div>
-                        <div class="skill-pill border-ip"><i class="fa-solid fa-network-wired"></i> IP</div>
-                        <div class="skill-pill border-glpi"><i class="fa-solid fa-toolbox"></i> GLPI</div>
-                        <div class="skill-pill border-virtual"><i class="fa-solid fa-server"></i> Virtu</div>
-                        <div class="skill-pill border-openvpn"><i class="fa-solid fa-lock"></i> VPN</div>
+                    <div class="skill-col skill-col--backend">
+                        <h3 class="tile-title"><i class="fa-solid fa-database"></i> Back-End</h3>
+                        <div class="skill-list">
+                            <div class="skill-pill border-php"><i class="devicon-php-plain colored"></i> PHP</div>
+                            <div class="skill-pill border-symfony"><i class="devicon-symfony-original"></i> Symfony</div>
+                            <div class="skill-pill border-mysql"><i class="devicon-mysql-plain colored"></i> MySQL</div>
+                        </div>
                     </div>
+
+                    <div class="skill-divider"></div>
+
+                    <div class="skill-col skill-col--network">
+                        <h3 class="tile-title"><i class="fa-solid fa-network-wired"></i> Réseau & Infra</h3>
+                        <div class="skill-list">
+                            <div class="skill-pill border-packet"><i class="fa-solid fa-diagram-project"></i> Packet Tracer</div>
+                            <div class="skill-pill border-ip"><i class="fa-solid fa-network-wired"></i> Adressage IP</div>
+                            <div class="skill-pill border-glpi"><i class="fa-solid fa-toolbox"></i> GLPI</div>
+                            <div class="skill-pill border-virtual"><i class="fa-solid fa-server"></i> Virtualisation</div>
+                            <div class="skill-pill border-openvpn"><i class="fa-solid fa-lock"></i> OpenVPN</div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
 
             <!-- À PROPOS / CERTIFS -->
             <div id="grid-dual">
                 <div class="dual-bloc bento-tile" id="tile-about">
-                    <h3>À Propos</h3>
+                    <h3 class="tile-title"><i class="fa-solid fa-user"></i> À Propos</h3>
                     <div class="about-content">
-                        <p>Fort d'une expérience de 3 ans en développement web, j'ai acquis une solide maîtrise des
-                            logiques applicatives.</p>
-                        <p>Aujourd'hui, je me réoriente vers l'<strong>administration SISR</strong> pour maîtriser
-                            l'infrastructure de bout en bout.</p>
+                        <p>Fort d'une expérience de 3 ans en développement web, j'ai acquis une solide maîtrise des logiques applicatives.</p>
+                        <p>Aujourd'hui, je me réoriente vers l'<strong>administration SISR</strong> pour maîtriser l'infrastructure de bout en bout.</p>
                         <p>Mon objectif : devenir <strong>consultant en cybersécurité</strong>.</p>
                     </div>
                 </div>
+
+                <!-- TUILE CERTIF GALLERY -->
                 <div class="dual-bloc bento-tile" id="tile-certifs-small">
-                    <h3>Certifications</h3>
-                    <div class="certif-placeholder">En attente de validation...</div>
+                    <div class="certif-tile-label tile-title">
+                        <i class="fa-solid fa-certificate"></i> Certifications
+                    </div>
+
+                    <div class="certif-previews">
+                        <div class="certif-preview-card card-1">
+                            <i class="fa-solid fa-network-wired"></i>
+                            <span>CCNA</span>
+                        </div>
+                        <div class="certif-preview-card card-2">
+                            <i class="fa-solid fa-shield-halved"></i>
+                            <span>Security+</span>
+                        </div>
+                        <div class="certif-preview-card card-3">
+                            <i class="fa-brands fa-microsoft"></i>
+                            <span>AZ-900</span>
+                        </div>
+                        <div class="certif-preview-card card-4">
+                            <i class="fa-brands fa-linux"></i>
+                            <span>Linux LPI</span>
+                        </div>
+                    </div>
+
+                    <button class="btn-certif-gallery" id="btn-open-certif">
+                        <span class="icon-wrap"><i class="fa-solid fa-certificate"></i></span>
+                        Voir les certifications
+                        <span class="arrow-wrap"><i class="fa-solid fa-arrow-right"></i></span>
+                    </button>
                 </div>
             </div>
 
@@ -119,12 +162,31 @@
 
         <!-- COLONNE DROITE -->
         <div class="column-right-grid">
+
+            <!-- VEILLE TECHNOLOGIQUE -->
             <div id="tile-veille" class="bento-tile">
-                <h3>Veille Technologique</h3>
+                <div class="veille-top-row">
+                    <div class="veille-label tile-title">
+                        <i class="fa-solid fa-rss"></i> Veille Technologique
+                    </div>
+                </div>
+
+                <div class="veille-subject">
+                    <p class="veille-subject-eyebrow">Sujet principal</p>
+                    <h2 class="veille-subject-title">L'écosystème DevOps</h2>
+                    <p class="veille-subject-desc">Culture, automatisation CI/CD, conteneurisation et sécurité des infrastructures modernes.</p>
+                </div>
+
+                <button id="btn-open-veille">
+                    <span class="icon-wrap"><i class="fa-solid fa-rss"></i></span>
+                    <span>Consulter ma veille</span>
+                    <span class="arrow-wrap"><i class="fa-solid fa-arrow-right"></i></span>
+                </button>
             </div>
 
+            <!-- PARCOURS -->
             <div id="tile-parcours" class="bento-tile">
-                <h3>Parcours</h3>
+                <h3 class="tile-title"><i class="fa-solid fa-timeline"></i> Parcours</h3>
                 <div class="timeline">
                     <div class="timeline-item">
                         <div class="timeline-dot special"></div>
@@ -161,31 +223,41 @@
                 </div>
             </div>
 
+            <!-- RÉALISATIONS -->
             <div id="tile-realisations" class="bento-tile">
-                <h3>Réalisations</h3>
-            </div>
-        </div>
+                <div class="real-tile-label tile-title">
+                    <i class="fa-solid fa-code"></i> Réalisations
+                </div>
 
-    </div>
+                <div class="real-previews">
+                    <div class="real-preview-card rcard-1">
+                        <i class="fa-solid fa-wine-glass"></i>
+                    </div>
+                    <div class="real-preview-card rcard-2">
+                        <i class="fa-solid fa-layer-group"></i>
+                    </div>
+                    <div class="real-preview-card rcard-3">
+                        <i class="fa-solid fa-network-wired"></i>
+                    </div>
+                    <div class="real-preview-card rcard-4">
+                        <i class="fa-solid fa-server"></i>
+                    </div>
+                </div>
 
-    <!-- MODALE DE CONTACT -->
-    <div id="contact-modal" class="modal">
-        <div class="modal-content bento-tile">
-            <span class="close-modal">&times;</span>
-            <h3>Contactez-moi</h3>
-            <form id="contact-form">
-                <div class="form-group"><input type="text" placeholder="Nom complet" required></div>
-                <div class="form-group"><input type="email" placeholder="Votre Email" required></div>
-                <div class="form-group"><textarea placeholder="Votre message..." rows="5" required></textarea></div>
-                <button type="submit" class="btn-premium">
-                    <span class="icon-wrap purple"><i class="fa-solid fa-paper-plane"></i></span>
-                    Envoyer
+                <button class="btn-real-gallery" id="btn-open-real">
+                    <span class="icon-wrap"><i class="fa-solid fa-code"></i></span>
+                    Voir les réalisations
+                    <span class="arrow-wrap"><i class="fa-solid fa-arrow-right"></i></span>
                 </button>
-            </form>
+            </div>
+
         </div>
     </div>
 
-    <script src="script.js"></script>
-</body>
+    <div id="contact-modal-container"></div>
+    <div id="certif-modal-container"></div>
+    <div id="real-modal-container"></div>
+    <div id="veille-modal-container"></div>
 
+</body>
 </html>
