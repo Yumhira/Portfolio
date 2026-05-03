@@ -1,98 +1,53 @@
 /* ============================================================
-   MODALE CONTACT — alignée sur le style certif/veille/réalisations
+   MODALE CONTACT
    ============================================================ */
 
-/* --- OVERLAY --- */
 .contact-overlay,
 .modal {
-    position: fixed;
-    inset: 0;
+    position: fixed; inset: 0;
     background: rgba(0, 0, 0, 0.92);
-    z-index: 9999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    box-sizing: border-box;
-    opacity: 0;
-    pointer-events: none;
+    z-index: 9999; display: flex; align-items: center; justify-content: center;
+    padding: 20px; box-sizing: border-box;
+    opacity: 0; pointer-events: none;
     transition: opacity 0.3s ease;
 }
-
 .contact-overlay.active,
-.modal.active {
-    opacity: 1;
-    pointer-events: all;
-}
+.modal.active { opacity: 1; pointer-events: all; }
 
 .contact-modal,
 .modal-content {
     background: #09090b;
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 24px;
-    width: 95%;
-    max-width: 520px;
-    display: flex;
-    flex-direction: column;
+    width: 95%; max-width: 520px;
+    display: flex; flex-direction: column;
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-    overflow: hidden;
-    padding: 0 !important;
-    position: relative;
+    overflow: hidden; padding: 0 !important; position: relative;
     transform: translateY(20px) scale(0.98);
     transition: transform 0.25s ease;
 }
-
 .contact-overlay.active .contact-modal,
-.modal.active .modal-content {
-    transform: translateY(0) scale(1);
-}
+.modal.active .modal-content { transform: translateY(0) scale(1); }
 
 /* --- HEADER --- */
 .contact-modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 28px 32px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 28px 32px; border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     flex-shrink: 0;
 }
-
-.contact-header-left {
-    display: flex;
-    gap: 15px;
-    align-items: center;
-}
-
+.contact-header-left { display: flex; gap: 15px; align-items: center; }
 .contact-header-icon {
-    width: 46px;
-    height: 46px;
-    border-radius: 12px;
-    background: rgba(177, 151, 252, 0.1);
-    color: #b197fc;
+    width: 46px; height: 46px; border-radius: 12px;
+    background: rgba(177, 151, 252, 0.1); color: #b197fc;
     border: 1px solid rgba(177, 151, 252, 0.2);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.1rem;
-    flex-shrink: 0;
+    display: flex; justify-content: center; align-items: center; font-size: 1.1rem; flex-shrink: 0;
 }
-
 .contact-header-text h2 {
-    margin: 0;
-    color: #ffffff;
-    font-size: 1.25rem;
-    font-weight: 700;
+    margin: 0; color: #ffffff; font-size: 1.25rem; font-weight: 700;
     font-family: 'ClashDisplay-Semibold', 'Clash Display', 'Outfit', sans-serif;
 }
+.contact-header-text p { margin: 3px 0 0 0; color: rgba(255, 255, 255, 0.3); font-size: 0.8rem; }
 
-.contact-header-text p {
-    margin: 3px 0 0 0;
-    color: rgba(255, 255, 255, 0.3);
-    font-size: 0.8rem;
-}
-
-/* --- BOUTON FERMER (style certif) --- */
-.contact-close-btn,
 .contact-close-btn {
     background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);
     color: #ffffff; width: 40px; height: 40px; border-radius: 50%;
@@ -101,180 +56,85 @@
 }
 .contact-close-btn:hover { background: #ef4444; border-color: #ef4444; }
 
-/* --- BODY / FORMULAIRE --- */
+/* --- BODY --- */
 .contact-modal-body {
-    padding: 32px;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
+    padding: 32px; display: flex; flex-direction: column; gap: 14px;
 }
-
-#contact-form {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    width: 100%;
-}
-
-/* Supprime le h3 "Contactez-moi" dans le form — le header s'en charge */
-#contact-form-container > h3 {
-    display: none;
-}
+#contact-form { display: flex; flex-direction: column; gap: 14px; width: 100%; }
+#contact-form-container > h3 { display: none; }
 
 .form-group input,
 .form-group textarea {
-    width: 100%;
-    padding: 13px 16px;
+    width: 100%; padding: 13px 16px;
     background: rgba(255, 255, 255, 0.04);
     border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 12px;
-    color: rgba(255, 255, 255, 0.85);
-    font-family: 'Outfit', sans-serif;
-    font-size: 0.88rem;
-    box-sizing: border-box;
-    outline: none;
+    border-radius: 12px; color: rgba(255, 255, 255, 0.85);
+    font-family: 'Outfit', sans-serif; font-size: 0.88rem;
+    box-sizing: border-box; outline: none;
     transition: border-color 0.2s ease, background 0.2s ease;
 }
-
 .form-group input::placeholder,
-.form-group textarea::placeholder {
-    color: rgba(255, 255, 255, 0.2);
-}
-
+.form-group textarea::placeholder { color: rgba(255, 255, 255, 0.2); }
 .form-group input:focus,
 .form-group textarea:focus {
     border-color: rgba(177, 151, 252, 0.35);
     background: rgba(177, 151, 252, 0.04);
 }
-
-.form-group textarea {
-    resize: none;
-    min-height: 140px;
-}
+.form-group textarea { resize: none; min-height: 140px; }
 
 /* --- BOUTON ENVOYER --- */
 #contact-form .btn-premium,
 #contact-form button[type="submit"] {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    height: 48px;
-    padding: 0 20px;
+    display: flex; align-items: center; justify-content: center; gap: 12px;
+    height: 48px; padding: 0 20px;
     background: rgba(177, 151, 252, 0.06);
     border: 1px solid rgba(177, 151, 252, 0.18);
-    border-radius: 14px;
-    color: rgba(255, 255, 255, 0.85);
-    font-family: 'Outfit', sans-serif;
-    font-weight: 600;
-    font-size: 0.88rem;
-    cursor: pointer;
-    transition: all 0.25s ease;
-    width: 100%;
-    letter-spacing: 0.2px;
+    border-radius: 14px; color: rgba(255, 255, 255, 0.85);
+    font-family: 'Outfit', sans-serif; font-weight: 600; font-size: 0.88rem;
+    cursor: pointer; transition: all 0.25s ease; width: 100%; letter-spacing: 0.2px;
 }
-
 #contact-form .btn-premium:hover,
 #contact-form button[type="submit"]:hover {
-    background: rgba(177, 151, 252, 0.12);
-    border-color: rgba(177, 151, 252, 0.3);
-    transform: translateY(-1px);
-    box-shadow: 0 6px 24px rgba(177, 151, 252, 0.12);
+    background: rgba(177, 151, 252, 0.12); border-color: rgba(177, 151, 252, 0.3);
+    transform: translateY(-1px); box-shadow: 0 6px 24px rgba(177, 151, 252, 0.12);
 }
-
 #contact-form .icon-wrap {
-    width: 28px;
-    height: 28px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 8px;
-    font-size: 0.85rem;
-    background: rgba(177, 151, 252, 0.1);
-    color: #b197fc;
-    border: 1px solid rgba(177, 151, 252, 0.2);
-    flex-shrink: 0;
+    width: 28px; height: 28px; display: flex; justify-content: center; align-items: center;
+    border-radius: 8px; font-size: 0.85rem;
+    background: rgba(177, 151, 252, 0.1); color: #b197fc;
+    border: 1px solid rgba(177, 151, 252, 0.2); flex-shrink: 0;
 }
 
 /* --- MESSAGE SUCCÈS --- */
 #contact-success {
     animation: modalAppear 0.4s ease-out;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 260px;
-    padding: 32px;
-    text-align: center;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    min-height: 260px; padding: 32px; text-align: center;
 }
-
 #contact-success .icon-wrap {
-    width: 56px;
-    height: 56px;
-    margin: 0 auto 20px;
-    font-size: 1.4rem;
-    border-radius: 16px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: rgba(177, 151, 252, 0.1);
-    color: #b197fc;
-    border: 1px solid rgba(177, 151, 252, 0.2);
+    width: 56px; height: 56px; margin: 0 auto 20px; font-size: 1.4rem; border-radius: 16px;
+    display: flex; justify-content: center; align-items: center;
+    background: rgba(177, 151, 252, 0.1); color: #b197fc; border: 1px solid rgba(177, 151, 252, 0.2);
 }
-
 #contact-success h4 {
-    margin: 0 0 8px 0;
-    font-family: 'ClashDisplay-Semibold', 'Clash Display', 'Outfit', sans-serif;
-    color: #fff;
-    font-size: 1.3rem;
+    margin: 0 0 8px 0; font-family: 'ClashDisplay-Semibold', 'Clash Display', 'Outfit', sans-serif;
+    color: #fff; font-size: 1.3rem;
 }
+#contact-success p { color: rgba(255, 255, 255, 0.35); font-size: 0.85rem; margin: 0; line-height: 1.5; }
 
-#contact-success p {
-    color: rgba(255, 255, 255, 0.35);
-    font-size: 0.85rem;
-    margin: 0;
-    line-height: 1.5;
-}
-
-@media (max-width: 900px), (max-height: 780px) {
-    .contact-overlay,
-    .modal {
-        padding: 12px;
-    }
-
-    .contact-modal,
-    .modal-content {
-        width: 100%;
-        max-width: 100%;
-        max-height: 94dvh;
-        border-radius: 18px;
-    }
-
-    .contact-modal-header {
-        padding: 18px 18px 14px;
-    }
-
-    .contact-modal-body {
-        padding: 20px 18px;
-    }
-}
-
+/* ==============================================
+   RESPONSIVE — Mobile UNIQUEMENT (< 600px)
+   La modal reste centrée et compacte partout
+============================================== */
 @media (max-width: 600px) {
-    .contact-header-text h2 {
-        font-size: 1rem;
+    .contact-overlay, .modal { padding: 8px; }
+    .contact-modal, .modal-content {
+        width: 100%; max-width: 100%; max-height: 96dvh; border-radius: 16px;
     }
-
-    .contact-header-text p {
-        font-size: 0.72rem;
-    }
-
-    .contact-header-icon {
-        width: 38px;
-        height: 38px;
-        font-size: 1rem;
-    }
-
-    .contact-modal-body {
-        gap: 12px;
-    }
+    .contact-modal-header { padding: 16px 14px 12px; }
+    .contact-modal-body { padding: 16px 14px; gap: 12px; }
+    .contact-header-text h2 { font-size: 1rem; }
+    .contact-header-text p { font-size: 0.72rem; }
+    .contact-header-icon { width: 38px; height: 38px; font-size: 1rem; }
+    .form-group textarea { min-height: 110px; }
 }
