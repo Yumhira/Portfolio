@@ -302,12 +302,18 @@ body::before {
     color: #00e5ff;
     border: 1px solid rgba(0,229,255,0.2);
 }
+.btn-download .arrow-wrap {
+    background: rgba(0,229,255,0.1);
+    color: #00e5ff;
+    border: 1px solid rgba(0,229,255,0.15);
+}
 .btn-download:hover {
     background: rgba(0,229,255,0.1);
     border-color: rgba(0,229,255,0.3);
     transform: translateY(-1px);
     box-shadow: 0 6px 24px rgba(0,229,255,0.12);
 }
+.btn-download:hover .arrow-wrap { transform: translateX(3px); }
 
 /* VIOLET — Contactez-moi */
 .btn-message {
@@ -1336,6 +1342,14 @@ body::before {
         height: 1px;
         margin: 0;
     }
+
+    .column-right-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+        grid-auto-rows: auto;
+        align-content: start;
+        gap: 10px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -1384,17 +1398,25 @@ body::before {
         flex-wrap: wrap;
     }
 
+    .column-right-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+        grid-auto-rows: auto;
+        align-content: start;
+        gap: 10px;
+    }
+
     #tile-certifs-small,
     #tile-realisations {
         align-items: stretch;
         justify-content: space-between;
         padding: 20px;
-        min-height: 250px;
+        min-height: 280px;
     }
 
     #tile-parcours {
         padding: 20px 18px;
-        min-height: 300px;
+        min-height: 320px;
     }
 
     .timeline {
@@ -1421,8 +1443,8 @@ body::before {
         flex-wrap: wrap;
         align-content: center;
         justify-content: center;
-        padding: 16px 0 18px;
-        gap: 14px;
+        padding: 18px 0 18px;
+        gap: 16px;
     }
 
     #tile-certifs-small::after,
@@ -1490,13 +1512,21 @@ body::before {
 
     #tile-certifs-small,
     #tile-realisations {
-        padding: 18px;
-        min-height: 240px;
+        padding: 20px;
+        min-height: 290px;
     }
 
     #tile-parcours {
         padding: 18px 16px;
-        min-height: 330px;
+        min-height: 350px;
+    }
+
+    .column-right-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+        grid-auto-rows: auto;
+        align-content: start;
+        gap: 8px;
     }
 
     .timeline {
@@ -1553,8 +1583,8 @@ body::before {
         flex-wrap: wrap;
         align-content: center;
         justify-content: center;
-        padding: 16px 0 14px;
-        gap: 12px;
+        padding: 20px 0 16px;
+        gap: 14px;
     }
 
     .card-1,
