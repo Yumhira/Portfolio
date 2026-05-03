@@ -12,27 +12,44 @@ export function initVeilleModal() {
     const lightboxCloseBtn = document.querySelector('.lightbox-close');
 
     if (lightboxOverlay && lightboxImg) {
+        // Cache pour éviter de recharger les images
+        const imageCache = new Map();
+        
         zoomableImages.forEach(img => {
             img.addEventListener('click', () => {
-                lightboxImg.src = img.src; 
+                const src = img.src;
                 
-                // Gestion du filtre CSS inline pour la Lightbox
-                if(img.style.filter) {
-                    lightboxImg.style.filter = img.style.filter;
-                } else {
-                    lightboxImg.style.filter = 'none';
+                // Si l'image est en cache, afficher immédiatement
+                if (imageCache.has(src)) {
+                    lightboxImg.src = src;
+                    if(img.style.filter) lightboxImg.style.filter = img.style.filter;
+                    lightboxOverlay.classList.add('active');
+                    return;
                 }
-                
-                lightboxOverlay.classList.add('active'); 
+
+                // Sinon, précharger et afficher une fois chargée
+                const tempImg = new Image();
+                // Décodage asynchrone pour ne pas bloquer le thread main
+                try { tempImg.decoding = 'async'; } catch (e) {}
+                tempImg.onload = () => {
+                    imageCache.set(src, true); // Marquer comme chargée
+                    lightboxImg.src = src;
+                    if(img.style.filter) lightboxImg.style.filter = img.style.filter;
+                    lightboxOverlay.classList.add('active');
+                };
+                tempImg.onerror = () => console.error(`Erreur chargement: ${src}`);
+                tempImg.src = src;
             });
         });
 
         const closeLightbox = () => {
             lightboxOverlay.classList.remove('active');
-            setTimeout(() => { lightboxImg.src = ""; }, 300);
+            setTimeout(() => { lightboxImg.src = ""; }, 250);
         };
 
-        lightboxOverlay.addEventListener('click', closeLightbox);
+        lightboxOverlay.addEventListener('click', (e) => {
+            if (e.target === lightboxOverlay) closeLightbox();
+        });
         lightboxCloseBtn?.addEventListener('click', closeLightbox);
     }
     // ----------------------------------------------
@@ -51,7 +68,10 @@ export function initVeilleModal() {
 
     const fetchRSS = async () => {
         if (isLoaded) return; 
-        
+        // montrer le loader immédiatement pour retour visuel rapide
+        if (loader) loader.style.display = 'flex';
+        if (feedContainer) feedContainer.style.display = 'none';
+
         try {
             // Création des requêtes pour chaque flux RSS
             const fetchPromises = RSS_SOURCES.map(source => {
@@ -85,39 +105,72 @@ export function initVeilleModal() {
                 // On trie les articles du plus récent au plus ancien
                 allArticles.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
 
-                loader.style.display = 'none';
-                feedContainer.style.display = 'flex';
-                
-                // On prend les 12 articles les plus récents (puisqu'on a plus de sources)
-                const articlesToDisplay = allArticles.slice(0, 30);
-                
-                articlesToDisplay.forEach(item => {
-                    const dateObj = new Date(item.pubDate);
-                    const formattedDate = dateObj.toLocaleDateString('fr-FR', {
-                        day: 'numeric', month: 'short'
+                // Afficher rapidement les premiers résultats, puis remplir en batch
+                if (loader) loader.style.display = 'none';
+                if (feedContainer) feedContainer.style.display = 'flex';
+
+                    // Limiter initialement pour alléger le DOM (12 articles), puis charger le reste par batch
+                    const articlesToDisplay = allArticles.slice(0, 12);
+
+                    const fragment = document.createDocumentFragment();
+                    articlesToDisplay.forEach(item => {
+                        const dateObj = new Date(item.pubDate);
+                        const formattedDate = dateObj.toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' });
+                        let cleanDesc = item.description.replace(/<[^>]*>?/gm, '').substring(0, 120) + '...';
+
+                        const card = document.createElement('div');
+                        card.className = 'rss-card';
+                        card.innerHTML = `
+                            <div class="rss-date" style="justify-content: space-between;">
+                                <span><i class="fa-regular fa-clock"></i> ${formattedDate}</span>
+                                <span style="color: #b197fc; background: rgba(177, 151, 252, 0.1); padding: 2px 8px; border-radius: 12px;">${item.sourceName}</span>
+                            </div>
+                            <h4 class="rss-title">${item.title}</h4>
+                            <p class="rss-desc">${cleanDesc}</p>
+                            <a href="${item.link}" target="_blank" class="rss-link">
+                                Lire la suite <i class="fa-solid fa-arrow-right"></i>
+                            </a>
+                        `;
+                        fragment.appendChild(card);
                     });
+                    feedContainer.appendChild(fragment);
 
-                    // Retrait des balises HTML parasites et limitation à 120 caractères
-                    let cleanDesc = item.description.replace(/<[^>]*>?/gm, '').substring(0, 120) + '...';
-
-                    const card = document.createElement('div');
-                    card.className = 'rss-card';
-                    
-                    // On injecte le petit badge source avec la date
-                    card.innerHTML = `
-                        <div class="rss-date" style="justify-content: space-between;">
-                            <span><i class="fa-regular fa-clock"></i> ${formattedDate}</span>
-                            <span style="color: #b197fc; background: rgba(177, 151, 252, 0.1); padding: 2px 8px; border-radius: 12px;">${item.sourceName}</span>
-                        </div>
-                        <h4 class="rss-title">${item.title}</h4>
-                        <p class="rss-desc">${cleanDesc}</p>
-                        <a href="${item.link}" target="_blank" class="rss-link">
-                            Lire la suite <i class="fa-solid fa-arrow-right"></i>
-                        </a>
-                    `;
-                    feedContainer.appendChild(card);
-                });
-                isLoaded = true;
+                    // Si plus d'articles, les ajouter en petits batches non bloquants
+                    const remaining = allArticles.slice(12);
+                    if (remaining.length > 0) {
+                        const batchSize = 6;
+                        let idx = 0;
+                        const appendBatch = () => {
+                            const frag = document.createDocumentFragment();
+                            for (let i = 0; i < batchSize && idx < remaining.length; i++, idx++) {
+                                const item = remaining[idx];
+                                const dateObj = new Date(item.pubDate);
+                                const formattedDate = dateObj.toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' });
+                                let cleanDesc = item.description.replace(/<[^>]*>?/gm, '').substring(0, 120) + '...';
+                                const card = document.createElement('div');
+                                card.className = 'rss-card';
+                                card.innerHTML = `
+                                    <div class="rss-date" style="justify-content: space-between;">
+                                        <span><i class="fa-regular fa-clock"></i> ${formattedDate}</span>
+                                        <span style="color: #b197fc; background: rgba(177, 151, 252, 0.1); padding: 2px 8px; border-radius: 12px;">${item.sourceName}</span>
+                                    </div>
+                                    <h4 class="rss-title">${item.title}</h4>
+                                    <p class="rss-desc">${cleanDesc}</p>
+                                    <a href="${item.link}" target="_blank" class="rss-link">
+                                        Lire la suite <i class="fa-solid fa-arrow-right"></i>
+                                    </a>
+                                `;
+                                frag.appendChild(card);
+                            }
+                            feedContainer.appendChild(frag);
+                            if (idx < remaining.length) {
+                                // Laisser le thread revenir à l'UI avant d'ajouter la suite
+                                setTimeout(appendBatch, 150);
+                            }
+                        };
+                        setTimeout(appendBatch, 200);
+                    }
+                    isLoaded = true;
             } else {
                 throw new Error("Aucun article récupéré dans les flux.");
             }

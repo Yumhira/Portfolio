@@ -1,7 +1,7 @@
 /* --- OVERLAY --- */
 .certif-overlay {
     position: fixed; inset: 0;
-    background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(12px);
+    background: rgba(0, 0, 0, 0.92);
     z-index: 9999; display: flex; align-items: center; justify-content: center;
     padding: 20px; box-sizing: border-box;
     opacity: 0;
@@ -23,7 +23,7 @@
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
     overflow: hidden;
     transform: translateY(20px) scale(0.98);
-    transition: transform 0.3s ease;
+    transition: transform 0.25s ease;
 }
 
 .certif-overlay.active .certif-modal {

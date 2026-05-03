@@ -1,0 +1,19 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Lancer serveur local (Port 8000)",
+			"type": "shell",
+			"command": "python -m http.server 8000",
+			"isBackground": true,
+			"group": "build"
+		},
+		{
+			"label": "Serveur local",
+			"type": "shell",
+			"command": "python -m http.server 8000",
+			"isBackground": true,
+			"problemMatcher": []
+		}
+	]
+}
