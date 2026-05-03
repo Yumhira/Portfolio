@@ -130,3 +130,58 @@
     object-fit: cover; /* Remplit parfaitement la boîte */
     border-radius: inherit; /* Hérite de l'arrondi de 12px du parent */
 }
+@media (max-width: 1100px), (max-height: 820px) {
+    .certif-overlay {
+        padding: 12px;
+    }
+
+    .certif-modal {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        max-height: 94dvh;
+        border-radius: 18px;
+    }
+
+    .certif-modal-header {
+        padding: 18px 20px 14px;
+    }
+
+    .certif-modal-body {
+        padding: 20px;
+    }
+
+    .certif-grid {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 18px;
+    }
+}
+
+@media (max-width: 600px) {
+    .certif-overlay {
+        padding: 10px;
+    }
+
+    .certif-header-text h2 {
+        font-size: 1.15rem;
+    }
+
+    .certif-header-text p {
+        font-size: 0.75rem;
+    }
+
+    .certif-header-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1.1rem;
+    }
+
+    .certif-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .certif-card {
+        min-height: 0;
+        padding: 18px;
+    }
+}
