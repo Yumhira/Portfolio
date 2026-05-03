@@ -1118,32 +1118,32 @@ body::before {
 
 @media (max-width: 1366px), (max-height: 900px) {
     html, body {
-        height: auto;
+        height: 100vh;
         min-height: 100vh;
-        overflow-y: auto;
+        overflow-y: hidden;
         overflow-x: hidden;
         display: block;
     }
 
     body {
-        padding: 16px 0;
+        padding: 10px 0;
         align-items: flex-start;
     }
 
     #bento-grid-container {
         width: min(100vw - 20px, 1800px);
-        height: auto;
-        min-height: calc(100vh - 32px);
+        height: calc(100vh - 20px);
+        min-height: 0;
         align-items: stretch;
         margin: 0 auto;
     }
 
     .column-left {
-        grid-template-rows: auto auto auto;
+        grid-template-rows: minmax(0, 1.08fr) minmax(0, 0.95fr) minmax(0, 0.9fr);
     }
 
     .column-right-grid {
-        grid-template-rows: auto auto;
+        grid-template-rows: minmax(0, 1fr) minmax(0, 0.92fr);
     }
 
     #tile-veille,
@@ -1187,19 +1187,27 @@ body::before {
         border-radius: 16px;
     }
 
+    #tile-certifs-small,
+    #tile-realisations {
+        align-items: stretch;
+        justify-content: space-between;
+    }
+
     .certif-previews,
     .real-previews {
-        inset: auto 0 48px 0;
-        padding: 0 12px;
+        position: relative;
+        inset: auto;
+        flex: 1;
+        padding: 12px 0 8px;
         gap: 10px;
     }
 
     #tile-certifs-small::after {
-        height: 38%;
+        height: 18%;
     }
 
     #tile-realisations::after {
-        height: 34%;
+        height: 18%;
     }
 
     #grid-skills .skill-bloc,
@@ -1318,12 +1326,22 @@ body::before {
 }
 
 @media (max-width: 768px) {
+    html, body {
+        height: auto;
+        min-height: 100vh;
+        overflow-y: auto;
+        overflow-x: hidden;
+        display: block;
+    }
+
     body {
         padding: 12px 0;
     }
 
     #bento-grid-container {
         width: calc(100vw - 12px);
+        height: auto;
+        min-height: calc(100vh - 24px);
         gap: 10px;
     }
 
@@ -1353,6 +1371,49 @@ body::before {
         flex-wrap: wrap;
     }
 
+    #tile-certifs-small,
+    #tile-realisations {
+        align-items: stretch;
+        justify-content: space-between;
+        padding: 16px;
+    }
+
+    .certif-previews,
+    .real-previews {
+        position: relative;
+        inset: auto;
+        flex: 1;
+        padding: 8px 0 10px;
+        gap: 8px;
+    }
+
+    #tile-certifs-small::after,
+    #tile-realisations::after {
+        display: none;
+    }
+
+    .certif-preview-card,
+    .real-preview-card {
+        transform: none;
+        box-shadow: 0 10px 22px rgba(0,0,0,0.18);
+    }
+
+    .card-1,
+    .card-4,
+    .rcard-1,
+    .rcard-4 {
+        width: 70px;
+        height: 90px;
+    }
+
+    .card-2,
+    .card-3,
+    .rcard-2,
+    .rcard-3 {
+        width: 80px;
+        height: 100px;
+    }
+
     .real-modal,
     .veille-modal,
     .certif-modal,
@@ -1365,18 +1426,33 @@ body::before {
 }
 
 @media (max-width: 600px), (max-height: 700px) {
+    html, body {
+        height: auto;
+        min-height: 100vh;
+        overflow-y: auto;
+        overflow-x: hidden;
+        display: block;
+    }
+
     body {
         padding: 8px 0;
     }
 
     #bento-grid-container {
         width: calc(100vw - 8px);
+        height: auto;
+        min-height: calc(100vh - 16px);
         gap: 8px;
     }
 
     .bento-tile {
         padding: 14px;
         border-radius: 14px;
+    }
+
+    #tile-certifs-small,
+    #tile-realisations {
+        padding: 14px;
     }
 
     .tile-title,
@@ -1410,6 +1486,28 @@ body::before {
         height: 44px;
         font-size: 0.8rem;
         padding: 0 16px;
+    }
+
+    .certif-previews,
+    .real-previews {
+        padding: 8px 0 8px;
+        gap: 6px;
+    }
+
+    .card-1,
+    .card-4,
+    .rcard-1,
+    .rcard-4 {
+        width: 62px;
+        height: 82px;
+    }
+
+    .card-2,
+    .card-3,
+    .rcard-2,
+    .rcard-3 {
+        width: 72px;
+        height: 92px;
     }
 
     .real-modal,
