@@ -19,8 +19,8 @@ html, body {
     margin: 0;
     padding: 0;
     width: 100vw;
-    height: 100vh; /* Bloque la hauteur à l'écran sur desktop */
-    overflow: hidden; /* Empêche le scroll sur Desktop */
+    height: 100vh;
+    overflow: hidden;
     background: #080810;
     font-family: 'Outfit', sans-serif;
     display: flex;
@@ -28,7 +28,6 @@ html, body {
     align-items: center;
 }
 
-/* Fond ambiant — réduit à un seul gradient */
 body::before {
     content: '';
     position: fixed;
@@ -62,7 +61,7 @@ body::before {
     display: flex;
     overflow: hidden;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
-    min-height: 0; /* CRUCIAL : Empêche le contenu de casser la grille */
+    min-height: 0;
 }
 
 .bento-tile:hover {
@@ -671,20 +670,80 @@ body::before {
    RESPONSIVE
 ======================== */
 
-/* 1. Écrans moyens / Laptops (ex: MacBook 13", petits écrans) -> ON NE SCROLL TOUJOURS PAS */
-@media (max-width: 1200px), (max-height: 800px) {
-    #bento-grid-container {
-        gap: 12px;
-        height: calc(100vh - 20px);
-    }
-    
-    .column-left, .column-right-grid, #grid-dual { gap: 12px; }
-    .bento-tile { padding: 16px; }
+/* 1. Laptops moyens (ex: MacBook 13") -> PAS DE SCROLL, même disposition que le grand écran */
+@media (max-width: 1200px) and (min-width: 993px),
+       (max-height: 720px) and (min-width: 993px) {
 
-    /* Réduction des polices pour que ça rentre sans déborder */
-    .profil-name { font-size: 1.5rem; }
-    #tile-about p, .timeline-content p { font-size: 0.75rem; }
-    .veille-subject-title { font-size: 1.1rem; }
+    #bento-grid-container {
+        gap: 10px;
+        height: calc(100vh - 16px);
+        padding: 0 12px;
+    }
+
+    .column-left,
+    .column-right-grid,
+    #grid-dual { gap: 10px; }
+
+    .bento-tile { padding: 14px 16px; }
+
+    /* Réduction typographie */
+    .profil-name { font-size: 1.4rem; }
+    .profil-photo { width: 170px; }
+    .profil-grid { grid-template-columns: 170px 1fr auto; }
+    #tile-about p { font-size: 0.73rem; }
+    .timeline-content p { font-size: 0.73rem; }
+    .timeline-content h4 { font-size: 0.78rem; }
+    .timeline-item { margin-bottom: 16px; }
+    .veille-subject-title { font-size: 1rem; }
+
+    /* Boutons réduits */
+    .btn-premium,
+    .btn-certif-gallery,
+    .btn-real-gallery,
+    #btn-open-veille {
+        height: 42px;
+        font-size: 0.78rem;
+        padding: 0 14px;
+        gap: 9px;
+    }
+
+    .icon-wrap { width: 26px; height: 26px; font-size: 0.8rem; border-radius: 7px; }
+    .arrow-wrap { width: 22px; height: 22px; font-size: 0.65rem; border-radius: 6px; }
+
+    /* Cards certif réduites */
+    .card-1, .card-4 { width: 62px !important; height: 80px !important; }
+    .card-2, .card-3 { width: 70px !important; height: 90px !important; }
+
+    /* Cards réalisations réduites */
+    .rcard-1, .rcard-4 { width: 75px !important; height: 92px !important; }
+    .rcard-2, .rcard-3 { width: 84px !important; height: 104px !important; }
+
+    /* Skills pills réduits */
+    .skill-pill { font-size: 0.7rem; padding: 4px 10px; }
+    .skill-divider { margin: 0 16px; }
+
+    /* Certif & réalisations : on désactive le gradient masquant le bouton */
+    #tile-certifs-small,
+    #tile-realisations { padding: 14px 16px; }
+
+    #tile-certifs-small::after,
+    #tile-realisations::after { height: 0%; }
+
+    .certif-previews,
+    .real-previews {
+        padding: 10px 6px 8px;
+        gap: 8px;
+    }
+
+    /* Assure que le bouton reste visible et cliquable */
+    .btn-certif-gallery,
+    .btn-real-gallery {
+        position: relative;
+        z-index: 5;
+        width: 100%;
+        flex-shrink: 0;
+        margin-bottom: 0;
+    }
 }
 
 /* 2. Tablettes / Téléphones -> PASSAGE EN MODE SCROLLABLE */
@@ -692,22 +751,21 @@ body::before {
     html, body {
         height: auto;
         min-height: 100vh;
-        overflow-y: auto; /* ON ACTIVE LE SCROLL ICI */
+        overflow-y: auto;
         overflow-x: hidden;
-        display: block; /* On enlève le flex center du body */
+        display: block;
     }
 
     body { padding: 20px 0; }
 
     #bento-grid-container {
         display: flex;
-        flex-direction: column; /* Tout passe en une seule colonne */
+        flex-direction: column;
         height: auto;
         padding: 0 16px;
         gap: 16px;
     }
 
-    /* On désactive les grilles complexes pour tout mettre en colonne fluide */
     .column-left, .column-right-grid, #grid-dual {
         display: flex;
         flex-direction: column;
@@ -718,14 +776,13 @@ body::before {
         flex-direction: column;
         gap: 20px;
     }
-    
+
     .skill-divider {
         width: 100%;
         height: 1px;
         margin: 0;
     }
 
-    /* Ajustement des éléments internes pour le mobile */
     .profil-grid {
         grid-template-columns: 1fr;
         grid-template-rows: auto auto auto auto;
@@ -742,7 +799,10 @@ body::before {
     .profil-cv { grid-column: 1 / 2; grid-row: 3 / 4; }
     .profil-contact { grid-column: 1 / 2; grid-row: 4 / 5; }
 
-    /* Tailles minimales pour les tuiles maintenant qu'elles scrollent librement */
+    /* Réactive le gradient sur mobile car il y a de la place */
+    #tile-certifs-small::after { height: 26%; }
+    #tile-realisations::after { height: 22%; }
+
     #tile-parcours, #tile-veille, #tile-realisations, #tile-certifs-small {
         min-height: 250px;
     }
@@ -753,10 +813,10 @@ body::before {
     .bento-tile { padding: 14px; }
     .profil-photo { height: 200px; }
     .certif-previews, .real-previews { flex-wrap: wrap; }
-    
+
     .card-1, .card-2, .card-3, .card-4,
     .rcard-1, .rcard-2, .rcard-3, .rcard-4 {
-        transform: none !important; /* On annule la rotation sur les tout petits écrans pour gagner de la place */
+        transform: none !important;
         margin: 5px;
     }
 }
