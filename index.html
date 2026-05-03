@@ -4,13 +4,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <!-- Preconnect aux CDN pour réduire latence -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://api.fontshare.com">
+    
+    <!-- Charger les CSS critiques d'abord -->
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="Modals/Contact/contact-modal.css">
     <link rel="stylesheet" href="Modals/Certif/certif-modal.css">
     <link rel="stylesheet" href="Modals/Réalisations/realisation-modal.css">
     <link rel="stylesheet" href="Modals/Veille/veille-modal.css">
+    
+    <!-- Polices optimisées avec font-display swap (évite FOIT) -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&display=swap" as="style">
+    <link rel="preload" href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&display=swap" as="style">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&display=swap">
+    <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&display=swap">
+    
+    <!-- Icons loadés en async (non-bloquant) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" media="print" onload="this.media='all'">
+    
     <script src="script.js" defer></script>
     <title>Haytham CLEMENT - Portfolio</title>
 </head>
@@ -25,7 +42,7 @@
             <div id="tile-profil" class="bento-tile">
                 <div class="profil-grid">
                     <div class="profil-photo">
-                        <img src="assets/Haytham.png" alt="Photo de Profil">
+                        <img src="assets/Haytham.png" alt="Photo de Profil" loading="lazy" decoding="async">
                     </div>
 
                     <div class="profil-info">

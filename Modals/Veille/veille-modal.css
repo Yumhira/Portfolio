@@ -1,12 +1,13 @@
 /* --- OVERLAY & MODAL BASE --- */
 .veille-overlay {
     position: fixed; inset: 0;
-    background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(12px);
+    background: rgba(0, 0, 0, 0.92);
     z-index: 9999; display: flex; align-items: center; justify-content: center;
     padding: 20px; box-sizing: border-box;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.22s cubic-bezier(0.2,0,0,1);
+    will-change: opacity;
 }
 .veille-overlay.active {
     opacity: 1;
@@ -16,9 +17,11 @@
     background: #09090b; border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 24px; width: 95%; max-width: 1400px; height: 90vh;
     display: flex; flex-direction: column; overflow: hidden;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-    transform: translateY(20px) scale(0.98);
-    transition: transform 0.3s ease;
+    box-shadow: 0 18px 40px -8px rgba(0, 0, 0, 0.45);
+    transform: translateY(18px) scale(0.98) translateZ(0);
+    transition: transform 0.25s cubic-bezier(0.2,0.8,0.2,1);
+    will-change: transform;
+    backface-visibility: hidden;
 }
 .veille-overlay.active .veille-modal {
     transform: translateY(0) scale(1);
@@ -119,11 +122,6 @@
 }
 .live-dot {
     width: 6px; height: 6px; background: #00e5ff; border-radius: 50%;
-    animation: pulse 1.5s infinite;
-}
-@keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.4; transform: scale(1.4); }
 }
 
 /* Loader RSS */
@@ -145,7 +143,7 @@
     background: #18181b; border: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: 16px; padding: 20px; transition: 0.3s ease;
 }
-.rss-card:hover { background: #27272a; border-color: rgba(0, 229, 255, 0.3); transform: translateX(4px); }
+.rss-card:hover { background: #27272a; border-color: rgba(0, 229, 255, 0.3); transform: translate3d(4px,0,0); }
 .rss-date { font-size: 0.75rem; color: #ff9100; margin-bottom: 8px; font-weight: 600; display: flex; gap:6px; align-items: center; }
 .rss-title { font-size: 1.05rem; color: #ffffff; margin: 0 0 10px 0; line-height: 1.4; }
 .rss-desc { 
@@ -171,20 +169,21 @@
 }
 
 .lightbox-overlay {
-    position: fixed; inset: 0; background: rgba(0, 0, 0, 0.92);
-    backdrop-filter: blur(8px); z-index: 100000; display: flex;
+    position: fixed; inset: 0; background: rgba(0, 0, 0, 0.95);
+    z-index: 100000; display: flex;
     justify-content: center; align-items: center; opacity: 0;
-    pointer-events: none; transition: opacity 0.3s ease; cursor: zoom-out;
+    pointer-events: none; transition: opacity 0.25s ease; cursor: zoom-out;
 }
 .lightbox-overlay.active { opacity: 1; pointer-events: all; }
 .lightbox-overlay img {
     max-width: 90vw; max-height: 90vh; object-fit: contain;
     border-radius: 12px; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
-    transform: scale(0.95); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: scale(0.95); transition: transform 0.3s ease-out;
+    will-change: transform;
 }
 .lightbox-overlay.active img { transform: scale(1); }
 .lightbox-close {
     position: absolute; top: 30px; right: 40px; color: rgba(255, 255, 255, 0.6);
-    font-size: 2.5rem; cursor: pointer; transition: color 0.2s ease, transform 0.2s ease;
+    font-size: 2.5rem; cursor: pointer; transition: color 0.15s ease;
 }
-.lightbox-close:hover { color: #ef4444; transform: scale(1.1); }
+.lightbox-close:hover { color: #ef4444; }

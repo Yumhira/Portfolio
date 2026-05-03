@@ -8,7 +8,8 @@ document.addEventListener("DOMContentLoaded", () => {
             import('./Modals/Contact/contact-modal.js').then(module => {
                 module.initContactModal();
             });
-        });
+        })
+        .catch(err => console.error('Erreur Contact Modal:', err));
 
     // Charger la modale certif
     fetch('Modals/Certif/certif-modal.html')
@@ -18,7 +19,8 @@ document.addEventListener("DOMContentLoaded", () => {
             import('./Modals/Certif/certif-modal.js').then(module => {
                 module.initCertifModal();
             });
-        });
+        })
+        .catch(err => console.error('Erreur Certif Modal:', err));
 
     // Charger la modale réalisations
     fetch('Modals/Réalisations/realisation-modal.html')
@@ -28,34 +30,28 @@ document.addEventListener("DOMContentLoaded", () => {
             import('./Modals/Réalisations/realisation-modal.js').then(module => {
                 module.initRealModal();
             });
-        });
+        })
+        .catch(err => console.error('Erreur Real Modal:', err));
     
     // Charger la modale veille
     fetch('Modals/Veille/veille-modal.html')
         .then(response => response.text())
         .then(data => {
             document.getElementById('veille-modal-container').innerHTML = data;
-            // On charge aussi le CSS dynamiquement
-            const link = document.createElement('link');
-            link.rel = 'stylesheet';
-            link.href = 'Modals/Veille/veille-modal.css';
-            document.head.appendChild(link);
-            
             import('./Modals/Veille/veille-modal.js').then(module => {
                 module.initVeilleModal();
             });
-        });
+        })
+        .catch(err => console.error('Erreur Veille Modal:', err));
 
     // Téléchargement CV
     const downloadBtn = document.querySelector(".btn-download");
     if (downloadBtn) {
         downloadBtn.addEventListener("click", () => {
-            const link = document.createElement("a");
-            link.href = "assets/Alternance_Haytham_Clement.pdf";
-            link.download = "Alternance_Haytham_Clement.pdf";
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
+            const a = document.createElement("a");
+            a.href = "assets/Alternance_Haytham_Clement.pdf";
+            a.download = "Alternance_Haytham_Clement.pdf";
+            a.click();
         });
     }
 });

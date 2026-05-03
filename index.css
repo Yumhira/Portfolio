@@ -1,6 +1,6 @@
 /* ============================================================
    PORTFOLIO — HAYTHAM CLEMENT
-   Direction : Dark Glass Luxury — profondeur, lumière, raffinement
+   Version optimisée — perf
    ============================================================ */
 
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&display=swap');
@@ -28,14 +28,12 @@ html, body {
     align-items: center;
 }
 
-/* Fond ambiant subtil */
+/* Fond ambiant — réduit à un seul gradient */
 body::before {
     content: '';
     position: fixed;
     inset: 0;
-    background:
-        radial-gradient(ellipse 60% 40% at 20% 50%, rgba(177, 151, 252, 0.04) 0%, transparent 70%),
-        radial-gradient(ellipse 50% 60% at 80% 20%, rgba(0, 229, 255, 0.03) 0%, transparent 70%);
+    background: radial-gradient(ellipse 60% 40% at 20% 50%, rgba(177, 151, 252, 0.04) 0%, transparent 70%);
     pointer-events: none;
     z-index: 0;
 }
@@ -52,38 +50,26 @@ body::before {
     gap: 14px;
 }
 
-/* --- TUILES BASE --- */
+/* --- TUILES BASE ---
+   PERF: backdrop-filter supprimé — règles de base pour les tuiles
+*/
 .bento-tile {
-    background: rgba(255, 255, 255, 0.028);
-    border-radius: 22px;
-    padding: 22px;
-    color: white;
-    border: 1px solid rgba(255, 255, 255, 0.07);
-    box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.06),
-        0 4px 30px rgba(0, 0, 0, 0.4);
+    background: rgba(18, 18, 28, 0.92);
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
     box-sizing: border-box;
     position: relative;
     display: flex;
     overflow: hidden;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
-    backdrop-filter: blur(2px);
 }
 
-.bento-tile::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: 22px;
-    background: linear-gradient(135deg, rgba(255,255,255,0.025) 0%, transparent 50%);
-    pointer-events: none;
-}
+/* PERF: ::before supprimé — coût de composition pour un effet quasi-invisible */
 
 .bento-tile:hover {
     border-color: rgba(255, 255, 255, 0.12);
-    box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.08),
-        0 8px 40px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
 }
 
 .bento-tile h3 {
@@ -108,19 +94,10 @@ body::before {
    TUILE PROFIL
 ======================== */
 #tile-profil {
-    background: rgba(255, 255, 255, 0.03);
+    background: rgba(18, 18, 28, 0.92);
 }
 
-#tile-profil::after {
-    content: '';
-    position: absolute;
-    left: -20px;
-    top: -20px;
-    width: 300px;
-    height: 300px;
-    background: radial-gradient(ellipse, rgba(177, 151, 252, 0.07) 0%, transparent 70%);
-    pointer-events: none;
-}
+/* PERF: ::after supprimé sur #tile-profil — radial-gradient peu visible */
 
 .profil-grid {
     display: grid;
@@ -184,7 +161,7 @@ body::before {
     height: 6px;
     border-radius: 50%;
     background-color: #ff1744;
-    box-shadow: 0 0 8px #ff1744;
+    /* PERF: box-shadow simplifié */
     animation: pulse-red 2s infinite;
 }
 
@@ -264,9 +241,9 @@ body::before {
 
 /* ==============================
    BOUTONS — SYSTÈME UNIFIÉ
+   PERF: backdrop-filter supprimé sur tous les boutons
 ============================== */
 
-/* Base commune */
 .btn-premium,
 .btn-certif-gallery,
 .btn-real-gallery,
@@ -284,15 +261,13 @@ body::before {
     font-weight: 600;
     font-size: 0.85rem;
     cursor: pointer;
-    transition: all 0.25s ease;
+    transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
     letter-spacing: 0.2px;
     width: 100%;
     justify-content: center;
-    backdrop-filter: blur(10px);
     box-sizing: border-box;
 }
 
-/* Icon wrap — côté gauche */
 .icon-wrap {
     width: 30px;
     height: 30px;
@@ -304,7 +279,6 @@ body::before {
     font-size: 0.9rem;
 }
 
-/* Arrow wrap — côté droit (navigation vers modales) */
 .arrow-wrap {
     margin-left: auto;
     width: 26px;
@@ -483,6 +457,9 @@ body::before {
     gap: 8px;
 }
 
+/* PERF: animation rotate-border déclenchée uniquement au hover
+   Au repos : 0 animation active → gain majeur avec 13+ pills
+   Le ::before reste présent mais statique au repos */
 .skill-pill {
     position: relative;
     padding: 5px 12px;
@@ -490,20 +467,20 @@ body::before {
     font-size: 0.75rem;
     background: rgba(0,0,0,0.4);
     z-index: 1;
-    border: 1px solid rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.06);
     display: flex;
     align-items: center;
     gap: 7px;
     color: rgba(255,255,255,0.85);
-    box-shadow: 0 0 18px -6px var(--neon-color);
     font-weight: 500;
-    transition: box-shadow 0.3s ease;
+    transition: box-shadow 0.25s ease;
 }
 
 .skill-pill:hover {
-    box-shadow: 0 0 28px -4px var(--neon-color);
+    box-shadow: 0 0 20px -4px var(--neon-color);
 }
 
+/* PERF: ::before statique au repos, animation uniquement sur :hover */
 .skill-pill::before {
     content: "";
     position: absolute;
@@ -514,8 +491,13 @@ body::before {
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
-    animation: rotate-border 5s linear infinite;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.skill-pill:hover::before {
     opacity: 0.7;
+    animation: rotate-border 2s linear infinite;
 }
 
 .skill-pill i {
@@ -527,25 +509,23 @@ body::before {
 
 @keyframes rotate-border { to { --angle: 360deg; } }
 
-.border-html { --neon-color: #ff3d00; }
-.border-css  { --neon-color: #00b0ff; }
-.border-js   { --neon-color: #ffea00; }
+.border-html    { --neon-color: #ff3d00; }
+.border-css     { --neon-color: #00b0ff; }
+.border-js      { --neon-color: #ffea00; }
 .border-angular { --neon-color: #ff003c; }
-.border-wp   { --neon-color: rgba(255,255,255,0.6); }
-.border-php  { --neon-color: #a259ff; }
+.border-wp      { --neon-color: rgba(255,255,255,0.6); }
+.border-php     { --neon-color: #a259ff; }
 .border-symfony { --neon-color: rgba(255,255,255,0.5); }
-.border-mysql { --neon-color: #00e5ff; }
-.border-packet { --neon-color: #00e676; }
-.border-ip   { --neon-color: #2979ff; }
-.border-glpi { --neon-color: #ffc400; }
+.border-mysql   { --neon-color: #00e5ff; }
+.border-packet  { --neon-color: #00e676; }
+.border-ip      { --neon-color: #2979ff; }
+.border-glpi    { --neon-color: #ffc400; }
 .border-virtual { --neon-color: #ea00ff; }
 .border-openvpn { --neon-color: #ff9100; }
 
 /* ========================
    TITRES UNIFORMISÉS
 ======================== */
-
-/* Classe commune pour tous les titres de tuiles */
 .tile-title {
     display: flex;
     align-items: center;
@@ -560,23 +540,18 @@ body::before {
     white-space: nowrap;
 }
 
-.tile-title i {
-    font-size: 0.65rem;
-}
+.tile-title i { font-size: 0.65rem; }
 
-/* Couleurs d'icône par tuile */
 #tile-about     .tile-title i { color: #b197fc; }
 #tile-parcours  .tile-title i { color: #b197fc; }
-.certif-tile-label i           { color: #b197fc; }
-.veille-label i                { color: #ff9100; }
-.real-tile-label i             { color: #00e5ff; }
+.certif-tile-label i          { color: #b197fc; }
+.veille-label i               { color: #ff9100; }
+.real-tile-label i            { color: #00e5ff; }
 
-/* Icônes colorées titres skills */
 .skill-col--frontend .tile-title i { color: #00b0ff; }
 .skill-col--backend  .tile-title i { color: #a259ff; }
 .skill-col--network  .tile-title i { color: #00e676; }
 
-/* Ancienne règle bento-tile h3 — conservée pour compatibilité mais écrasée */
 .bento-tile h3 {
     font-size: 0.62rem;
     color: rgba(255,255,255,0.25);
@@ -616,7 +591,8 @@ body::before {
 }
 
 /* ========================
-   TUILE CERTIF — GALLERY STYLE
+   TUILE CERTIF
+   PERF: backdrop-filter supprimé sur les cards, will-change ajouté
 ======================== */
 #tile-certifs-small {
     align-items: center;
@@ -632,8 +608,6 @@ body::before {
     margin: 0;
     z-index: 3;
 }
-
-.certif-tile-label i { color: #b197fc; }
 
 .certif-previews {
     position: absolute;
@@ -652,7 +626,8 @@ body::before {
     justify-content: center;
     border-radius: 16px;
     border: 1px solid rgba(255,255,255,0.06);
-    backdrop-filter: blur(10px);
+    /* PERF: backdrop-filter supprimé, will-change pour isoler le layer */
+    will-change: transform;
     transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
     flex-shrink: 0;
 }
@@ -662,36 +637,36 @@ body::before {
 
 .card-1 {
     width: 75px; height: 95px;
-    background: linear-gradient(145deg, rgba(0,229,255,0.08), rgba(0,0,0,0.5));
+    background: rgba(0,229,255,0.08);
     color: #00e5ff;
     transform: rotate(-7deg) translateY(8px);
-    box-shadow: 0 12px 30px rgba(0,229,255,0.1), inset 0 1px 0 rgba(255,255,255,0.05);
+    box-shadow: 0 12px 30px rgba(0,229,255,0.1);
 }
 
 .card-2 {
     width: 84px; height: 106px;
-    background: linear-gradient(145deg, rgba(177,151,252,0.1), rgba(0,0,0,0.5));
+    background: rgba(177,151,252,0.1);
     color: #b197fc;
     transform: rotate(-2.5deg) translateY(-4px);
-    box-shadow: 0 12px 30px rgba(177,151,252,0.15), inset 0 1px 0 rgba(255,255,255,0.05);
+    box-shadow: 0 12px 30px rgba(177,151,252,0.15);
     z-index: 2;
 }
 
 .card-3 {
     width: 84px; height: 106px;
-    background: linear-gradient(145deg, rgba(0,120,212,0.1), rgba(0,0,0,0.5));
+    background: rgba(0,120,212,0.1);
     color: #4da6ff;
     transform: rotate(2.5deg) translateY(-4px);
-    box-shadow: 0 12px 30px rgba(0,120,212,0.15), inset 0 1px 0 rgba(255,255,255,0.05);
+    box-shadow: 0 12px 30px rgba(0,120,212,0.15);
     z-index: 2;
 }
 
 .card-4 {
     width: 75px; height: 95px;
-    background: linear-gradient(145deg, rgba(255,234,0,0.07), rgba(0,0,0,0.5));
+    background: rgba(255,234,0,0.07);
     color: #ffea00;
     transform: rotate(7deg) translateY(8px);
-    box-shadow: 0 12px 30px rgba(255,234,0,0.08), inset 0 1px 0 rgba(255,255,255,0.05);
+    box-shadow: 0 12px 30px rgba(255,234,0,0.08);
 }
 
 #tile-certifs-small::after {
@@ -720,8 +695,8 @@ body::before {
     gap: 14px;
 }
 
-#tile-parcours { grid-column: 2 / 3; grid-row: 1 / 2; }
-#tile-veille   { grid-column: 1 / 2; grid-row: 1 / 2; }
+#tile-parcours     { grid-column: 2 / 3; grid-row: 1 / 2; }
+#tile-veille       { grid-column: 1 / 2; grid-row: 1 / 2; }
 #tile-realisations { grid-column: 1 / 3; }
 
 /* ========================
@@ -761,7 +736,7 @@ body::before {
 .timeline-dot.special {
     background: #b197fc;
     border-color: #b197fc;
-    box-shadow: 0 0 12px rgba(177,151,252,0.6), 0 0 24px rgba(177,151,252,0.2);
+    box-shadow: 0 0 12px rgba(177,151,252,0.6);
 }
 
 .timeline-date {
@@ -789,24 +764,13 @@ body::before {
 
 /* ========================
    TUILE VEILLE
+   PERF: ::after supprimé
 ======================== */
 #tile-veille {
     flex-direction: column;
     padding: 22px;
     overflow: hidden;
     justify-content: space-between;
-}
-
-#tile-veille::after {
-    content: '';
-    position: absolute;
-    top: -30px;
-    right: -30px;
-    width: 200px;
-    height: 200px;
-    background: radial-gradient(ellipse, rgba(255,145,0,0.06) 0%, transparent 70%);
-    pointer-events: none;
-    z-index: 0;
 }
 
 .veille-top-row {
@@ -868,6 +832,7 @@ body::before {
 
 /* ========================
    TUILE RÉALISATIONS
+   PERF: backdrop-filter supprimé, will-change ajouté
 ======================== */
 #tile-realisations {
     flex-direction: column;
@@ -905,7 +870,8 @@ body::before {
     justify-content: center;
     border-radius: 16px;
     border: 1px solid rgba(255,255,255,0.06);
-    backdrop-filter: blur(10px);
+    /* PERF: backdrop-filter supprimé, will-change pour isoler le layer */
+    will-change: transform;
     transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
     flex-shrink: 0;
 }
@@ -914,36 +880,36 @@ body::before {
 
 .rcard-1 {
     width: 90px; height: 110px;
-    background: linear-gradient(145deg, rgba(0,229,255,0.08), rgba(0,0,0,0.5));
+    background: rgba(0,229,255,0.08);
     color: #00e5ff;
     transform: rotate(-6deg) translateY(8px);
-    box-shadow: 0 12px 30px rgba(0,229,255,0.1), inset 0 1px 0 rgba(255,255,255,0.05);
+    box-shadow: 0 12px 30px rgba(0,229,255,0.1);
 }
 
 .rcard-2 {
     width: 100px; height: 122px;
-    background: linear-gradient(145deg, rgba(177,151,252,0.1), rgba(0,0,0,0.5));
+    background: rgba(177,151,252,0.1);
     color: #b197fc;
     transform: rotate(-1.5deg) translateY(-6px);
-    box-shadow: 0 12px 30px rgba(177,151,252,0.15), inset 0 1px 0 rgba(255,255,255,0.05);
+    box-shadow: 0 12px 30px rgba(177,151,252,0.15);
     z-index: 2;
 }
 
 .rcard-3 {
     width: 100px; height: 122px;
-    background: linear-gradient(145deg, rgba(0,230,118,0.08), rgba(0,0,0,0.5));
+    background: rgba(0,230,118,0.08);
     color: #00e676;
     transform: rotate(1.5deg) translateY(-6px);
-    box-shadow: 0 12px 30px rgba(0,230,118,0.12), inset 0 1px 0 rgba(255,255,255,0.05);
+    box-shadow: 0 12px 30px rgba(0,230,118,0.12);
     z-index: 2;
 }
 
 .rcard-4 {
     width: 90px; height: 110px;
-    background: linear-gradient(145deg, rgba(255,145,0,0.08), rgba(0,0,0,0.5));
+    background: rgba(255,145,0,0.08);
     color: #ff9100;
     transform: rotate(6deg) translateY(8px);
-    box-shadow: 0 12px 30px rgba(255,145,0,0.1), inset 0 1px 0 rgba(255,255,255,0.05);
+    box-shadow: 0 12px 30px rgba(255,145,0,0.1);
 }
 
 #tile-realisations::after {
@@ -969,7 +935,6 @@ body::before {
     position: fixed;
     inset: 0;
     background: rgba(0, 0, 0, 0.85);
-    backdrop-filter: blur(12px);
     z-index: 1000;
     display: flex;
     align-items: center;
@@ -994,9 +959,10 @@ body::before {
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    box-shadow: 0 0 60px rgba(0,229,255,0.06), 0 30px 80px rgba(0,0,0,0.6);
-    transform: translateY(20px) scale(0.98);
-    transition: transform 0.3s ease;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.55);
+        transform: translateY(20px) scale(0.98);
+        transition: transform 0.18s cubic-bezier(0.2,0.8,0.2,1);
+        will-change: transform;
 }
 
 .real-overlay.active .real-modal {
@@ -1057,7 +1023,7 @@ body::before {
     color: #888;
     cursor: pointer;
     font-size: 1rem;
-    transition: all 0.2s ease;
+    transition: background 0.2s ease, color 0.2s ease;
 }
 
 .real-close-btn:hover {
@@ -1089,13 +1055,11 @@ body::before {
     to   { opacity: 1; transform: translateY(0); }
 }
 
-.bento-tile {
-    animation: fadeUp 0.5s ease both;
-}
+.bento-tile { animation: fadeUp 0.5s ease both; }
 
-#tile-profil         { animation-delay: 0.05s; }
-#grid-skills         { animation-delay: 0.1s; }
-#grid-dual           { animation-delay: 0.15s; }
-#tile-veille         { animation-delay: 0.1s; }
-#tile-parcours       { animation-delay: 0.15s; }
-#tile-realisations   { animation-delay: 0.2s; }
+#tile-profil       { animation-delay: 0.05s; }
+#grid-skills       { animation-delay: 0.1s; }
+#grid-dual         { animation-delay: 0.15s; }
+#tile-veille       { animation-delay: 0.1s; }
+#tile-parcours     { animation-delay: 0.15s; }
+#tile-realisations { animation-delay: 0.2s; }
