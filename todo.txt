@@ -1,0 +1,12 @@
+
+Ajout certif Voltaire
+Ajout d'animation à l'ouverture et fermeture de la modale
+Modale Réalisation
+Modification tuile Realisation
+Remettre droits la ligne parcours
+
+Optimisé tout le code
+
+peut etre 
+
+Modification des skills
