@@ -41,6 +41,13 @@
     flex-shrink: 0;
 }
 
+.real-header-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
 .real-modal-header h2 {
     margin: 0 0 2px;
     font-size: 1.05rem;
@@ -67,7 +74,7 @@
     align-items: center;
     justify-content: center;
     font-size: .85rem;
-    transition: background .2s, color .2s;
+    transition: background .2s, color .2s, border-color .2s;
     flex-shrink: 0;
 }
 .real-close-btn:hover {
@@ -425,6 +432,562 @@
     color: #ddd;
     font-weight: 600;
 }
+
+.oralink-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.45fr) minmax(260px, .85fr);
+    gap: 18px;
+    margin-bottom: 20px;
+    padding: 22px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, rgba(0,229,255,0.10), rgba(255,255,255,0.03));
+    border: 1px solid rgba(0,229,255,0.16);
+}
+
+.oralink-hero-copy h3 {
+    margin: 8px 0 12px;
+    color: #fff;
+    font-size: clamp(1.35rem, 2vw, 2.2rem);
+    line-height: 1.06;
+    letter-spacing: -.03em;
+    max-width: 14ch;
+}
+
+.oralink-brand-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.oralink-brand-logo {
+    width: 54px;
+    height: 54px;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(0,229,255,0.18);
+    background: rgba(255,255,255,0.03);
+    flex-shrink: 0;
+}
+
+.oralink-brand-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.oralink-brand-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.oralink-brand-kicker {
+    color: #fff;
+    font-size: .96rem;
+    font-weight: 700;
+    letter-spacing: .02em;
+}
+
+.oralink-brand-sub {
+    color: #8ea0b6;
+    font-size: .74rem;
+    text-transform: uppercase;
+    letter-spacing: .12em;
+}
+
+.oralink-hero-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-transform: uppercase;
+    letter-spacing: .14em;
+    font-size: .68rem;
+    color: #6fe0f1;
+}
+
+.oralink-hero-copy p {
+    margin: 0;
+    color: #b6c0cf;
+    font-size: .88rem;
+    line-height: 1.7;
+    max-width: 62ch;
+}
+
+.oralink-hero-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 16px;
+}
+
+.oralink-hero-chips span {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.04);
+    color: #dbe2eb;
+    font-size: .72rem;
+}
+
+.oralink-hero-aside {
+    display: grid;
+    gap: 10px;
+}
+
+.oralink-stat-card {
+    min-height: 84px;
+    padding: 14px 16px;
+    border-radius: 18px;
+    background: rgba(12, 16, 24, 0.75);
+    border: 1px solid rgba(255,255,255,0.08);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.oralink-stat-value {
+    font-size: 1.85rem;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1;
+    font-family: 'Syne', sans-serif;
+}
+
+.oralink-stat-label {
+    margin-top: 8px;
+    font-size: .72rem;
+    color: #90a0b4;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+}
+
+.oralink-section {
+    margin-bottom: 18px;
+}
+
+.oralink-section--dense {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.oralink-section--dense > div,
+.oralink-section--split > div {
+    padding: 18px;
+    border-radius: 18px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+}
+
+.oralink-section h4 {
+    margin: 0 0 10px;
+    color: #e8edf5;
+    font-size: .76rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+}
+
+.oralink-section p {
+    margin: 0;
+    color: #aeb8c5;
+    line-height: 1.7;
+    font-size: .86rem;
+}
+
+.oralink-pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.oralink-pillar-card {
+    min-height: 150px;
+    padding: 16px;
+    border-radius: 16px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+    border: 1px solid rgba(255,255,255,0.06);
+}
+
+.oralink-pillar-card h4,
+.oralink-team-card h4,
+.oralink-lab-item strong {
+    margin: 0 0 8px;
+    color: #fff;
+    font-size: .96rem;
+    letter-spacing: 0;
+    text-transform: none;
+}
+
+.oralink-pillar-card p,
+.oralink-team-card p,
+.oralink-lab-item span {
+    font-size: .8rem;
+    color: #aab4c1;
+    line-height: 1.6;
+}
+
+.oralink-section--split {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr);
+    gap: 14px;
+}
+
+.oralink-team-grid {
+    display: grid;
+    gap: 10px;
+}
+
+.oralink-team-card {
+    padding: 14px;
+    border-radius: 16px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+}
+
+.oralink-team-meta {
+    display: inline-flex;
+    margin-bottom: 8px;
+    font-size: .68rem;
+    color: #6fe0f1;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+}
+
+.oralink-lab-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+}
+
+.oralink-lab-item {
+    padding: 14px;
+    border-radius: 14px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.oralink-network-grid,
+.oralink-vm-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 14px;
+}
+
+.oralink-vm-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.oralink-network-card,
+.oralink-vm-card {
+    padding: 16px;
+    border-radius: 16px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+}
+
+.oralink-network-tag {
+    display: inline-flex;
+    margin-bottom: 10px;
+    font-size: .68rem;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: #6fe0f1;
+}
+
+.oralink-network-card h4,
+.oralink-vm-card strong {
+    margin: 0 0 8px;
+    color: #fff;
+    font-size: .95rem;
+}
+
+.oralink-network-card p,
+.oralink-vm-card span {
+    color: #aab4c1;
+    font-size: .8rem;
+    line-height: 1.6;
+}
+
+.oralink-network-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-top: 10px;
+    color: #90a0b4;
+    font-size: .72rem;
+}
+
+.oralink-vm-list {
+    margin: 14px 0 0;
+    padding-left: 18px;
+    color: #aeb8c5;
+    line-height: 1.7;
+    font-size: .84rem;
+}
+
+.oralink-vm-list li + li {
+    margin-top: 6px;
+}
+
+.oralink-command-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 14px;
+}
+
+.oralink-command-card {
+    padding: 16px;
+    border-radius: 16px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+}
+
+.oralink-command-card h4 {
+    margin: 0 0 10px;
+    color: #fff;
+    font-size: .92rem;
+    text-transform: none;
+    letter-spacing: 0;
+}
+
+.oralink-command-card pre {
+    margin: 0;
+    padding: 14px;
+    overflow-x: auto;
+    border-radius: 14px;
+    background: #0e1117;
+    border: 1px solid rgba(255,255,255,0.06);
+    color: #d9e2ee;
+    font-size: .74rem;
+    line-height: 1.55;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+.oralink-command-card code {
+    font-family: Consolas, 'Courier New', monospace;
+}
+
+.oralink-command-shot {
+    margin: 0;
+    overflow: hidden;
+    border-radius: 16px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+}
+
+.oralink-command-shot img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 10;
+    object-fit: contain;
+    background: #0f0f10;
+    cursor: zoom-in;
+}
+
+.oralink-command-shot figcaption {
+    padding: 12px 13px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.oralink-command-shot figcaption strong {
+    color: #fff;
+    font-size: .9rem;
+}
+
+.oralink-command-shot figcaption span {
+    color: #aeb8c5;
+    font-size: .78rem;
+    line-height: 1.55;
+}
+
+.oralink-screen-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.oralink-screen-card {
+    margin: 0;
+    overflow: hidden;
+    border-radius: 16px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+}
+
+.oralink-screen-card img {
+    width: 100%;
+    display: block;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    cursor: zoom-in;
+}
+
+.oralink-screen-grid--single .oralink-screen-card img {
+    max-height: 300px;
+}
+
+.oralink-screen-card figcaption {
+    padding: 12px 13px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.oralink-screen-card figcaption strong {
+    color: #fff;
+    font-size: .9rem;
+}
+
+.oralink-screen-card figcaption span {
+    color: #aeb8c5;
+    font-size: .78rem;
+    line-height: 1.55;
+}
+
+.oralink-screen-grid--single {
+    grid-template-columns: 1fr;
+    margin-top: 14px;
+    justify-items: center;
+}
+
+.oralink-screen-grid--single .oralink-screen-card {
+    width: min(980px, 88%);
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+}
+
+.oralink-screen-grid--single .oralink-screen-card img {
+    flex: 0 0 auto;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    border-radius: 16px;
+}
+
+.oralink-screen-grid--single .oralink-screen-card figcaption {
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 16px 0;
+}
+
+.oralink-screen-grid--single .oralink-screen-card--inline {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    gap: 16px;
+    margin-bottom: 14px;
+}
+
+.oralink-screen-grid--single .oralink-screen-card--inline img {
+    width: 58%;
+    flex: 0 0 58%;
+    height: auto;
+    aspect-ratio: auto;
+    object-fit: contain;
+    background: #0f0f10;
+}
+
+.oralink-screen-grid--single .oralink-screen-card--inline figcaption {
+    width: 42%;
+    flex: 1;
+    padding: 16px 16px 16px 0;
+    justify-content: center;
+}
+
+.oralink-screen-card--stacked {
+    width: min(980px, 88%);
+}
+
+.oralink-screen-card--stacked img {
+    width: 100%;
+}
+
+.oralink-screen-card--stacked figcaption {
+    padding: 12px 13px 14px;
+}
+
+.oralink-lightbox-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.82);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .25s ease;
+    padding: 24px;
+}
+
+.oralink-lightbox-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.oralink-lightbox-overlay img {
+    max-width: min(1100px, 92vw);
+    max-height: 86vh;
+    border-radius: 16px;
+    box-shadow: 0 22px 70px rgba(0,0,0,0.55);
+    background: #0f0f10;
+}
+
+.oralink-lightbox-overlay .lightbox-close {
+    position: absolute;
+    top: 22px;
+    right: 22px;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.1);
+    cursor: pointer;
+}
+
+@media (max-width: 1200px) {
+    .oralink-hero,
+    .oralink-section--dense,
+    .oralink-section--split,
+    .oralink-pillars-grid,
+    .oralink-network-grid,
+    .oralink-screen-grid,
+    .oralink-command-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .oralink-vm-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 820px) {
+    .oralink-lab-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 
 /* === OVERLAY FOND === */
 .real-overlay {

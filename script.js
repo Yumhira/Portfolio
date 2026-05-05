@@ -1,44 +1,45 @@
 document.addEventListener("DOMContentLoaded", () => {
+    const modalAsset = (path) => `${path}?v=20260505`;
 
     // Charger la modale de contact
-    fetch('Modals/Contact/contact-modal.html')
+    fetch(modalAsset('Modals/Contact/contact-modal.html'))
         .then(response => response.text())
         .then(data => {
             document.getElementById('contact-modal-container').innerHTML = data;
-            import('./Modals/Contact/contact-modal.js').then(module => {
+            import(modalAsset('./Modals/Contact/contact-modal.js')).then(module => {
                 module.initContactModal();
             });
         })
         .catch(err => console.error('Erreur Contact Modal:', err));
 
     // Charger la modale certif
-    fetch('Modals/Certif/certif-modal.html')
+    fetch(modalAsset('Modals/Certif/certif-modal.html'))
         .then(response => response.text())
         .then(data => {
             document.getElementById('certif-modal-container').innerHTML = data;
-            import('./Modals/Certif/certif-modal.js').then(module => {
+            import(modalAsset('./Modals/Certif/certif-modal.js')).then(module => {
                 module.initCertifModal();
             });
         })
         .catch(err => console.error('Erreur Certif Modal:', err));
 
     // Charger la modale réalisations
-    fetch('Modals/Réalisations/realisation-modal.html')
+    fetch(modalAsset('Modals/Réalisations/realisation-modal.html'))
         .then(response => response.text())
         .then(data => {
             document.getElementById('real-modal-container').innerHTML = data;
-            import('./Modals/Réalisations/realisation-modal.js').then(module => {
+            import(modalAsset('./Modals/Réalisations/realisation-modal.js')).then(module => {
                 module.initRealModal();
             });
         })
         .catch(err => console.error('Erreur Real Modal:', err));
     
     // Charger la modale veille
-    fetch('Modals/Veille/veille-modal.html')
+    fetch(modalAsset('Modals/Veille/veille-modal.html'))
         .then(response => response.text())
         .then(data => {
             document.getElementById('veille-modal-container').innerHTML = data;
-            import('./Modals/Veille/veille-modal.js').then(module => {
+            import(modalAsset('./Modals/Veille/veille-modal.js')).then(module => {
                 module.initVeilleModal();
             });
         })
