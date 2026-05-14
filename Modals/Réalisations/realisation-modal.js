@@ -4,7 +4,7 @@ const REAL_PROJECTS = {
         name: 'GLPI sur Windows', sub: 'Gestion de parc informatique & helpdesk',
         color: '#4da6ff',
         desc: "Déploiement et configuration complète de GLPI sur Windows Server. Mise en place d'une solution ITSM permettant la gestion des assets, tickets et inventaire.",
-        tags: ['Windows Server 2019', 'PHP / MySQL', 'Apache', 'GLPI 10.x', 'Active Directory'],
+        tags: ['Windows Server 2019', 'PHP / MySQL', 'Apache', 'GLPI 10.0.16', 'Active Directory'],
         steps: [
             { n: 1, title: 'Installation stack', text: 'Déploiement de WAMP (Apache, PHP, MySQL) sur Windows Server 2019.' },
             { n: 2, title: 'Configuration GLPI', text: 'Import de la base de données, configuration initiale et personnalisation des entités.' },
@@ -30,25 +30,25 @@ const REAL_PROJECTS = {
         name: 'VirtualBox', sub: 'Virtualisation & lab infrastructure',
         color: '#c77dff',
         desc: "Création d'un lab virtuel sous VirtualBox pour simuler des environnements serveurs, tester des configurations réseau isolées et reproduire des scénarios d'infrastructure sans matériel dédié.",
-        tags: ['VirtualBox 7.x', 'Ubuntu Server', 'Windows Server', 'Réseau NAT/Host-Only', 'Snapshots'],
+        tags: ['VirtualBox 7.x', 'Ubuntu', 'Windows Server', 'Réseau NAT/Host-Only', 'Snapshots'],
         steps: [
             { n: 1, title: 'Setup hôte', text: 'Configuration du réseau interne (Host-Only Adapter) pour isoler les VMs.' },
-            { n: 2, title: 'VMs serveurs', text: "Déploiement d'une VM Ubuntu Server et d'une VM Windows Server 2019 interconnectées." },
+            { n: 2, title: 'VMs serveurs', text: "Déploiement d'une VM Ubuntu et d'une VM Windows Server 2019 interconnectées." },
             { n: 3, title: 'Services testés', text: 'Installation et tests de DHCP, DNS, SMB et SSH entre les machines virtuelles.' },
             { n: 4, title: 'Snapshots', text: 'Gestion des points de restauration pour itérer rapidement sur les configurations.' },
         ]
     },
     oralink: {
-        icon: 'fa-link', iconBg: 'rgba(0,229,255,0.1)', iconBorder: 'rgba(0,229,255,0.25)',
-        name: 'OraLink', sub: 'Entreprise fictive - transformation numérique sécurisée',
-        color: '#00e5ff',
-        desc: "OraLink répond aux besoins de transformation numérique des entreprises avec une approche structurée et sécurisée. J'ai modélisé le schéma réseau sous Packet Tracer, déployé une VM Ubuntu avec GLPI, puis organisé le projet autour de trois pôles de 10 personnes.",
-        tags: ['Schéma réseau', 'Packet Tracer', 'Ubuntu Server', 'GLPI', '3 pôles'],
+        icon: 'fa-shield-halved', iconBg: 'rgba(0,229,255,0.1)', iconBorder: 'rgba(0,229,255,0.25)',
+        name: 'OraLink', sub: 'Agence fictive d\'audit en cybersécurité',
+        color: '#0ea5e9',
+        desc: "RSSI et super-administrateur d'une infrastructure sécurisée pour 30 collaborateurs. Architecture réseau segmentée en VLANs, déploiement serveur (Stack LAMP + GLPI), gouvernance applicative et gestion de parc.",
+        tags: ['Cybersécurité', 'Architecture réseau', 'GLPI', 'Packet Tracer', 'Administration système'],
         steps: [
-            { n: 1, title: 'Contexte', text: "Le projet a été pensé pour répondre à la digitalisation des entreprises tout en traitant deux limites majeures : la sécurité des données et l’obsolescence logicielle." },
-            { n: 2, title: 'Schéma réseau', text: "J'ai réalisé l'infrastructure réseau dans Packet Tracer avec une logique de segmentation par pôles, un routeur central et des switches pour distribuer les équipements de chaque zone." },
-            { n: 3, title: 'VM Ubuntu et GLPI', text: "J'ai créé une machine virtuelle Ubuntu afin d'y installer GLPI et de disposer d'un environnement de gestion de parc et de support technique cohérent avec les besoins du projet." },
-            { n: 4, title: 'Organisation', text: 'La structure repose sur 30 employés répartis équitablement en trois pôles de 10 personnes : produit & développement, infrastructure & sécurité, administratif & communication.' },
+            { n: 1, title: 'Rôle & contexte', text: "RSSI et super-administrateur d'OraLink, agence fictive de 30 collaborateurs répartie en 3 pôles (Business & Corporate, Cloud & Cyber-Ops, Software Engineering)." },
+            { n: 2, title: 'Architecture réseau', text: "Segmentation stricte en 3 VLANs isolés (10, 20, 30) avec routage sur 3 câbles physiques distincts pour garantir séparation et optimisation de bande passante." },
+            { n: 3, title: 'Déploiement serveur', text: "Machine virtuelle Linux avec Stack LAMP (Apache, MariaDB, PHP) hébergeant GLPI en environnement de production sécurisé." },
+            { n: 4, title: 'Gouvernance GLPI', text: "Configuration complète : entité racine + 3 sous-entités, profils granulaires (Super-Admin, Observer, Technician, Self-Service), règles d'affectation et inventaire." },
         ]
     },
     eebiscus: {
@@ -74,6 +74,13 @@ export function initRealModal() {
     const detailView    = document.getElementById('realDetailView');
     const detailContent = document.getElementById('realDetailContent');
     const detailBack    = document.getElementById('realDetailBack');
+    const modalBody     = document.querySelector('.real-modal-body');
+
+    const scrollModalTop = () => {
+        if (!modalBody) return;
+        modalBody.scrollTop = 0;
+        modalBody.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    };
 
     if (!overlay || !openBtn) return;
 
@@ -81,6 +88,9 @@ export function initRealModal() {
     openBtn.addEventListener('click', () => {
         overlay.classList.add('active');
         document.body.style.overflow = 'hidden';
+        scrollModalTop();
+        gridView && (gridView.scrollTop = 0);
+        detailView && (detailView.scrollTop = 0);
         showGrid();
     });
 
@@ -104,11 +114,17 @@ export function initRealModal() {
     function showGrid() {
         gridView.classList.remove('hidden');
         detailView.classList.remove('visible');
+        scrollModalTop();
+        gridView && (gridView.scrollTop = 0);
     }
 
     function showDetail(id) {
         const p = REAL_PROJECTS[id];
         if (!p) return;
+
+        scrollModalTop();
+        gridView && (gridView.scrollTop = 0);
+        detailView && (detailView.scrollTop = 0);
 
         const tags  = p.tags.map(t => `<span class="real-detail-chip">${t}</span>`).join('');
         const steps = p.steps.map(s => `
@@ -119,281 +135,169 @@ export function initRealModal() {
         `).join('');
 
         if (id === 'oralink') {
-            const pillars = [
-                {
-                    title: 'Développement applicatif',
-                    text: 'Conception de solutions métiers, interfaces web et API pour répondre aux besoins opérationnels de chaque pôle.'
-                },
-                {
-                    title: 'Sécurité et supervision',
-                    text: 'Application de la segmentation VLAN, contrôle des accès et suivi continu de l’état du réseau et des services.'
-                },
-                {
-                    title: 'Infrastructure et automatisation',
-                    text: 'Organisation de l’infrastructure, standardisation des configurations et automatisation des tâches techniques récurrentes.'
-                }
-            ];
-
-            const pillarsHtml = pillars.map(pillar => `
-                <article class="oralink-pillar-card">
-                    <h4>${pillar.title}</h4>
-                    <p>${pillar.text}</p>
-                </article>
-            `).join('');
-
-            const staffBlocks = [
-                { title: 'Produit & développement', meta: '10 personnes', desc: 'Le cœur de la création logicielle.' },
-                { title: 'Infrastructure & sécurité', meta: '10 personnes', desc: 'Continuité de service et protection des données.' },
-                { title: 'Administratif & communication', meta: '10 personnes', desc: 'Pilotage stratégique et relation humaine.' }
-            ];
-
-            const staffHtml = staffBlocks.map(block => `
-                <div class="oralink-team-card">
-                    <span class="oralink-team-meta">${block.meta}</span>
-                    <h4>${block.title}</h4>
-                    <p>${block.desc}</p>
-                </div>
-            `).join('');
-
-            const networkBlocks = [
-                {
-                    vlan: 'VLAN 10',
-                    title: 'Pôle administratif',
-                    ip: '192.168.10.0/24',
-                    gateway: '192.168.10.254',
-                    text: 'Ce VLAN regroupe les postes administratifs et la communication. Il est séparé du reste du réseau pour limiter les flux et renforcer la sécurité.'
-                },
-                {
-                    vlan: 'VLAN 20',
-                    title: 'Infrastructure & sécurité',
-                    ip: '192.168.20.0/24',
-                    gateway: '192.168.20.254',
-                    text: 'Ce VLAN centralise la partie technique, le serveur, les services sensibles et les équipements d’administration du réseau.'
-                },
-                {
-                    vlan: 'VLAN 30',
-                    title: 'Pôle développement',
-                    ip: '192.168.30.0/24',
-                    gateway: '192.168.30.254',
-                    text: 'Ce VLAN accueille les postes du pôle produit et développement. Il permet de tester, maintenir et organiser les usages métiers du projet.'
-                }
-            ];
-
-            const networkHtml = networkBlocks.map(block => `
-                <article class="oralink-network-card">
-                    <span class="oralink-network-tag">${block.vlan}</span>
-                    <h4>${block.title}</h4>
-                    <p>${block.text}</p>
-                    <div class="oralink-network-meta">
-                        <span>Réseau : ${block.ip}</span>
-                        <span>Gateway : ${block.gateway}</span>
-                    </div>
-                </article>
-            `).join('');
-
-            const networkScreens = [
-                {
-                    src: '/assets/Veille/Scrum1.png',
-                    alt: 'Capture VM - création de la machine',
-                    title: 'Création de la VM',
-                    text: 'Capture de la phase de création et de paramétrage initial de la machine.'
-                },
-                {
-                    src: '/assets/Veille/DevSecOps.png',
-                    alt: 'Capture VM - configuration réseau',
-                    title: 'Configuration réseau',
-                    text: 'Capture de la configuration réseau utilisée pendant l’installation.'
-                }
-            ];
-
-            const networkScreensHtml = networkScreens.map(screen => `
-                <figure class="oralink-command-shot">
-                    <img src="${screen.src}" alt="${screen.alt}" class="zoomable-image" loading="lazy" decoding="async">
-                    <figcaption>
-                        <strong>${screen.title}</strong>
-                        <span>${screen.text}</span>
-                    </figcaption>
-                </figure>
-            `).join('');
-
-            const vmPoints = [
-                'Création d’une machine virtuelle Ubuntu Server pour servir de base applicative.',
-                'Installation des composants nécessaires au fonctionnement de GLPI.',
-                'Préparation d’une interface exploitable pour la gestion de parc, des tickets et du support.'
-            ];
-
-            const vmHtml = vmPoints.map(point => `<li>${point}</li>`).join('');
-
-            const vmScreens = [
-                {
-                    src: '/assets/Veille/Scrum1.png',
-                    alt: 'Étape 1 - Création de la VM Ubuntu',
-                    title: 'Étape 1 - Création de la VM',
-                    text: 'Création de la machine Ubuntu Server avec allocation CPU, RAM et disque.'
-                },
-                {
-                    src: '/assets/Veille/DevSecOps.png',
-                    alt: 'Étape 2 - Paramétrage réseau de la VM',
-                    title: 'Étape 2 - Paramétrage réseau',
-                    text: 'Configuration de la connectivité et vérification des échanges réseau de la VM.'
-                },
-                {
-                    src: '/assets/Veille/Scrum2.png',
-                    alt: 'Étape 3 - Installation des services',
-                    title: 'Étape 3 - Installation des services',
-                    text: 'Installation des paquets nécessaires pour préparer l’environnement applicatif.'
-                }
-            ];
-
-            const vmScreensHtml = vmScreens.map(screen => `
-                <figure class="oralink-screen-card">
-                    <img src="${screen.src}" alt="${screen.alt}" class="zoomable-image" loading="lazy" decoding="async">
-                    <figcaption>
-                        <strong>${screen.title}</strong>
-                        <span>${screen.text}</span>
-                    </figcaption>
-                </figure>
-            `).join('');
-
-            const glpiInstallSteps = [
-                'J’ai préparé l’environnement Ubuntu avec Apache, MariaDB et les extensions PHP utiles à GLPI.',
-                'J’ai créé une base dédiée ainsi qu’un utilisateur SQL isolé pour sécuriser l’application.',
-                'J’ai récupéré l’archive officielle GLPI 10.x, puis je l’ai déployée dans le répertoire web.',
-                'J’ai ajusté les droits pour que le serveur puisse écrire dans les dossiers nécessaires.',
-                'J’ai finalisé l’installation depuis l’interface web en renseignant l’hôte, la base et l’utilisateur.',
-                'Une fois l’application en place, j’ai supprimé le script d’installation et remplacé les identifiants de démo.'
-            ];
-
-            const glpiInstallHtml = glpiInstallSteps.map(step => `<li>${step}</li>`).join('');
-
-            const glpiAccessCards = [
-                { title: 'Base de données', text: 'Instance dédiée sur MariaDB avec un compte séparé pour GLPI.' },
-                { title: 'Connexion web', text: 'Installation terminée depuis le navigateur sur le serveur Ubuntu.' },
-                { title: 'Sécurité', text: 'Suppression du script d’installation et changement des accès par défaut.' }
-            ];
-
-            const glpiAccessHtml = glpiAccessCards.map(card => `
-                <article class="oralink-lab-item">
-                    <strong>${card.title}</strong>
-                    <span>${card.text}</span>
-                </article>
-            `).join('');
-
             detailContent.innerHTML = `
-                <section class="oralink-hero">
-                    <div class="oralink-hero-copy">
-                        <div class="oralink-brand-row">
-                            <span class="oralink-brand-logo">
-                                <img src="/assets/Realisation/Intro/Oralink.jpg" alt="Logo OraLink">
-                            </span>
-                            <div class="oralink-brand-text">
-                                <span class="oralink-brand-kicker">OraLink</span>
-                                <span class="oralink-brand-sub">Entreprise fictive</span>
+                <article class="oralink-article">
+                    <header class="oralink-cover">
+                        <div class="oralink-cover__content">
+                            <div class="oralink-brand-row">
+                                <figure class="oralink-brand-logo">
+                                    <img src="/assets/Realisation/Intro/Oralink.jpg" alt="Logo OraLink" loading="lazy">
+                                </figure>
+                                <div class="oralink-brand-text">
+                                    <span class="oralink-brand-kicker">OraLink</span>
+                                    <span class="oralink-brand-sub">Agence fictive d'audit en cybersécurité</span>
+                                </div>
+                            </div>
+                            <p class="oralink-eyebrow">Portfolio technique — BTS SIO SISR</p>
+                            <h1 style="margin:0;font-size:clamp(1.8rem, 3vw, 2.8rem);color:#fff;line-height:1.1;letter-spacing:-.03em;max-width:16ch;">Architecture réseau sécurisée et gouvernance GLPI</h1>
+                            <p class="oralink-cover__lead">Conception complète d'une infrastructure pour 30 collaborateurs répartis en 3 pôles : architecture réseau segmentée en VLANs, déploiement serveur Linux avec Stack LAMP, et gouvernance applicative GLPI avec hiérarchie d'entités et profils granulaires.</p>
+                            <div class="oralink-badge-row">
+                                <span class="oralink-badge">Cybersécurité</span>
+                                <span class="oralink-badge">Architecture réseau</span>
+                                <span class="oralink-badge">GLPI</span>
+                                <span class="oralink-badge">Packet Tracer</span>
+                                <span class="oralink-badge">Administration système</span>
                             </div>
                         </div>
-                        <span class="oralink-hero-kicker">Entreprise / fiche projet</span>
-                        <h3>OraLink structure une réponse moderne à la numérisation des entreprises.</h3>
-                        <p>Le projet met en avant une organisation claire, des solutions sécurisées et une logique de production centrée sur trois pôles complémentaires, avec une vraie partie infrastructure réseau et serveur.</p>
-                        <div class="oralink-hero-chips">
-                            <span>30 employés</span>
-                            <span>3 pôles</span>
-                            <span>Sécurité</span>
-                            <span>Cloud</span>
-                        </div>
-                    </div>
-                    <div class="oralink-hero-aside">
-                        <div class="oralink-stat-card">
-                            <span class="oralink-stat-value">30</span>
-                            <span class="oralink-stat-label">employés au total</span>
-                        </div>
-                        <div class="oralink-stat-card">
-                            <span class="oralink-stat-value">3</span>
-                            <span class="oralink-stat-label">pôles d’activité</span>
-                        </div>
-                        <div class="oralink-stat-card">
-                            <span class="oralink-stat-value">24/7</span>
-                            <span class="oralink-stat-label">continuité de service</span>
-                        </div>
-                    </div>
-                </section>
+                        <aside class="oralink-cover__aside">
+                            <article class="oralink-kpi-card"><strong>30</strong><span>Collaborateurs</span></article>
+                            <article class="oralink-kpi-card"><strong>3</strong><span>Pôles d'activité</span></article>
+                            <article class="oralink-kpi-card"><strong>3</strong><span>VLANs isolés</span></article>
+                            <article class="oralink-kpi-card"><strong>24/7</strong><span>Supervision SOC</span></article>
+                        </aside>
+                    </header>
 
-                <section class="oralink-section oralink-section--dense">
-                    <div>
-                        <h4>Contexte</h4>
-                        <p>OraLink a été pensée pour répondre au besoin croissant de numérisation dans le monde professionnel, avec une priorité claire : moderniser les outils tout en renforçant la sécurité des systèmes.</p>
-                    </div>
-                    <div>
-                        <h4>Problèmes visés</h4>
-                        <p>Le projet cible deux freins majeurs fréquemment rencontrés par les entreprises : le manque de sécurité des données et l’utilisation de logiciels obsolètes inadaptés au travail moderne.</p>
-                    </div>
-                </section>
+                    <section class="oralink-section-block">
+                        <div class="oralink-section-head">
+                            <span>01</span>
+                            <div>
+                                <h2 style="margin:0 0 4px;font-size:1.08rem;color:#fff;">Contexte du Projet & Rôle</h2>
+                                <p style="margin:0;color:#c0cad8;font-size:.88rem;">RSSI et super-administrateur de l'infrastructure</p>
+                            </div>
+                        </div>
+                        <div class="oralink-grid oralink-grid--2">
+                            <article class="oralink-card"><span class="oralink-card-accent">Entreprise</span><h3>OraLink</h3><p>Agence fictive d'audit en cybersécurité avec une gouvernance structurée autour de la sécurité, l'innovation et le support technique.</p></article>
+                            <article class="oralink-card"><span class="oralink-card-accent">Mon rôle</span><h3>RSSI & Super-Admin</h3><p>Responsable Sécurité des Systèmes d'Information et administrateur global avec récursivité complète sur l'infrastructure et l'application.</p></article>
+                        </div>
+                        <div class="oralink-panel">
+                            <h3 style="margin:0 0 12px;color:#fff;font-size:.96rem;">Structure organisationnelle</h3>
+                            <p style="margin:0 0 10px;">OraLink regroupe 30 collaborateurs répartis équitablement en trois pôles complémentaires :</p>
+                            <ul class="oralink-list" style="margin-bottom:0;">
+                                <li><strong>Business & Corporate</strong> — 10 personnes : administration, direction, RH, finance et relation client.</li>
+                                <li><strong>Cloud & Cyber-Ops</strong> — 10 personnes : sécurité, DevOps, systèmes, réseau et supervision SOC.</li>
+                                <li><strong>Software Engineering</strong> — 10 personnes : développement, UX/UI, QA et construction des outils métiers.</li>
+                            </ul>
+                        </div>
+                    </section>
 
-                <section class="oralink-section">
-                    <div class="real-detail-section">
-                        <h4>1. Schéma réseau et infrastructure</h4>
-                        <p>J’ai d’abord réalisé l’infrastructure réseau dans Packet Tracer afin de structurer l’entreprise par pôles. Le schéma repose sur un routeur central, des switches de distribution et une segmentation VLAN pour séparer clairement les usages.</p>
-                        <div class="oralink-network-grid">${networkHtml}</div>
-                        <p>Le serveur DHCP attribue automatiquement les adresses IP aux postes des différents VLAN, ce qui permet d’éviter la saisie manuelle et de garder une configuration cohérente sur l’ensemble du réseau.</p>
-                        <div class="oralink-command-grid">
-                            ${networkScreensHtml}
+                    <section class="oralink-section-block">
+                        <div class="oralink-section-head">
+                            <span>02</span>
+                            <div>
+                                <h2 style="margin:0 0 4px;font-size:1.08rem;color:#fff;">Architecture Réseau Packet Tracer</h2>
+                                <p style="margin:0;color:#c0cad8;font-size:.88rem;">Segmentation physique et logique des flux</p>
+                            </div>
                         </div>
-                        <div class="oralink-screen-grid oralink-screen-grid--single">
-                            <figure class="oralink-screen-card oralink-screen-card--inline">
-                                <img src="/assets/Realisation/Oralink/PacketTracer.png" alt="Schéma réseau OraLink réalisé sous Packet Tracer" class="zoomable-image" loading="lazy" decoding="async">
-                                <figcaption>
-                                    <strong>Schéma réseau</strong>
-                                    <span>Le réseau intègre plusieurs équipements de travail: postes utilisateurs, téléphones IP, webcams, imprimantes et serveur, reliés selon les besoins de chaque pôle.</span>
-                                </figcaption>
-                            </figure>
+                        <div class="oralink-grid oralink-grid--3">
+                            <article class="oralink-card oralink-card--vlan"><span class="oralink-card-accent">VLAN 10</span><h3>Business & Corporate</h3><p>Pôle administratif, direction, RH, finance et relation client avec accès contrôlé au réseau principal.</p><div class="oralink-subline">192.168.10.0/24</div></article>
+                            <article class="oralink-card oralink-card--vlan"><span class="oralink-card-accent">VLAN 20</span><h3>Cloud & Cyber-Ops</h3><p>Pôle sécurité, DevOps et systèmes avec accès privilégié aux services critiques et supervision SOC.</p><div class="oralink-subline">192.168.20.0/24</div></article>
+                            <article class="oralink-card oralink-card--vlan"><span class="oralink-card-accent">VLAN 30</span><h3>Software Engineering</h3><p>Pôle développement, UX/UI et QA avec environnement de test et d'intégration continue isolé.</p><div class="oralink-subline">192.168.30.0/24</div></article>
                         </div>
-                        <div class="oralink-pillars-grid">${pillarsHtml}</div>
-                    </div>
-                </section>
+                        <figure class="oralink-figure oralink-figure--network">
+                            <img src="/assets/Realisation/Oralink/PacketTracer.png" alt="Schéma réseau Packet Tracer" class="zoomable-image oralink-network-diagram" loading="lazy">
+                            <figcaption><strong>Schéma global</strong><span>Routeur central avec 3 câbles physiques distincts, switchs par pôle, postes utilisateurs, téléphones IP et caméras de surveillance.</span></figcaption>
+                        </figure>
+                        <div class="oralink-timeline">
+                            <article class="oralink-timeline-item"><span class="oralink-timeline-step">01</span><div><h3>Segmentation physique</h3><p>Au lieu du "router-on-a-stick", j'ai configuré 3 câbles physiques distincts depuis le routeur vers des ports dédiés. Cela garantit une séparation véritable et une gestion indépendante de la bande passante par pôle.</p></div></article>
+                            <article class="oralink-timeline-item"><span class="oralink-timeline-step">02</span><div><h3>Serveur DHCP</h3><p>Attribution automatique des adresses IP (192.168.x.x) à chaque zone pour éviter les erreurs de configuration manuelle et maintenir une cohérence réseau optimale.</p></div></article>
+                            <article class="oralink-timeline-item"><span class="oralink-timeline-step">03</span><div><h3>Équipements réseau</h3><p>Postes de travail (30 PC), téléphones VoIP (30), caméras IP (18, pour Cloud & Cyber-Ops), imprimantes réseau (3, une par pôle).</p></div></article>
+                        </div>
+                    </section>
 
-                <section class="oralink-section">
-                    <div class="real-detail-section">
-                        <h4>2. VM Ubuntu et préparation applicative</h4>
-                        <p>Dans un second temps, j’ai créé une machine virtuelle Ubuntu Server pour héberger l’environnement applicatif. Cette VM sert de base technique au projet et permet d’isoler la solution de gestion dans un environnement propre et reproductible. Elle fonctionne dans un environnement virtualisé pour faciliter les tests, les ajustements et la démonstration.</p>
-                        <ul class="oralink-vm-list">${vmHtml}</ul>
-                        <div class="oralink-screen-grid">
-                            ${vmScreensHtml}
+                    <section class="oralink-section-block">
+                        <div class="oralink-section-head">
+                            <span>03</span>
+                            <div>
+                                <h2 style="margin:0 0 4px;font-size:1.08rem;color:#fff;">Déploiement Serveur & Socle Linux</h2>
+                                <p style="margin:0;color:#c0cad8;font-size:.88rem;">Stack LAMP et préparation applicative</p>
+                            </div>
                         </div>
-                    </div>
-                </section>
+                        <div class="oralink-grid oralink-grid--2">
+                            <article class="oralink-card"><span class="oralink-card-accent">Virtualisation</span><h3>Machine Virtuelle</h3><p>VM Linux (Ubuntu) exécutée dans VirtualBox pour isoler l'environnement applicatif et faciliter les tests, sauvegardes et migrations.</p></article>
+                            <article class="oralink-card"><span class="oralink-card-accent">Stack LAMP</span><h3>Services applicatifs</h3><p><strong>Apache</strong> (serveur web), <strong>MariaDB/MySQL</strong> (base de données), <strong>PHP</strong> (langage) avec extensions pour GLPI (GD, intl, json, etc.).</p></article>
+                        </div>
+                        <div class="oralink-gallery">
+                            <figure class="oralink-shot"><img src="/assets/Realisation/Oralink/SettingsVM.png" alt="Paramètres VirtualBox" class="zoomable-image" loading="lazy"><figcaption><strong>Configuration matérielle Ubuntu</strong><span>Allocation des ressources (CPU, RAM, disque dur) et configuration de la carte réseau pour la VM Ubuntu.</span></figcaption></figure>
+                            <figure class="oralink-shot"><img src="/assets/Realisation/Oralink/SessionVM.png" alt="Session Ubuntu sur VirtualBox" class="zoomable-image" loading="lazy"><figcaption><strong>Ubuntu en exécution</strong><span>VM Ubuntu démarrée sous VirtualBox pour accueillir le stack LAMP et GLPI en environnement de développement.</span></figcaption></figure>
+                        </div>
+                        <div class="oralink-panel oralink-panel--image">
+                            <h3 style="margin:0 0 12px;color:#fff;font-size:.96rem;">Étapes de déploiement</h3>
+                            <ul class="oralink-list" style="margin:0;">
+                                <li>Installation des dépendances : <code style="background: rgba(15,23,42,.6); padding: 2px 6px; border-radius: 4px; font-size: .85rem;">apt update && apt install apache2 mariadb-server php php-*</code></li>
+                                <li>Création de la base de données GLPI avec utilisateur dédié et privilèges limités.</li>
+                                <li>Téléchargement et extraction de GLPI 11.0.7 dans <code style="background: rgba(15,23,42,.6); padding: 2px 6px; border-radius: 4px; font-size: .85rem;">/var/www/html/glpi</code>.</li>
+                                <li>Déploiement sur Ubuntu hébergé sous VirtualBox (environnement de test et d'administration).</li>
+                                <li>Source officielle GitHub GLPI : <code style="background: rgba(15,23,42,.6); padding: 2px 6px; border-radius: 4px; font-size: .85rem;">https://github.com/glpi-project/glpi/releases/tag/11.0.7</code>.</li>
+                                <li>Finalisation via interface web (<code style="background: rgba(15,23,42,.6); padding: 2px 6px; border-radius: 4px; font-size: .85rem;">localhost/glpi/install.php</code>) avec suppression du script après installation.</li>
+                            </ul>
+                        </div>
+                    </section>
 
-                <section class="oralink-section oralink-section--split">
-                    <div class="real-detail-section">
-                        <h4>3. GLPI et gestion de parc</h4>
-                        <p>Une fois la VM opérationnelle, j’ai déployé GLPI sur Ubuntu pour centraliser la gestion du parc informatique, du support et du suivi des utilisateurs. J’ai structuré l’installation comme un vrai déploiement applicatif, en partant de la pile LAMP jusqu’à la mise en service web.</p>
-                        <ul class="oralink-vm-list">${glpiInstallHtml}</ul>
-                        <div class="oralink-lab-grid">${glpiAccessHtml}</div>
-                        <div class="oralink-screen-grid oralink-screen-grid--single">
-                            <figure class="oralink-screen-card oralink-screen-card--stacked">
-                                <img src="/assets/Veille/Scrum2.png" alt="GLPI OraLink - capture de substitution" class="zoomable-image" loading="lazy" decoding="async">
-                                <figcaption>
-                                    <strong>Interface GLPI</strong>
-                                    <span>Capture de substitution du tableau de bord GLPI. Elle sera remplacée par la vraie interface une fois les écrans prêts.</span>
-                                </figcaption>
-                            </figure>
+                    <section class="oralink-section-block">
+                        <div class="oralink-section-head">
+                            <span>04</span>
+                            <div>
+                                <h2 style="margin:0 0 4px;font-size:1.08rem;color:#fff;">Configuration GLPI & Gouvernance Applicative</h2>
+                                <p style="margin:0;color:#c0cad8;font-size:.88rem;">Hiérarchie d'entités et gestion du contrôle d'accès</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="real-detail-section">
-                        <h4>Répartition des effectifs</h4>
-                        <div class="oralink-team-grid">${staffHtml}</div>
-                        <h4 style="margin-top:16px;">Locaux techniques</h4>
-                        <div class="oralink-lab-grid">
-                            <div class="oralink-lab-item"><strong>Routeurs</strong><span>Gestion du trafic réseau entrant et sortant et liaison entre les zones du schéma.</span></div>
-                            <div class="oralink-lab-item"><strong>Switchs</strong><span>Interconnexion des équipements au sein du réseau local et distribution par pôle.</span></div>
-                            <div class="oralink-lab-item"><strong>Ordinateurs</strong><span>Postes de travail pour l’ensemble des collaborateurs dans chaque zone fonctionnelle.</span></div>
-                            <div class="oralink-lab-item"><strong>Serveur</strong><span>Hébergement des services et des données critiques de l’entreprise.</span></div>
+                        <article class="oralink-card oralink-card--highlight"><span class="oralink-card-accent">Hygiène initiale</span><h3>Sécurisation post-installation</h3><p style="margin:0;">Changement immédiat des mots de passe par défaut (glpi/glpi, post-only, tech, normal). Désactivation des comptes non utilisés. Suppression du script d'installation pour éliminer l'accès à l'assistant web.</p></article>
+                        <div class="oralink-panel"><h3 style="margin:0 0 12px;color:#fff;font-size:.96rem;">Hiérarchie des entités</h3><p style="margin:0 0 10px;color:#d0d9e7;font-size:.91rem;"><strong>Entité Racine (OraLink)</strong> avec récursivité activée pour gérer :</p><ul class="oralink-list" style="margin:0;"><li><strong>Business & Corporate</strong> — Utilisateurs administratifs, managers avec profil Observer local.</li><li><strong>Cloud & Cyber-Ops</strong> — Équipe technique (analystes SOC, DevOps, admins) avec profil Technician pour ticket resolution.</li><li><strong>Software Engineering</strong> — Développeurs avec accès limité aux ressources applicatives.</li></ul></div>
+                        <div class="oralink-grid oralink-grid--2">
+                            <article class="oralink-card"><span class="oralink-card-accent">Super-Admin</span><h3>Haytham (RSSI)</h3><p>Accès total sur l'entité racine avec récursivité. Gestion de la configuration, des entités, des utilisateurs et des politiques de sécurité.</p></article>
+                            <article class="oralink-card"><span class="oralink-card-accent">Observer</span><h3>Raphaël (CEO)</h3><p>Supervision globale des entités avec lecture seule. Accès aux rapports et tableaux de bord sans modification possible.</p></article>
+                            <article class="oralink-card"><span class="oralink-card-accent">Technician</span><h3>Équipe Cloud & Cyber-Ops</h3><p>Résolution des tickets, gestion du matériel et des assets. Permissions limitées à leur entité avec héritage autorisé.</p></article>
+                            <article class="oralink-card"><span class="oralink-card-accent">Self-Service</span><h3>Utilisateurs finaux</h3><p>Création de tickets pour pannes matériel/logiciel. Suivi de leurs demandes sans accès à la configuration globale.</p></article>
                         </div>
-                    </div>
-                </section>
+                        <figure class="oralink-figure"><img src="/assets/Realisation/Oralink/Utilisateurs.png" alt="Interface GLPI" class="zoomable-image" loading="lazy"><figcaption><strong>Gestion des utilisateurs GLPI</strong><span>Interface d'administration pour la création, l'attribution de rôles et la gestion des accès par profil (Super-Admin, Observer, Technician, Self-Service).</span></figcaption></figure>
+                    </section>
 
-                <div id="oralink-lightbox-overlay" class="lightbox-overlay oralink-lightbox-overlay">
-                    <span class="lightbox-close"><i class="fa-solid fa-xmark"></i></span>
-                    <img id="oralink-lightbox-img" src="" alt="Aperçu OraLink">
-                </div>
+                    <section class="oralink-section-block">
+                        <div class="oralink-section-head">
+                            <span>05</span>
+                            <div>
+                                <h2 style="margin:0 0 4px;font-size:1.08rem;color:#fff;">Inventaire du Parc Matériel</h2>
+                                <p style="margin:0;color:#c0cad8;font-size:.88rem;">Gestion des actifs et supervision</p>
+                            </div>
+                        </div>
+                        <div class="oralink-grid oralink-grid--2">
+                            <article class="oralink-card"><span class="oralink-card-accent">Postes de travail</span><h3>30 Ordinateurs</h3><p>PC renommés nominativement (ex : PC-BUS-MAYA-01) et assignés à la bonne entité/pôle. Suivi du cycle de vie matériel et des mises à jour OS.</p></article>
+                            <article class="oralink-card"><span class="oralink-card-accent">Réseau VoIP</span><h3>30 Téléphones IP</h3><p>Appareils Cisco/Avaya tracés individuellement et liés aux profils utilisateurs. Gestion des attributions par pôle et historique de remplacement.</p></article>
+                            <article class="oralink-card"><span class="oralink-card-accent">Surveillance</span><h3>18 Caméras IP</h3><p>Caméras de sécurité (6 par pôle) gérées exclusivement par Cloud & Cyber-Ops. Monitoring des locaux et gestion d'accès physique intégrée.</p></article>
+                            <article class="oralink-card"><span class="oralink-card-accent">Impression</span><h3>3 Imprimantes réseau</h3><p>Une imprimante par pôle (PRN-BUS-01, PRN-SEC-01, PRN-DEV-01) avec quota de pages et maintenance préventive planifiée.</p></article>
+                        </div>
+                        <figure class="oralink-figure"><img src="/assets/Realisation/Oralink/Inventaire.png" alt="Inventaire GLPI" class="zoomable-image" loading="lazy"><figcaption><strong>Inventaire du parc informatique</strong><span>Listing complet des actifs (30 ordinateurs, 30 téléphones IP, 18 caméras, 3 imprimantes) avec historique de maintenance et suivi de la durée de vie.</span></figcaption></figure>
+                    </section>
+
+                    <section class="oralink-section-block oralink-section-block--closing">
+                        <div class="oralink-section-head">
+                            <span>06</span>
+                            <div>
+                                <h2 style="margin:0 0 4px;font-size:1.08rem;color:#fff;">Conclusion</h2>
+                                <p style="margin:0;color:#c0cad8;font-size:.88rem;">Synthèse des compétences démontrées</p>
+                            </div>
+                        </div>
+                        <div class="oralink-closing">
+                            <p>OraLink me permet de valoriser l'ensemble des compétences requises pour le BTS SIO spécialité SISR : <strong>architecture réseau sécurisée</strong>, <strong>déploiement d'infrastructure serveur</strong>, <strong>administration système</strong> et <strong>gouvernance applicative</strong>.</p>
+                            <p>Ce projet montre ma capacité à concevoir une solution cohérente, orientée sécurité et exploitation, adaptée aux besoins réels d'une PME. J'ai démontré des compétences avancées en <strong>segmentation réseau</strong>, <strong>sécurisation initiale</strong>, <strong>gestion d'accès granulaire</strong> et <strong>support aux utilisateurs finaux</strong>.</p>
+                        </div>
+                    </section>
+
+                    <div id="oralink-lightbox-overlay" class="oralink-lightbox-overlay">
+                        <span class="lightbox-close"><i class="fa-solid fa-xmark"></i></span>
+                        <img id="oralink-lightbox-img" src="" alt="Aperçu OraLink">
+                    </div>
+                </article>
             `;
 
             const lightboxOverlay = detailContent.querySelector('#oralink-lightbox-overlay');
@@ -402,6 +306,7 @@ export function initRealModal() {
             if (lightboxOverlay && lightboxImg) {
                 const closeLightbox = () => {
                     lightboxOverlay.classList.remove('active');
+                    lightboxOverlay.classList.remove('network-zoom');
                     setTimeout(() => { lightboxImg.src = ''; }, 250);
                 };
 
@@ -409,6 +314,11 @@ export function initRealModal() {
                     img.addEventListener('click', () => {
                         lightboxImg.src = img.getAttribute('src') || '';
                         lightboxImg.alt = img.getAttribute('alt') || 'Aperçu OraLink';
+                        if (img.classList.contains('oralink-network-diagram')) {
+                            lightboxOverlay.classList.add('network-zoom');
+                        } else {
+                            lightboxOverlay.classList.remove('network-zoom');
+                        }
                         lightboxOverlay.classList.add('active');
                     });
                 });
@@ -423,6 +333,13 @@ export function initRealModal() {
                     }
                 }, { once: true });
             }
+
+            requestAnimationFrame(() => {
+                scrollModalTop();
+                detailView && (detailView.scrollTop = 0);
+                detailContent && (detailContent.scrollTop = 0);
+                requestAnimationFrame(scrollModalTop);
+            });
         } else {
             detailContent.innerHTML = `
                 <div class="real-detail-header">
@@ -452,5 +369,6 @@ export function initRealModal() {
 
         gridView.classList.add('hidden');
         detailView.classList.add('visible');
+        scrollModalTop();
     }
 }
