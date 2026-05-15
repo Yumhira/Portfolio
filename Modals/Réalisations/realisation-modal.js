@@ -58,19 +58,19 @@ const REAL_PROJECTS = {
         desc: "Projet scolaire mené par 4 étudiants pour créer la première plateforme e-commerce de Néoherba, une marque spécialisée dans les produits aromatiques biologiques (hydrolats, tisanes, gemmothérapie...). L'objectif était de livrer une application complète, du front client à la documentation, avec une vraie logique de projet et une approche Agile.",
         tags: ['Angular', 'Java', 'API REST', 'Agile'],
         media: {
-            video: '/assets/Realisation/eeBiscus/Presentation.mp4',
-            backlog: '/assets/Realisation/eeBiscus/ProductBacklog.png',
+            video: './assets/Realisation/eeBiscus/Presentation.mp4',
+            backlog: './assets/Realisation/eeBiscus/ProductBacklog.png',
             manuals: [
-                '/assets/Realisation/eeBiscus/Manuel_Utilisateur_Couverture.png',
-                '/assets/Realisation/eeBiscus/Manuel_Admin_Couverture.png',
-                '/assets/Realisation/eeBiscus/Manuel_Technique_Couverture.png',
-                '/assets/Realisation/eeBiscus/Manuel_Api_Couverture.png'
+                './assets/Realisation/eeBiscus/Manuel_Utilisateur_Couverture.png',
+                './assets/Realisation/eeBiscus/Manuel_Admin_Couverture.png',
+                './assets/Realisation/eeBiscus/Manuel_Technique_Couverture.png',
+                './assets/Realisation/eeBiscus/Manuel_Api_Couverture.png'
             ],
             gallery: [
-                '/assets/Realisation/Intro/eeBiscus.png',
-                '/assets/Realisation/Intro/eeBiscus.png',
-                '/assets/Realisation/Intro/eeBiscus.png',
-                '/assets/Realisation/Intro/eeBiscus.png'
+                './assets/Realisation/Intro/eeBiscus.png',
+                './assets/Realisation/Intro/eeBiscus.png',
+                './assets/Realisation/Intro/eeBiscus.png',
+                './assets/Realisation/Intro/eeBiscus.png'
             ],
             external: 'https://neoherba.bio/fr/'
         },
