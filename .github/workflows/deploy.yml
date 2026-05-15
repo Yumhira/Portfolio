@@ -2,6 +2,13 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
+
+# CE BLOC EST INDISPENSABLE POUR RÉPARER L'ERREUR
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -9,7 +16,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          lfs: true # C'est cette ligne qui va chercher tes images/vidéos
+          lfs: true # Pour tes images et ta vidéo
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Upload artifact
