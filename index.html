@@ -137,10 +137,10 @@
                 <div class="dual-bloc bento-tile" id="tile-about">
                     <h3 class="tile-title"><i class="fa-solid fa-user"></i> À Propos</h3>
                     <div class="about-content">
-                        <p>Fort d'une expérience de 3 ans en développement web, j'ai acquis une solide maîtrise des logiques applicatives.</p>
-                        <p>Aujourd'hui, je me réoriente vers l'<strong>administration SISR</strong> pour maîtriser l'infrastructure de bout en bout.</p>
-                        <p>Mon objectif : devenir <strong>consultant en cybersécurité</strong>.</p>
-                    </div>
+    <p>Après 3 ans passés dans le développement web, j'ai choisi de changer de voie pour me tourner vers l'infrastructure.</p>
+    <p>J'ai toujours aimé le code, mais je passais de plus en plus de temps à m'intéresser aux serveurs, à Linux et à l'architecture des réseaux. Me spécialiser en administration SISR était donc la suite logique pour moi.</p>
+    <p>Aujourd'hui, j'apprends à déployer et protéger des systèmes. Mon but à terme est de devenir <strong>consultant en cybersécurité</strong>, en me servant de mon passé de développeur pour mieux repérer les vulnérabilités.</p>
+</div>
                 </div>
 
                 <!-- TUILE CERTIF GALLERY -->
@@ -243,31 +243,39 @@
 
             <!-- RÉALISATIONS -->
             <div id="tile-realisations" class="bento-tile">
-                <div class="real-tile-label tile-title">
-                    <i class="fa-solid fa-code"></i> Réalisations
-                </div>
+    <div class="real-tile-label tile-title">
+        <i class="fa-solid fa-terminal"></i> Réalisations
+    </div>
 
-                <div class="real-previews">
-                    <div class="real-preview-card rcard-1">
-                        <i class="fa-solid fa-wine-glass"></i>
-                    </div>
-                    <div class="real-preview-card rcard-2">
-                        <i class="fa-solid fa-layer-group"></i>
-                    </div>
-                    <div class="real-preview-card rcard-3">
-                        <i class="fa-solid fa-network-wired"></i>
-                    </div>
-                    <div class="real-preview-card rcard-4">
-                        <i class="fa-solid fa-server"></i>
-                    </div>
-                </div>
-
-                <button class="btn-real-gallery" id="btn-open-real">
-                    <span class="icon-wrap"><i class="fa-solid fa-code"></i></span>
-                    Voir les réalisations
-                    <span class="arrow-wrap"><i class="fa-solid fa-arrow-right"></i></span>
-                </button>
+    <div class="terminal-container">
+        <div class="terminal-header">
+            <span class="dot close"></span>
+            <span class="dot minimize"></span>
+            <span class="dot expand"></span>
+        </div>
+        <div class="terminal-body">
+            <div class="term-line">
+                <span class="term-prompt">haytham@portfolio:~$</span>
+                <span class="term-cmd">ls -la ./projects/</span>
             </div>
+            <div class="term-output">
+                <p>drwxr-xr-x  eebiscus</p>
+                <p>drwxr-xr-x  oralink</p>
+                <p>drwxr-xr-x  openvpn</p>
+            </div>
+            <div class="term-line mt-auto">
+                <span class="term-prompt">haytham@portfolio:~$</span>
+                <span class="term-cmd">./open_project.sh<span class="term-cursor">_</span></span>
+            </div>
+        </div>
+    </div>
+
+    <button class="btn-real-gallery" id="btn-open-real">
+        <span class="icon-wrap"><i class="fa-solid fa-code"></i></span>
+        Voir les projets
+        <span class="arrow-wrap"><i class="fa-solid fa-arrow-right"></i></span>
+    </button>
+</div>
 
         </div>
     </div>

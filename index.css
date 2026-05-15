@@ -307,7 +307,7 @@ body::before {
 .btn-certif-gallery:hover { background: rgba(177,151,252,0.12); border-color: rgba(177,151,252,0.3); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(177,151,252,0.15); }
 .btn-certif-gallery:hover .arrow-wrap { transform: translateX(3px); }
 
-/* CYAN — Voir les réalisations */
+/* CYAN — Exécuter la galerie (Réalisations) */
 .btn-real-gallery { background: rgba(0,229,255,0.06); border-color: rgba(0,229,255,0.18); position: relative; z-index: 4; margin-bottom: 2px; }
 .btn-real-gallery .icon-wrap { background: rgba(0,229,255,0.1); color: #00e5ff; border: 1px solid rgba(0,229,255,0.2); }
 .btn-real-gallery .arrow-wrap { background: rgba(0,229,255,0.1); color: #00e5ff; border: 1px solid rgba(0,229,255,0.15); }
@@ -454,7 +454,6 @@ body::before {
 #tile-parcours  .tile-title i { color: #b197fc; }
 .certif-tile-label i          { color: #b197fc; }
 .veille-label i               { color: #ff9100; }
-.real-tile-label i            { color: #00e5ff; }
 
 .skill-col--frontend .tile-title i { color: #00b0ff; }
 .skill-col--backend  .tile-title i { color: #a259ff; }
@@ -604,51 +603,116 @@ body::before {
    TUILE RÉALISATIONS
 ======================== */
 #tile-realisations {
+    display: flex;
     flex-direction: column;
-    align-items: stretch;
-    justify-content: space-between;
     padding: 22px;
-    overflow: hidden;
-    gap: 0;
+    position: relative;
 }
 
-.real-tile-label { position: absolute; top: 18px; left: 20px; margin: 0; z-index: 3; }
+.real-tile-label {
+    position: absolute;
+    top: 22px;
+    left: 22px;
+    margin: 0;
+    z-index: 3;
+}
 .real-tile-label i { color: #00e5ff; }
 
-.real-previews { position: relative; flex: 1; display: flex; align-items: center; justify-content: center; gap: 12px; padding: 18px 10px 14px; z-index: 1; }
-.real-preview-card { display: flex; align-items: center; justify-content: center; border-radius: 16px; border: 1px solid rgba(255,255,255,0.08); will-change: transform; transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); flex-shrink: 0; }
-.real-preview-card i { font-size: 1.7rem; }
+/* Conteneur du Terminal */
+.terminal-container {
+    background: #08080c;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    margin-top: 32px;
+    margin-bottom: 16px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    font-family: 'Consolas', 'Courier New', monospace;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+}
 
-.rcard-1 { width: 90px; height: 110px; background: linear-gradient(145deg, rgba(0,229,255,0.16), rgba(0,229,255,0.05)); color: #00e5ff; transform: rotate(-6deg) translateY(8px); box-shadow: 0 14px 32px rgba(0,229,255,0.12); }
-.rcard-2 { width: 100px; height: 122px; background: linear-gradient(145deg, rgba(177,151,252,0.18), rgba(177,151,252,0.06)); color: #b197fc; transform: rotate(-1.5deg) translateY(-6px); box-shadow: 0 14px 32px rgba(177,151,252,0.16); z-index: 2; }
-.rcard-3 { width: 100px; height: 122px; background: linear-gradient(145deg, rgba(0,230,118,0.16), rgba(0,230,118,0.05)); color: #00e676; transform: rotate(1.5deg) translateY(-6px); box-shadow: 0 14px 32px rgba(0,230,118,0.14); z-index: 2; }
-.rcard-4 { width: 90px; height: 110px; background: linear-gradient(145deg, rgba(255,145,0,0.16), rgba(255,145,0,0.05)); color: #ff9100; transform: rotate(6deg) translateY(8px); box-shadow: 0 14px 32px rgba(255,145,0,0.12); }
+/* En-tête style Linux/macOS */
+.terminal-header {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 8px 12px;
+    display: flex;
+    gap: 6px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
 
-#tile-realisations::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 22%; background: linear-gradient(to top, rgba(10,10,18,0.98) 30%, transparent); z-index: 2; pointer-events: none; border-radius: 0 0 22px 22px; }
+.terminal-header .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
 
-#tile-realisations:hover .rcard-1 { transform: rotate(-8deg) translateY(6px) translateX(-4px); }
-#tile-realisations:hover .rcard-2 { transform: rotate(-2.5deg) translateY(-10px); }
-#tile-realisations:hover .rcard-3 { transform: rotate(2.5deg) translateY(-10px); }
-#tile-realisations:hover .rcard-4 { transform: rotate(8deg) translateY(6px) translateX(4px); }
+.dot.close { background: #ff5f56; }
+.dot.minimize { background: #ffbd2e; }
+.dot.expand { background: #27c93f; }
 
-/* ========================
-   MODALE RÉALISATIONS
-======================== */
-.real-overlay { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.85); z-index: 1000; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
-.real-overlay.active { opacity: 1; pointer-events: all; }
-.real-modal { background: #111; border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 24px; width: 90%; max-width: 820px; max-height: 85vh; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 20px 60px rgba(0,0,0,0.55); transform: translateY(20px) scale(0.98); transition: transform 0.18s cubic-bezier(0.2,0.8,0.2,1); will-change: transform; }
-.real-overlay.active .real-modal { transform: translateY(0) scale(1); }
-.real-modal-header { display: flex; align-items: center; justify-content: space-between; padding: 24px 28px; border-bottom: 1px solid rgba(255, 255, 255, 0.07); flex-shrink: 0; }
-.real-header-left { display: flex; align-items: center; gap: 16px; }
-.real-header-icon { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border-radius: 12px; background: rgba(0,229,255,0.1); border: 1px solid rgba(0,229,255,0.2); color: #00e5ff; font-size: 1.1rem; }
-.real-modal-header h2 { margin: 0 0 2px 0; font-size: 1.15rem; font-weight: 700; color: #fff; font-family: 'Syne', sans-serif; }
-.real-modal-header p { margin: 0; font-size: 0.75rem; color: #555; }
-.real-close-btn { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; color: #888; cursor: pointer; font-size: 1rem; transition: background 0.2s ease, color 0.2s ease; }
-.real-close-btn:hover { background: rgba(255,255,255,0.1); color: #fff; }
-.real-modal-body { overflow-y: auto; padding: 40px 28px; display: flex; align-items: center; justify-content: center; flex: 1; color: rgba(255,255,255,0.15); font-size: 0.85rem; font-style: italic; }
-.real-modal-body::-webkit-scrollbar { width: 4px; }
-.real-modal-body::-webkit-scrollbar-track { background: transparent; }
-.real-modal-body::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
+/* Corps du terminal */
+.terminal-body {
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    font-size: 0.75rem;
+}
+
+.term-line {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 6px;
+}
+
+.term-prompt {
+    color: #00e5ff;
+    font-weight: bold;
+}
+
+.term-cmd {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.term-output {
+    color: rgba(255, 255, 255, 0.4);
+    margin-bottom: 12px;
+    padding-left: 4px;
+}
+
+.term-output p {
+    margin: 0 0 2px 0;
+    line-height: 1.4;
+}
+
+.mt-auto {
+    margin-top: auto;
+}
+
+/* Curseur clignotant */
+.term-cursor {
+    display: inline-block;
+    width: 8px;
+    height: 12px;
+    background-color: rgba(255, 255, 255, 0.8);
+    vertical-align: middle;
+    margin-left: 2px;
+    animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* Effet hover sur toute la tuile */
+#tile-realisations:hover .terminal-container {
+    border-color: rgba(0, 229, 255, 0.3);
+    box-shadow: inset 0 0 20px rgba(0, 229, 255, 0.05), 0 0 15px rgba(0, 229, 255, 0.1);
+}
 
 /* ========================
    ANIMATIONS D'ENTRÉE
@@ -714,28 +778,15 @@ body::before {
     .card-1, .card-4 { width: 62px !important; height: 80px !important; }
     .card-2, .card-3 { width: 70px !important; height: 90px !important; }
 
-    /* Cards réalisations réduites */
-    .rcard-1, .rcard-4 { width: 75px !important; height: 92px !important; }
-    .rcard-2, .rcard-3 { width: 84px !important; height: 104px !important; }
-
     /* Skills pills réduits */
     .skill-pill { font-size: 0.7rem; padding: 4px 10px; }
     .skill-divider { margin: 0 16px; }
 
-    /* Certif & réalisations : on désactive le gradient masquant le bouton */
-    #tile-certifs-small,
-    #tile-realisations { padding: 14px 16px; }
+    /* Ajustements modale & tuiles */
+    #tile-certifs-small { padding: 14px 16px; }
+    #tile-certifs-small::after { height: 0%; }
+    .certif-previews { padding: 10px 6px 8px; gap: 8px; }
 
-    #tile-certifs-small::after,
-    #tile-realisations::after { height: 0%; }
-
-    .certif-previews,
-    .real-previews {
-        padding: 10px 6px 8px;
-        gap: 8px;
-    }
-
-    /* Assure que le bouton reste visible et cliquable */
     .btn-certif-gallery,
     .btn-real-gallery {
         position: relative;
@@ -801,7 +852,6 @@ body::before {
 
     /* Réactive le gradient sur mobile car il y a de la place */
     #tile-certifs-small::after { height: 26%; }
-    #tile-realisations::after { height: 22%; }
 
     #tile-parcours, #tile-veille, #tile-realisations, #tile-certifs-small {
         min-height: 250px;
@@ -812,10 +862,9 @@ body::before {
 @media (max-width: 480px) {
     .bento-tile { padding: 14px; }
     .profil-photo { height: 200px; }
-    .certif-previews, .real-previews { flex-wrap: wrap; }
+    .certif-previews { flex-wrap: wrap; }
 
-    .card-1, .card-2, .card-3, .card-4,
-    .rcard-1, .rcard-2, .rcard-3, .rcard-4 {
+    .card-1, .card-2, .card-3, .card-4 {
         transform: none !important;
         margin: 5px;
     }

@@ -25,6 +25,26 @@
     display: flex;
     align-items: center;
     gap: 14px;
+    min-width: 0;
+    flex: 1;
+}
+
+.real-header-copy {
+    min-width: 0;
+}
+
+.real-header-copy h2 {
+    margin: 0 0 2px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #fff;
+    font-family: 'Syne', sans-serif;
+}
+
+.real-header-copy p {
+    margin: 0;
+    font-size: .75rem;
+    color: #555;
 }
 
 .real-header-icon {
@@ -48,20 +68,6 @@
     display: block;
 }
 
-.real-modal-header h2 {
-    margin: 0 0 2px;
-    font-size: 1.05rem;
-    font-weight: 700;
-    color: #fff;
-    font-family: 'Syne', sans-serif;
-}
-
-.real-modal-header p {
-    margin: 0;
-    font-size: .75rem;
-    color: #555;
-}
-
 .real-close-btn {
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -79,6 +85,31 @@
 }
 .real-close-btn:hover { background: #ef4444; border-color: #ef4444; }
 
+.real-header-back {
+    margin-left: 10px;
+    height: 34px;
+    padding: 0 12px;
+    border-radius: 999px;
+    font-size: .72rem;
+    white-space: nowrap;
+    flex-shrink: 0;
+    align-self: center;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    line-height: 1;
+    transform: translateY(8px);
+}
+
+.real-header-back[hidden] {
+    display: none !important;
+}
+
+.real-header-back:hover {
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+}
+
 /* === BODY SCROLLABLE === */
 .real-modal-body {
     display: block !important;
@@ -88,6 +119,16 @@
     justify-content: flex-start !important;
     flex: 1;
     padding: 24px 24px 28px;
+}
+
+/* Cacher la scrollbar tout en gardant le scrolling */
+.real-modal-body {
+    -ms-overflow-style: none; /* IE 10+ */
+    scrollbar-width: none; /* Firefox */
+}
+.real-modal-body::-webkit-scrollbar {
+    width: 0; /* Safari/WebKit */
+    height: 0;
 }
 
 /* === GRILLE VUE === */
