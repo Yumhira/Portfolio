@@ -158,7 +158,7 @@ export function initRealModal() {
                         <div class="oralink-cover__content">
                             <div class="oralink-brand-row">
                                 <figure class="oralink-brand-logo">
-                                    <img src="/assets/Realisation/Intro/Oralink.jpg" alt="Logo OraLink" loading="lazy">
+                                    <img src="./assets/Realisation/Intro/Oralink.jpg" alt="Logo OraLink" loading="lazy">
                                 </figure>
                                 <div class="oralink-brand-text">
                                     <span class="oralink-brand-kicker">OraLink</span>
@@ -221,7 +221,7 @@ export function initRealModal() {
                             <article class="oralink-card oralink-card--vlan"><span class="oralink-card-accent">VLAN 30</span><h3>Software Engineering</h3><p>Pôle développement, UX/UI et QA avec environnement de test et d'intégration continue isolé.</p><div class="oralink-subline">192.168.30.0/24</div></article>
                         </div>
                         <figure class="oralink-figure oralink-figure--network">
-                            <img src="/assets/Realisation/Oralink/PacketTracer.png" alt="Schéma réseau Packet Tracer" class="zoomable-image oralink-network-diagram" loading="lazy">
+                            <img src="./assets/Realisation/Oralink/PacketTracer.png" alt="Schéma réseau Packet Tracer" class="zoomable-image oralink-network-diagram" loading="lazy">
                             <figcaption><strong>Schéma global</strong><span>Routeur central avec 3 câbles physiques distincts, switchs par pôle, postes utilisateurs, téléphones IP et caméras de surveillance.</span></figcaption>
                         </figure>
                         <div class="oralink-timeline">
@@ -244,8 +244,8 @@ export function initRealModal() {
                             <article class="oralink-card"><span class="oralink-card-accent">Stack LAMP</span><h3>Services applicatifs</h3><p><strong>Apache</strong> (serveur web), <strong>MariaDB/MySQL</strong> (base de données), <strong>PHP</strong> (langage) avec extensions pour GLPI (GD, intl, json, etc.).</p></article>
                         </div>
                         <div class="oralink-gallery">
-                            <figure class="oralink-shot"><img src="/assets/Realisation/Oralink/SettingsVM.png" alt="Paramètres VirtualBox" class="zoomable-image" loading="lazy"><figcaption><strong>Configuration matérielle Ubuntu</strong><span>Allocation des ressources (CPU, RAM, disque dur) et configuration de la carte réseau pour la VM Ubuntu.</span></figcaption></figure>
-                            <figure class="oralink-shot"><img src="/assets/Realisation/Oralink/SessionVM.png" alt="Session Ubuntu sur VirtualBox" class="zoomable-image" loading="lazy"><figcaption><strong>Ubuntu en exécution</strong><span>VM Ubuntu démarrée sous VirtualBox pour accueillir le stack LAMP et GLPI en environnement de développement.</span></figcaption></figure>
+                            <figure class="oralink-shot"><img src="./assets/Realisation/Oralink/SettingsVM.png" alt="Paramètres VirtualBox" class="zoomable-image" loading="lazy"><figcaption><strong>Configuration matérielle Ubuntu</strong><span>Allocation des ressources (CPU, RAM, disque dur) et configuration de la carte réseau pour la VM Ubuntu.</span></figcaption></figure>
+                            <figure class="oralink-shot"><img src="./assets/Realisation/Oralink/SessionVM.png" alt="Session Ubuntu sur VirtualBox" class="zoomable-image" loading="lazy"><figcaption><strong>Ubuntu en exécution</strong><span>VM Ubuntu démarrée sous VirtualBox pour accueillir le stack LAMP et GLPI en environnement de développement.</span></figcaption></figure>
                         </div>
                         <div class="oralink-panel oralink-panel--image">
                             <h3 style="margin:0 0 12px;color:#fff;font-size:.96rem;">Étapes de déploiement</h3>
@@ -276,7 +276,7 @@ export function initRealModal() {
                             <article class="oralink-card"><span class="oralink-card-accent">Technician</span><h3>Équipe Cloud & Cyber-Ops</h3><p>Résolution des tickets, gestion du matériel et des assets. Permissions limitées à leur entité avec héritage autorisé.</p></article>
                             <article class="oralink-card"><span class="oralink-card-accent">Self-Service</span><h3>Utilisateurs finaux</h3><p>Création de tickets pour pannes matériel/logiciel. Suivi de leurs demandes sans accès à la configuration globale.</p></article>
                         </div>
-                        <figure class="oralink-figure"><img src="/assets/Realisation/Oralink/Utilisateurs.png" alt="Interface GLPI" class="zoomable-image" loading="lazy"><figcaption><strong>Gestion des utilisateurs GLPI</strong><span>Interface d'administration pour la création, l'attribution de rôles et la gestion des accès par profil (Super-Admin, Observer, Technician, Self-Service).</span></figcaption></figure>
+                        <figure class="oralink-figure"><img src="./assets/Realisation/Oralink/Utilisateurs.png" alt="Interface GLPI" class="zoomable-image" loading="lazy"><figcaption><strong>Gestion des utilisateurs GLPI</strong><span>Interface d'administration pour la création, l'attribution de rôles et la gestion des accès par profil (Super-Admin, Observer, Technician, Self-Service).</span></figcaption></figure>
                     </section>
 
                     <section class="oralink-section-block">
@@ -293,7 +293,7 @@ export function initRealModal() {
                             <article class="oralink-card"><span class="oralink-card-accent">Surveillance</span><h3>18 Caméras IP</h3><p>Caméras de sécurité (6 par pôle) gérées exclusivement par Cloud & Cyber-Ops. Monitoring des locaux et gestion d'accès physique intégrée.</p></article>
                             <article class="oralink-card"><span class="oralink-card-accent">Impression</span><h3>3 Imprimantes réseau</h3><p>Une imprimante par pôle (PRN-BUS-01, PRN-SEC-01, PRN-DEV-01) avec quota de pages et maintenance préventive planifiée.</p></article>
                         </div>
-                        <figure class="oralink-figure"><img src="/assets/Realisation/Oralink/Inventaire.png" alt="Inventaire GLPI" class="zoomable-image" loading="lazy"><figcaption><strong>Inventaire du parc informatique</strong><span>Listing complet des actifs (30 ordinateurs, 30 téléphones IP, 18 caméras, 3 imprimantes) avec historique de maintenance et suivi de la durée de vie.</span></figcaption></figure>
+                        <figure class="oralink-figure"><img src="./assets/Realisation/Oralink/Inventaire.png" alt="Inventaire GLPI" class="zoomable-image" loading="lazy"><figcaption><strong>Inventaire du parc informatique</strong><span>Listing complet des actifs (30 ordinateurs, 30 téléphones IP, 18 caméras, 3 imprimantes) avec historique de maintenance et suivi de la durée de vie.</span></figcaption></figure>
                     </section>
 
                     <section class="oralink-section-block oralink-section-block--closing">
@@ -373,7 +373,7 @@ export function initRealModal() {
                         <div class="oralink-cover__content">
                             <div class="oralink-brand-row">
                                 <figure class="oralink-brand-logo">
-                                    <img src="/assets/Realisation/Intro/eeBiscus.png" alt="Logo Eebiscus" loading="lazy">
+                                    <img src="./assets/Realisation/Intro/eeBiscus.png" alt="Logo Eebiscus" loading="lazy">
                                 </figure>
                                 <div class="oralink-brand-text">
                                     <span class="oralink-brand-kicker">Eebiscus</span>

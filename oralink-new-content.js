@@ -8,7 +8,7 @@ detailContent.innerHTML = `
             <div class="oralink-cover__content">
                 <div class="oralink-brand-row">
                     <figure class="oralink-brand-logo">
-                        <img src="/assets/Realisation/Intro/Oralink.jpg" alt="Logo OraLink" loading="lazy">
+                        <img src="./assets/Realisation/Intro/Oralink.jpg" alt="Logo OraLink" loading="lazy">
                     </figure>
                     <div class="oralink-brand-text">
                         <span class="oralink-brand-kicker">OraLink</span>
