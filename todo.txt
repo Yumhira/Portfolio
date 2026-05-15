@@ -1,8 +1,13 @@
 
 Ajout certif Voltaire
-
-Modale Réalisation
+Ajout bussinee game
+Reduire taille video
 Modification tuile Realisation
+Responsive
+
+OpenVPN
+
+oralink-new-content.js
 
 Optimisé tout le code
 
