@@ -1,3 +1,5 @@
+import { bindOverlayModal } from '../shared/modal-utils.js';
+
 export function initVeilleModal() {
     const overlay = document.getElementById('veille-modal-overlay');
     const closeBtn = document.getElementById('veille-close-btn');
@@ -10,6 +12,7 @@ export function initVeilleModal() {
     const lightboxOverlay = document.getElementById('image-lightbox-overlay');
     const lightboxImg = document.getElementById('lightbox-img');
     const lightboxCloseBtn = document.querySelector('.lightbox-close');
+    let closeLightbox = null;
 
     if (lightboxOverlay && lightboxImg) {
         // Cache pour éviter de recharger les images
@@ -42,7 +45,7 @@ export function initVeilleModal() {
             });
         });
 
-        const closeLightbox = () => {
+        closeLightbox = () => {
             lightboxOverlay.classList.remove('active');
             setTimeout(() => { lightboxImg.src = ""; }, 250);
         };
@@ -55,7 +58,6 @@ export function initVeilleModal() {
     // ----------------------------------------------
 
     // --- GESTION DES FLUX RSS MULTIPLES ---
-    // On ajoute ici les 3 sources de veille
     const RSS_SOURCES = [
         { name: "DevOps.com", url: "https://devops.com/feed/" },
         { name: "S. Robert", url: "https://blog.stephane-robert.info/rss.xml" },
@@ -64,7 +66,27 @@ export function initVeilleModal() {
 
     let isLoaded = false;
 
-    if (!overlay || !openBtn) return;
+    const createRssCard = item => {
+        const dateObj = new Date(item.pubDate);
+        const formattedDate = dateObj.toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' });
+        const cleanDesc = (item.description || '').replace(/<[^>]*>?/gm, '').substring(0, 120) + '...';
+        const card = document.createElement('div');
+
+        card.className = 'rss-card';
+        card.innerHTML = `
+            <div class="rss-date" style="justify-content: space-between;">
+                <span><i class="fa-regular fa-clock"></i> ${formattedDate}</span>
+                <span style="color: #b197fc; background: rgba(177, 151, 252, 0.1); padding: 2px 8px; border-radius: 12px;">${item.sourceName}</span>
+            </div>
+            <h4 class="rss-title">${item.title}</h4>
+            <p class="rss-desc">${cleanDesc}</p>
+            <a href="${item.link}" target="_blank" class="rss-link">
+                Lire la suite <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        `;
+
+        return card;
+    };
 
     const fetchRSS = async () => {
         if (isLoaded) return; 
@@ -113,26 +135,7 @@ export function initVeilleModal() {
                     const articlesToDisplay = allArticles.slice(0, 12);
 
                     const fragment = document.createDocumentFragment();
-                    articlesToDisplay.forEach(item => {
-                        const dateObj = new Date(item.pubDate);
-                        const formattedDate = dateObj.toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' });
-                        let cleanDesc = item.description.replace(/<[^>]*>?/gm, '').substring(0, 120) + '...';
-
-                        const card = document.createElement('div');
-                        card.className = 'rss-card';
-                        card.innerHTML = `
-                            <div class="rss-date" style="justify-content: space-between;">
-                                <span><i class="fa-regular fa-clock"></i> ${formattedDate}</span>
-                                <span style="color: #b197fc; background: rgba(177, 151, 252, 0.1); padding: 2px 8px; border-radius: 12px;">${item.sourceName}</span>
-                            </div>
-                            <h4 class="rss-title">${item.title}</h4>
-                            <p class="rss-desc">${cleanDesc}</p>
-                            <a href="${item.link}" target="_blank" class="rss-link">
-                                Lire la suite <i class="fa-solid fa-arrow-right"></i>
-                            </a>
-                        `;
-                        fragment.appendChild(card);
-                    });
+                    articlesToDisplay.forEach(item => fragment.appendChild(createRssCard(item)));
                     feedContainer.appendChild(fragment);
 
                     // Si plus d'articles, les ajouter en petits batches non bloquants
@@ -143,24 +146,7 @@ export function initVeilleModal() {
                         const appendBatch = () => {
                             const frag = document.createDocumentFragment();
                             for (let i = 0; i < batchSize && idx < remaining.length; i++, idx++) {
-                                const item = remaining[idx];
-                                const dateObj = new Date(item.pubDate);
-                                const formattedDate = dateObj.toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' });
-                                let cleanDesc = item.description.replace(/<[^>]*>?/gm, '').substring(0, 120) + '...';
-                                const card = document.createElement('div');
-                                card.className = 'rss-card';
-                                card.innerHTML = `
-                                    <div class="rss-date" style="justify-content: space-between;">
-                                        <span><i class="fa-regular fa-clock"></i> ${formattedDate}</span>
-                                        <span style="color: #b197fc; background: rgba(177, 151, 252, 0.1); padding: 2px 8px; border-radius: 12px;">${item.sourceName}</span>
-                                    </div>
-                                    <h4 class="rss-title">${item.title}</h4>
-                                    <p class="rss-desc">${cleanDesc}</p>
-                                    <a href="${item.link}" target="_blank" class="rss-link">
-                                        Lire la suite <i class="fa-solid fa-arrow-right"></i>
-                                    </a>
-                                `;
-                                frag.appendChild(card);
+                                frag.appendChild(createRssCard(remaining[idx]));
                             }
                             feedContainer.appendChild(frag);
                             if (idx < remaining.length) {
@@ -183,29 +169,24 @@ export function initVeilleModal() {
         }
     };
 
-    openBtn.addEventListener('click', () => {
-        overlay.classList.add('active');
-        document.body.style.overflow = 'hidden';
-        fetchRSS(); 
+    const modal = bindOverlayModal({
+        overlay,
+        openBtn,
+        closeBtn,
+        onOpen: fetchRSS,
+        closeOnEscape: false
     });
 
-    const close = () => {
-        overlay.classList.remove('active');
-        document.body.style.overflow = '';
-    };
+    if (!modal) return;
 
-    closeBtn?.addEventListener('click', close);
-    overlay.addEventListener('click', (e) => { if (e.target === overlay) close(); });
-    
-    document.addEventListener('keydown', (e) => { 
-        if (e.key === 'Escape') {
-            // Fermeture prioritaire de la Lightbox si elle est ouverte
-            if (lightboxOverlay && lightboxOverlay.classList.contains('active')) {
-                lightboxOverlay.classList.remove('active');
-                setTimeout(() => { lightboxImg.src = ""; }, 300);
-            } else {
-                close(); 
-            }
+    document.addEventListener('keydown', event => {
+        if (event.key !== 'Escape') return;
+
+        if (lightboxOverlay && lightboxOverlay.classList.contains('active') && closeLightbox) {
+            closeLightbox();
+            return;
         }
+
+        modal.close();
     });
 }

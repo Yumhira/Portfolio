@@ -1,3 +1,5 @@
+import { bindOverlayModal } from '../shared/modal-utils.js';
+
 const REAL_PROJECTS = {
     glpi: {
         icon: 'fa-server', iconBg: 'rgba(0,150,255,0.12)', iconBorder: 'rgba(0,150,255,0.3)',
@@ -99,26 +101,26 @@ export function initRealModal() {
         modalBody.scrollTo({ top: 0, left: 0, behavior: 'instant' });
     };
 
-    if (!overlay || !openBtn) return;
+    const setBackButtonVisible = (visible) => {
+        if (!detailBack) return;
+        detailBack.hidden = !visible;
+    };
 
-    // Ouvrir
-    openBtn.addEventListener('click', () => {
-        overlay.classList.add('active');
-        document.body.style.overflow = 'hidden';
-        scrollModalTop();
-        gridView && (gridView.scrollTop = 0);
-        detailView && (detailView.scrollTop = 0);
-        showGrid();
+    const modal = bindOverlayModal({
+        overlay,
+        openBtn,
+        closeBtn,
+        onOpen: () => {
+            scrollModalTop();
+            gridView && (gridView.scrollTop = 0);
+            detailView && (detailView.scrollTop = 0);
+            showGrid();
+        }
     });
 
-    // Fermer
-    const close = () => {
-        overlay.classList.remove('active');
-        document.body.style.overflow = '';
-    };
-    closeBtn?.addEventListener('click', close);
-    overlay.addEventListener('click', e => { if (e.target === overlay) close(); });
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+    if (!modal) return;
+
+    setBackButtonVisible(false);
 
     // Cartes → détail
     gridView.querySelectorAll('.real-proj-card[data-project]').forEach(card => {
@@ -129,6 +131,7 @@ export function initRealModal() {
     detailBack.addEventListener('click', showGrid);
 
     function showGrid() {
+        setBackButtonVisible(false);
         gridView.classList.remove('hidden');
         detailView.classList.remove('visible');
         scrollModalTop();
@@ -139,6 +142,7 @@ export function initRealModal() {
         const p = REAL_PROJECTS[id];
         if (!p) return;
 
+        setBackButtonVisible(true);
         scrollModalTop();
         gridView && (gridView.scrollTop = 0);
         detailView && (detailView.scrollTop = 0);
