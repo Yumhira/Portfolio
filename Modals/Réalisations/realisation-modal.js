@@ -52,16 +52,33 @@ const REAL_PROJECTS = {
         ]
     },
     eebiscus: {
-        icon: 'fa-leaf', iconBg: 'rgba(124,255,190,0.1)', iconBorder: 'rgba(124,255,190,0.25)',
-        name: 'Eebiscus', sub: 'Entreprise fictive - contenu temporaire',
-        color: '#7cffbe',
-        desc: "Eebiscus est un projet fictif en attente de contenu final. La carte sert de base pour une future présentation produit ou service dans un cadre portfolio.",
-        tags: ['Prototype', 'Fictif', 'Contenu provisoire', 'Portfolio'],
+        icon: 'fa-leaf', iconBg: 'rgba(255,200,120,0.08)', iconBorder: 'rgba(255,160,60,0.16)',
+        name: 'Eebiscus – Plateforme E-commerce pour Néoherba', sub: 'Site e-commerce & back-office sur-mesure',
+        color: '#ffb86b',
+        desc: "Projet scolaire mené par 4 étudiants pour créer la première plateforme e-commerce de Néoherba, une marque spécialisée dans les produits aromatiques biologiques (hydrolats, tisanes, gemmothérapie...). L'objectif était de livrer une application complète, du front client à la documentation, avec une vraie logique de projet et une approche Agile.",
+        tags: ['Angular', 'Java', 'API REST', 'Agile'],
+        media: {
+            video: '/assets/Realisation/eeBiscus/Presentation.mp4',
+            backlog: '/assets/Realisation/eeBiscus/ProductBacklog.png',
+            manuals: [
+                '/assets/Realisation/eeBiscus/Manuel_Utilisateur_Couverture.png',
+                '/assets/Realisation/eeBiscus/Manuel_Admin_Couverture.png',
+                '/assets/Realisation/eeBiscus/Manuel_Technique_Couverture.png',
+                '/assets/Realisation/eeBiscus/Manuel_Api_Couverture.png'
+            ],
+            gallery: [
+                '/assets/Realisation/Intro/eeBiscus.png',
+                '/assets/Realisation/Intro/eeBiscus.png',
+                '/assets/Realisation/Intro/eeBiscus.png',
+                '/assets/Realisation/Intro/eeBiscus.png'
+            ],
+            external: 'https://neoherba.bio/fr/'
+        },
         steps: [
-            { n: 1, title: 'Statut', text: 'Projet fictif affiché avec un contenu temporaire en attendant les détails définitifs.' },
-            { n: 2, title: 'Usage', text: 'Base prête pour décrire une future solution ou une vitrine digitale.' },
-            { n: 3, title: 'Placeholder', text: 'Texte volontairement générique pour garder une présentation propre.' },
-            { n: 4, title: 'Évolution', text: 'Le contenu sera remplacé dès que le projet Eebiscus sera défini.' },
+            { n: 1, title: 'Vitrine & Front', text: "Développement de l'interface client en Angular, UI responsive et optimisation des parcours d'achat." },
+            { n: 2, title: 'Back-office', text: "Conception d'un back-office sur-mesure pour la gestion du catalogue, commandes et contenus (authentification, RBAC)." },
+            { n: 3, title: 'API & Tests', text: "API REST développée en Java; tests unitaires et contrats pour assurer la robustesse et la maintenabilité." },
+            { n: 4, title: 'Livraison & Docs', text: "Remise des 4 manuels : Utilisateur, Administrateur, Technique et Guide de déploiement." },
         ]
     }
 };
@@ -340,6 +357,186 @@ export function initRealModal() {
                 detailContent && (detailContent.scrollTop = 0);
                 requestAnimationFrame(scrollModalTop);
             });
+        } else if (id === 'eebiscus') {
+            const media = p.media || {};
+            const manualSources = media.manuals || [];
+            const manualCards = [
+                { title: 'Manuel Utilisateur', note: 'Parcours client, navigation et achat', alt: 'Manuel Utilisateur Eebiscus', placeholder: 'Image portrait 1' },
+                { title: 'Manuel Administrateur', note: 'Gestion du catalogue et du contenu', alt: 'Manuel Administrateur Eebiscus', placeholder: 'Image portrait 2' },
+                { title: 'Manuel Technique', note: 'Maintenance, configuration et support', alt: 'Manuel Technique Eebiscus', placeholder: 'Image portrait 3' },
+                { title: 'Guide de déploiement API', note: 'Installation et mise en service', alt: 'Guide de déploiement API Eebiscus', placeholder: 'Image portrait 4' },
+            ];
+
+            detailContent.innerHTML = `
+                <article class="oralink-article eebiscus-article">
+                    <header class="oralink-cover eebiscus-hero">
+                        <div class="oralink-cover__content">
+                            <div class="oralink-brand-row">
+                                <figure class="oralink-brand-logo">
+                                    <img src="/assets/Realisation/Intro/eeBiscus.png" alt="Logo Eebiscus" loading="lazy">
+                                </figure>
+                                <div class="oralink-brand-text">
+                                    <span class="oralink-brand-kicker">Eebiscus</span>
+                                    <span class="oralink-brand-sub">Plateforme e-commerce pour Néoherba</span>
+                                </div>
+                            </div>
+                            <p class="oralink-eyebrow">Projet scolaire • 4 étudiants • Angular, Java, API REST, Agile</p>
+                            <h1 style="margin:0;font-size:clamp(1.8rem, 3vw, 2.6rem);color:#fff;line-height:1.08;max-width:16ch;">Créer la présence en ligne de Néoherba de A à Z</h1>
+                            <p class="oralink-cover__lead">${p.desc}</p>
+                            <div class="oralink-badge-row">
+                                ${p.tags.map(t => `<span class="oralink-badge">${t}</span>`).join('')}
+                            </div>
+                            <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
+                                <a class="oralink-cta eebiscus-primary-btn" href="${media.external}" target="_blank">Visiter Néoherba</a>
+                            </div>
+                        </div>
+                        <aside class="oralink-cover__aside">
+                            <article class="oralink-kpi-card"><strong>4</strong><span>Développeurs</span></article>
+                            <article class="oralink-kpi-card"><strong>Scrum</strong><span>Méthodo Agile</span></article>
+                            <article class="oralink-kpi-card"><strong>Java</strong><span>API REST</span></article>
+                            <article class="oralink-kpi-card"><strong>4</strong><span>Manuels livrés</span></article>
+                        </aside>
+                    </header>
+
+                    <section class="oralink-section-block">
+                        <div class="oralink-section-head"><span>01</span><div><h2 style="margin:0 0 4px;font-size:1.08rem;color:#fff;">Contexte du projet</h2><p style="margin:0;color:#c0cad8;font-size:.88rem;">Un premier site e-commerce complet pour une marque réelle</p></div></div>
+                        <div class="oralink-panel">
+                            <p style="margin:0;color:#d0d9e7;line-height:1.75;">Projet scolaire mené par 4 étudiants pour créer la première plateforme e-commerce de Néoherba, une marque spécialisée dans les produits aromatiques biologiques. L'objectif était de concevoir une base claire, moderne et exploitable, capable d'accueillir des produits, des contenus et une logique métier cohérente.</p>
+                            <p style="margin:12px 0 0;color:#d0d9e7;line-height:1.75;">J'ai contribué au cadrage, à l'intégration front-end, à la cohérence de l'architecture applicative et à la rédaction des livrables. Les échanges réguliers avec les commanditaires et le suivi Agile nous ont permis de garder un cap précis du besoin initial à la livraison finale.</p>
+                        </div>
+                    </section>
+
+                    <section class="oralink-section-block eebiscus-video-section">
+                        <div class="oralink-section-head"><span>02</span><div><h2 style="margin:0 0 4px;font-size:1.08rem;color:#fff;">Vidéo de démonstration</h2></div></div>
+                        <p style="margin:0 0 12px;color:#d0d9e7;line-height:1.75;">Cette démonstration met en avant l'expérience utilisateur, le rendu global du site et la logique fonctionnelle de la solution livrée.</p>
+                        <div class="eebiscus-video-card">
+                            <div class="eebiscus-video-slot">
+                                <video controls playsinline preload="none" poster="/assets/Realisation/Intro/eeBiscus.png">
+                                    <source src="${media.video}" type="video/mp4">
+                                    Votre navigateur ne supporte pas la lecture vidéo.
+                                </video>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="oralink-section-block">
+                        <div class="oralink-section-head"><span>03</span><div><h2 style="margin:0 0 4px;font-size:1.08rem;color:#fff;">Missions réalisées</h2></div></div>
+                        <div class="oralink-grid oralink-grid--2">
+                            <article class="oralink-card"><span class="oralink-card-accent">Vitrine e-commerce</span><h3>Interface client</h3><p>J'ai travaillé sur une interface lisible et rassurante pour présenter les produits, faciliter la navigation et guider l'utilisateur jusqu'à l'achat sans friction.</p></article>
+                            <article class="oralink-card"><span class="oralink-card-accent">Back-office</span><h3>Gestion complète</h3><p>Nous avons conçu un espace d'administration dédié pour gérer les produits, les catégories et les contenus du site avec une logique simple à prendre en main au quotidien.</p></article>
+                            <article class="oralink-card"><span class="oralink-card-accent">Espace utilisateur</span><h3>Données clients</h3><p>L'espace client a été pensé pour sécuriser les données personnelles et offrir un accès propre aux informations du compte, avec une expérience cohérente et fiable.</p></article>
+                            <article class="oralink-card"><span class="oralink-card-accent">Fidélisation</span><h3>Blog & newsletter</h3><p>Le blog et la newsletter servent à créer un lien durable avec les visiteurs et à transformer le site en outil de communication régulier pour la marque.</p></article>
+                        </div>
+                    </section>
+
+                    <section class="oralink-section-block">
+                        <div class="oralink-section-head"><span>04</span><div><h2 style="margin:0 0 4px;font-size:1.08rem;color:#fff;">Stack technique</h2></div></div>
+                        <div class="oralink-grid oralink-grid--3 eebiscus-stack-grid">
+                            <article class="oralink-card oralink-card--vlan eebiscus-stack-card">
+                                <div class="eebiscus-stack-icon eebiscus-stack-icon--angular"><i class="devicon-angularjs-plain colored"></i></div>
+                                <span class="oralink-card-accent">Front Angular</span>
+                                <h3>Angular</h3>
+                                <p>L'interface repose sur Angular pour garder une structure modulaire, claire et évolutive.</p>
+                            </article>
+                            <article class="oralink-card oralink-card--vlan eebiscus-stack-card">
+                                <div class="eebiscus-stack-icon eebiscus-stack-icon--java"><i class="devicon-java-plain colored"></i></div>
+                                <span class="oralink-card-accent">API Java</span>
+                                <h3>Java</h3>
+                                <p>L'API REST en Java centralise la logique métier et les échanges serveur.</p>
+                            </article>
+                            <article class="oralink-card oralink-card--vlan eebiscus-stack-card">
+                                <div class="eebiscus-stack-icon eebiscus-stack-icon--tests"><i class="fa-solid fa-vial"></i></div>
+                                <span class="oralink-card-accent">Tests unitaires</span>
+                                <h3>Tests unitaires</h3>
+                                <p>Les tests unitaires sécurisent les comportements clés de l'application.</p>
+                            </article>
+                        </div>
+                    </section>
+
+                    <section class="oralink-section-block">
+                        <div class="oralink-section-head"><span>05</span><div><h2 style="margin:0 0 4px;font-size:1.08rem;color:#fff;">Gestion de projet & conception</h2></div></div>
+                        <div class="oralink-panel">
+                            <p style="margin:0;color:#d0d9e7;line-height:1.75;">Le projet a été piloté en Scrum avec un Product Backlog priorisé, du Poker Planning et des points réguliers avec les commanditaires pour ajuster les attentes au fil de l'avancement.</p>
+                            <p style="margin:12px 0 0;color:#d0d9e7;line-height:1.75;">L'organisation reposait sur 6 sprints de 2 semaines, avec une release toutes les 2 itérations afin de valider progressivement les fonctionnalités et garder une livraison maîtrisée.</p>
+                        </div>
+                    </section>
+
+                    <section class="oralink-section-block eebiscus-backlog-section">
+                        <div class="oralink-section-head"><span>06</span><div><h2 style="margin:0 0 4px;font-size:1.08rem;color:#fff;">Product Backlog</h2></div></div>
+                        <div class="eebiscus-backlog-card">
+                            <div class="eebiscus-backlog-media">
+                                <img src="${media.backlog || '/assets/Realisation/Eebiscus/eebiscus-product-backlog.jpg'}" alt="Product Backlog Eebiscus" class="zoomable-image eebiscus-zoomable eebiscus-backlog-zoomable" loading="lazy">
+                            </div>
+                            <div class="eebiscus-backlog-copy">
+                                <strong>Capture du backlog</strong>
+                                <p>La capture illustre la priorisation des besoins et la manière dont les sujets ont été répartis sur les 6 sprints du projet.</p>
+                                <p>Elle permet aussi de comprendre comment l'équipe a transformé les demandes métier en tâches concrètes, puis en livrables progressifs.</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="oralink-section-block eebiscus-manuals-section">
+                        <div class="oralink-section-head"><span>07</span><div><h2 style="margin:0 0 4px;font-size:1.08rem;color:#fff;">Manuels fournis</h2></div></div>
+                        <div class="oralink-panel" style="margin-bottom:14px;">
+                            <p style="margin:0;color:#d0d9e7;line-height:1.75;">Les quatre manuels livrés couvrent l'usage côté client, la gestion côté administrateur, les aspects techniques et la mise en service de l'API.</p>
+                        </div>
+                        <div class="eebiscus-manual-grid">
+                            ${manualCards.map((manual, index) => `
+                                <figure class="eebiscus-manual-card">
+                                    <div class="eebiscus-manual-frame">
+                                        ${manualSources[index]
+                                            ? `<img src="${manualSources[index]}" alt="${manual.alt}" class="zoomable-image eebiscus-zoomable" loading="lazy">`
+                                            : `<div class="eebiscus-manual-placeholder"><i class="fa-solid fa-file-lines"></i><span>${manual.placeholder}</span></div>`}
+                                    </div>
+                                    <figcaption>
+                                        <strong>${manual.title}</strong>
+                                        <span>${manual.note}</span>
+                                    </figcaption>
+                                </figure>
+                            `).join('')}
+                        </div>
+                    </section>
+
+                    <div id="eebiscus-lightbox-overlay" class="oralink-lightbox-overlay">
+                        <span class="lightbox-close"><i class="fa-solid fa-xmark"></i></span>
+                        <img id="eebiscus-lightbox-img" src="" alt="Aperçu Eebiscus">
+                    </div>
+
+                    <section class="oralink-section-block oralink-section-block--closing">
+                        <div class="oralink-section-head"><span>08</span><div><h2 style="margin:0 0 4px;font-size:1.08rem;color:#fff;">Livrables & lien externe</h2></div></div>
+                        <div class="oralink-closing">
+                            <p>Le projet a été livré avec un site fonctionnel, une base technique claire et quatre manuels complets pour faciliter l'autonomie du client.</p>
+                            <p>Client final : <a href="${media.external}" target="_blank" style="color:#ffb86b;font-weight:700;">neoherba.bio/fr</a>.</p>
+                        </div>
+                    </section>
+                </article>
+            `;
+
+            const lbOverlay = detailContent.querySelector('#eebiscus-lightbox-overlay');
+            const lbImg = detailContent.querySelector('#eebiscus-lightbox-img');
+            if (lbOverlay && lbImg) {
+                const closeLB = () => {
+                    lbOverlay.classList.remove('active');
+                    setTimeout(() => { lbImg.src = ''; }, 250);
+                };
+
+                detailContent.querySelectorAll('.eebiscus-zoomable').forEach(img => {
+                    img.addEventListener('click', () => {
+                        lbImg.src = img.getAttribute('src') || '';
+                        lbImg.alt = img.getAttribute('alt') || 'Aperçu Eebiscus';
+                        lbOverlay.classList.toggle('eebiscus-backlog-zoom', img.classList.contains('eebiscus-backlog-zoomable'));
+                        lbOverlay.classList.add('active');
+                    });
+                });
+
+                lbOverlay.addEventListener('click', (ev) => { if (ev.target === lbOverlay) closeLB(); });
+                lbOverlay.querySelector('.lightbox-close')?.addEventListener('click', closeLB);
+                document.addEventListener('keydown', function onEebiscusEscape(event) {
+                    if (event.key === 'Escape' && lbOverlay.classList.contains('active')) {
+                        closeLB();
+                    }
+                });
+            }
         } else {
             detailContent.innerHTML = `
                 <div class="real-detail-header">
