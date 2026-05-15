@@ -411,7 +411,7 @@ export function initRealModal() {
                         <p style="margin:0 0 12px;color:#d0d9e7;line-height:1.75;">Cette démonstration met en avant l'expérience utilisateur, le rendu global du site et la logique fonctionnelle de la solution livrée.</p>
                         <div class="eebiscus-video-card">
                             <div class="eebiscus-video-slot">
-                                <video controls playsinline preload="none" poster="/assets/Realisation/Intro/eeBiscus.png">
+                                <video controls playsinline preload="none" poster="assets/Realisation/Intro/eeBiscus.png">
                                     <source src="${media.video}" type="video/mp4">
                                     Votre navigateur ne supporte pas la lecture vidéo.
                                 </video>
