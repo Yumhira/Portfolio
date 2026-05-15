@@ -1,7 +1,7 @@
 
 Ajout certif Voltaire
 Ajout bussinee game
-Reduire taille video
+
 Modification tuile Realisation
 Responsive
 
