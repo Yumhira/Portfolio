@@ -5,30 +5,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    
+
     <!-- Preconnect aux CDN pour réduire latence -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://api.fontshare.com">
-    
+
     <!-- Charger les CSS critiques d'abord -->
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="Modals/Contact/contact-modal.css">
     <link rel="stylesheet" href="Modals/Certif/certif-modal.css">
     <link rel="stylesheet" href="Modals/Réalisations/realisation-modal.css">
     <link rel="stylesheet" href="Modals/Veille/veille-modal.css">
-    
+
     <!-- Polices optimisées avec font-display swap (évite FOIT) -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&display=swap" as="style">
+    <link rel="preload"
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&display=swap"
+        as="style">
     <link rel="preload" href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&display=swap" as="style">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&display=swap">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&display=swap">
     <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&display=swap">
-    
+
     <!-- Icons loadés en async (non-bloquant) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" media="print" onload="this.media='all'">
-    
-    <script src="script.js?v=20260505" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" media="print"
+        onload="this.media='all'">
+
+    <script src="script.js?v=20260516" defer></script>
+
+    <link rel="icon" type="image/png" href="assets/Favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="assets/Favicon/favicon.svg" />
+    <link rel="shortcut icon" href="assets/Favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/Favicon/apple-touch-icon.png" />
+    <link rel="manifest" href="assets/Favicon/site.webmanifest" />
     <title>Haytham CLEMENT - Portfolio</title>
 </head>
 
@@ -53,7 +64,8 @@
                         <p class="profil-title">Étudiant BTS SIO option SISR</p>
                         <div class="profil-details-stack">
                             <p class="profil-location">
-                                <a href="https://www.google.com/maps/search/?api=1&query=Gentilly+94250" target="_blank">
+                                <a href="https://www.google.com/maps/search/?api=1&query=Gentilly+94250"
+                                    target="_blank">
                                     <i class="fa-solid fa-location-dot"></i> Gentilly 94250
                                 </a>
                             </p>
@@ -100,7 +112,8 @@
                             <div class="skill-pill border-html"><i class="devicon-html5-plain colored"></i> HTML</div>
                             <div class="skill-pill border-css"><i class="devicon-css3-plain colored"></i> CSS</div>
                             <div class="skill-pill border-js"><i class="devicon-javascript-plain colored"></i> JS</div>
-                            <div class="skill-pill border-angular"><i class="devicon-angularjs-plain colored"></i> Angular</div>
+                            <div class="skill-pill border-angular"><i class="devicon-angularjs-plain colored"></i>
+                                Angular</div>
                             <div class="skill-pill border-wp"><i class="devicon-wordpress-plain"></i> WordPress</div>
                         </div>
                     </div>
@@ -111,7 +124,8 @@
                         <h3 class="tile-title"><i class="fa-solid fa-database"></i> Back-End</h3>
                         <div class="skill-list">
                             <div class="skill-pill border-php"><i class="devicon-php-plain colored"></i> PHP</div>
-                            <div class="skill-pill border-symfony"><i class="devicon-symfony-original"></i> Symfony</div>
+                            <div class="skill-pill border-symfony"><i class="devicon-symfony-original"></i> Symfony
+                            </div>
                             <div class="skill-pill border-mysql"><i class="devicon-mysql-plain colored"></i> MySQL</div>
                         </div>
                     </div>
@@ -121,10 +135,13 @@
                     <div class="skill-col skill-col--network">
                         <h3 class="tile-title"><i class="fa-solid fa-network-wired"></i> Réseau & Infra</h3>
                         <div class="skill-list">
-                            <div class="skill-pill border-packet"><i class="fa-solid fa-diagram-project"></i> Packet Tracer</div>
-                            <div class="skill-pill border-ip"><i class="fa-solid fa-network-wired"></i> Adressage IP</div>
+                            <div class="skill-pill border-packet"><i class="fa-solid fa-diagram-project"></i> Packet
+                                Tracer</div>
+                            <div class="skill-pill border-ip"><i class="fa-solid fa-network-wired"></i> Adressage IP
+                            </div>
                             <div class="skill-pill border-glpi"><i class="fa-solid fa-toolbox"></i> GLPI</div>
-                            <div class="skill-pill border-virtual"><i class="fa-solid fa-server"></i> Virtualisation</div>
+                            <div class="skill-pill border-virtual"><i class="fa-solid fa-server"></i> Virtualisation
+                            </div>
                             <div class="skill-pill border-openvpn"><i class="fa-solid fa-lock"></i> OpenVPN</div>
                         </div>
                     </div>
@@ -137,10 +154,15 @@
                 <div class="dual-bloc bento-tile" id="tile-about">
                     <h3 class="tile-title"><i class="fa-solid fa-user"></i> À Propos</h3>
                     <div class="about-content">
-    <p>Après 3 ans passés dans le développement web, j'ai choisi de changer de voie pour me tourner vers l'infrastructure.</p>
-    <p>J'ai toujours aimé le code, mais je passais de plus en plus de temps à m'intéresser aux serveurs, à Linux et à l'architecture des réseaux. Me spécialiser en administration SISR était donc la suite logique pour moi.</p>
-    <p>Aujourd'hui, j'apprends à déployer et protéger des systèmes. Mon but à terme est de devenir <strong>consultant en cybersécurité</strong>, en me servant de mon passé de développeur pour mieux repérer les vulnérabilités.</p>
-</div>
+                        <p>Après 3 ans passés dans le développement web, j'ai choisi de changer de voie pour me tourner
+                            vers l'infrastructure.</p>
+                        <p>J'ai toujours aimé le code, mais je passais de plus en plus de temps à m'intéresser aux
+                            serveurs, à Linux et à l'architecture des réseaux. Me spécialiser en administration SISR
+                            était donc la suite logique pour moi.</p>
+                        <p>Aujourd'hui, j'apprends à déployer et protéger des systèmes. Mon but à terme est de devenir
+                            <strong>consultant en cybersécurité</strong>, en me servant de mon passé de développeur pour
+                            mieux repérer les vulnérabilités.</p>
+                    </div>
                 </div>
 
                 <!-- TUILE CERTIF GALLERY -->
@@ -192,7 +214,8 @@
                 <div class="veille-subject">
                     <p class="veille-subject-eyebrow">Sujet principal</p>
                     <h2 class="veille-subject-title">L'écosystème DevOps</h2>
-                    <p class="veille-subject-desc">Culture, automatisation CI/CD et sécurité des infrastructures modernes.</p>
+                    <p class="veille-subject-desc">Culture, automatisation CI/CD et sécurité des infrastructures
+                        modernes.</p>
                 </div>
 
                 <button id="btn-open-veille">
@@ -243,39 +266,39 @@
 
             <!-- RÉALISATIONS -->
             <div id="tile-realisations" class="bento-tile">
-    <div class="real-tile-label tile-title">
-        <i class="fa-solid fa-terminal"></i> Réalisations
-    </div>
+                <div class="real-tile-label tile-title">
+                    <i class="fa-solid fa-terminal"></i> Réalisations
+                </div>
 
-    <div class="terminal-container">
-        <div class="terminal-header">
-            <span class="dot close"></span>
-            <span class="dot minimize"></span>
-            <span class="dot expand"></span>
-        </div>
-        <div class="terminal-body">
-            <div class="term-line">
-                <span class="term-prompt">haytham@portfolio:~$</span>
-                <span class="term-cmd">ls -la ./projects/</span>
-            </div>
-            <div class="term-output">
-                <p>drwxr-xr-x  eebiscus</p>
-                <p>drwxr-xr-x  oralink</p>
-                <p>drwxr-xr-x  openvpn</p>
-            </div>
-            <div class="term-line mt-auto">
-                <span class="term-prompt">haytham@portfolio:~$</span>
-                <span class="term-cmd">./open_project.sh<span class="term-cursor">_</span></span>
-            </div>
-        </div>
-    </div>
+                <div class="terminal-container">
+                    <div class="terminal-header">
+                        <span class="dot close"></span>
+                        <span class="dot minimize"></span>
+                        <span class="dot expand"></span>
+                    </div>
+                    <div class="terminal-body">
+                        <div class="term-line">
+                            <span class="term-prompt">haytham@portfolio:~$</span>
+                            <span class="term-cmd">ls -la ./projects/</span>
+                        </div>
+                        <div class="term-output">
+                            <p>drwxr-xr-x eebiscus</p>
+                            <p>drwxr-xr-x oralink</p>
+                            <p>drwxr-xr-x openvpn</p>
+                        </div>
+                        <div class="term-line mt-auto">
+                            <span class="term-prompt">haytham@portfolio:~$</span>
+                            <span class="term-cmd">./open_project.sh<span class="term-cursor">_</span></span>
+                        </div>
+                    </div>
+                </div>
 
-    <button class="btn-real-gallery" id="btn-open-real">
-        <span class="icon-wrap"><i class="fa-solid fa-code"></i></span>
-        Voir les projets
-        <span class="arrow-wrap"><i class="fa-solid fa-arrow-right"></i></span>
-    </button>
-</div>
+                <button class="btn-real-gallery" id="btn-open-real">
+                    <span class="icon-wrap"><i class="fa-solid fa-code"></i></span>
+                    Voir les projets
+                    <span class="arrow-wrap"><i class="fa-solid fa-arrow-right"></i></span>
+                </button>
+            </div>
 
         </div>
     </div>
@@ -286,4 +309,5 @@
     <div id="veille-modal-container"></div>
 
 </body>
+
 </html>
