@@ -474,6 +474,29 @@ body::before {
     padding: 22px;
 }
 
+#tile-about .about-content {
+    overflow-y: auto;
+    max-height: 100%;
+    padding-right: 8px;
+}
+
+#tile-about .about-content::-webkit-scrollbar {
+    width: 4px;
+}
+
+#tile-about .about-content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+#tile-about .about-content::-webkit-scrollbar-thumb {
+    background: rgba(177, 151, 252, 0.3);
+    border-radius: 2px;
+}
+
+#tile-about .about-content::-webkit-scrollbar-thumb:hover {
+    background: rgba(177, 151, 252, 0.5);
+}
+
 #tile-about p {
     font-size: 0.85rem;
     color: rgba(255,255,255,0.45);
@@ -660,6 +683,25 @@ body::before {
     flex-direction: column;
     flex: 1;
     font-size: 0.75rem;
+    overflow-y: auto;
+    max-height: 100%;
+}
+
+.terminal-body::-webkit-scrollbar {
+    width: 4px;
+}
+
+.terminal-body::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.terminal-body::-webkit-scrollbar-thumb {
+    background: rgba(0, 229, 255, 0.3);
+    border-radius: 2px;
+}
+
+.terminal-body::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 229, 255, 0.5);
 }
 
 .term-line {
