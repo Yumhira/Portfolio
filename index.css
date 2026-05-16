@@ -740,24 +740,25 @@ body::before {
 /* ===== BREAKPOINT 1B: DESKTOP LARGE BAS (1400px+ et hauteur <= 850px) ===== */
 @media (min-width: 1400px) and (max-height: 850px) {
     html, body {
-        height: auto;
+        height: 100vh;
         min-height: 100vh;
-        overflow-y: auto;
+        overflow-y: hidden;
         overflow-x: hidden;
-        display: block;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     body {
-        padding: 18px 0;
+        padding: 0;
         width: 100%;
     }
 
     #bento-grid-container {
-        height: auto;
-        min-height: calc(100vh - 36px);
-        padding: 0 18px;
-        align-items: start;
-        gap: 14px;
+        width: min(1600px, calc(100vw - 32px));
+        height: calc(100vh - 32px);
+        padding: 0 16px;
+        gap: 12px;
     }
 
     .column-left,
@@ -767,7 +768,7 @@ body::before {
     }
 
     .bento-tile {
-        padding: 18px;
+        padding: 17px;
     }
 
     .profil-name {
