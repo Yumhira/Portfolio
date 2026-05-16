@@ -123,18 +123,208 @@
 #contact-success p { color: rgba(255, 255, 255, 0.35); font-size: 0.85rem; margin: 0; line-height: 1.5; }
 
 /* ==============================================
-   RESPONSIVE — Mobile UNIQUEMENT (< 600px)
-   La modal reste centrée et compacte partout
+   RESPONSIVE — Tous les écrans
 ============================================== */
-@media (max-width: 600px) {
-    .contact-overlay, .modal { padding: 8px; }
+
+/* DESKTOP (> 768px) */
+@media (min-width: 769px) {
+    .contact-overlay, .modal { padding: 20px; }
     .contact-modal, .modal-content {
-        width: 100%; max-width: 100%; max-height: 96dvh; border-radius: 16px;
+        width: 90%; max-width: 520px; max-height: 90vh; border-radius: 24px;
     }
-    .contact-modal-header { padding: 16px 14px 12px; }
-    .contact-modal-body { padding: 16px 14px; gap: 12px; }
-    .contact-header-text h2 { font-size: 1rem; }
-    .contact-header-text p { font-size: 0.72rem; }
-    .contact-header-icon { width: 38px; height: 38px; font-size: 1rem; }
-    .form-group textarea { min-height: 110px; }
+    .contact-modal-header { padding: 28px 32px; }
+    .contact-modal-body { padding: 32px; }
+    .contact-header-text h2 { font-size: 1.25rem; }
+    .contact-header-text p { font-size: 0.8rem; }
+    .contact-header-icon { width: 46px; height: 46px; font-size: 1.1rem; }
+    .form-group input,
+    .form-group textarea { font-size: 0.88rem; padding: 13px 16px; }
+    .form-group textarea { min-height: 140px; }
+    #contact-form .btn-premium,
+    #contact-form button[type="submit"] { height: 48px; font-size: 0.88rem; }
+    #contact-success { min-height: 260px; padding: 32px; }
+    #contact-success h4 { font-size: 1.3rem; }
+}
+
+/* GRAND TABLETTE (481px - 768px) */
+@media (max-width: 768px) and (min-width: 481px) {
+    .contact-overlay, .modal { padding: 16px; }
+    .contact-modal, .modal-content {
+        width: 95%; max-width: 480px; max-height: 90vh; border-radius: 20px;
+    }
+    .contact-modal-header { padding: 22px 26px; }
+    .contact-modal-body { padding: 24px; gap: 12px; }
+    .contact-header-text h2 { font-size: 1.1rem; }
+    .contact-header-text p { font-size: 0.76rem; }
+    .contact-header-icon { width: 42px; height: 42px; font-size: 1rem; }
+    .contact-close-btn { width: 36px; height: 36px; font-size: 1rem; }
+    .form-group input,
+    .form-group textarea { 
+        font-size: 0.85rem; 
+        padding: 11px 14px; 
+        border-radius: 10px;
+    }
+    .form-group textarea { min-height: 120px; }
+    #contact-form .btn-premium,
+    #contact-form button[type="submit"] { 
+        height: 44px; 
+        font-size: 0.84rem; 
+        padding: 0 16px;
+    }
+    #contact-success { min-height: 240px; padding: 24px; }
+    #contact-success h4 { font-size: 1.15rem; margin-bottom: 6px; }
+    #contact-success p { font-size: 0.8rem; }
+    #contact-success .icon-wrap { width: 50px; height: 50px; font-size: 1.2rem; margin-bottom: 16px; }
+}
+
+/* PETIT TABLETTE / MOBILE (≤ 480px) */
+@media (max-width: 480px) {
+    .contact-overlay, .modal { 
+        padding: 12px; 
+        align-items: flex-end;
+    }
+    
+    .contact-modal, .modal-content {
+        width: 100%; 
+        max-width: 100%; 
+        max-height: 95dvh; 
+        border-radius: 16px 16px 0 0;
+        overflow-y: auto;
+    }
+    
+    .contact-modal-header { 
+        padding: 16px 14px 12px; 
+        border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    }
+    
+    .contact-modal-body { 
+        padding: 14px; 
+        gap: 11px; 
+    }
+    
+    .contact-header-left { gap: 12px; }
+    
+    .contact-header-text h2 { 
+        font-size: 1rem; 
+        margin: 0;
+        color: #fff;
+    }
+    
+    .contact-header-text p { 
+        font-size: 0.7rem; 
+        color: rgba(255, 255, 255, 0.25);
+        margin: 2px 0 0 0;
+    }
+    
+    .contact-header-icon { 
+        width: 36px; 
+        height: 36px; 
+        font-size: 0.95rem;
+        border-radius: 10px;
+    }
+    
+    .contact-close-btn { 
+        width: 32px; 
+        height: 32px; 
+        font-size: 1rem;
+        border-radius: 50%;
+    }
+    
+    .form-group input,
+    .form-group textarea {
+        font-size: 0.82rem;
+        padding: 10px 12px;
+        border-radius: 9px;
+        background: rgba(255, 255, 255, 0.03);
+    }
+    
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { 
+        color: rgba(255, 255, 255, 0.15);
+        font-size: 0.8rem;
+    }
+    
+    .form-group textarea { 
+        min-height: 100px;
+        resize: vertical;
+    }
+    
+    #contact-form .btn-premium,
+    #contact-form button[type="submit"] {
+        height: 40px;
+        font-size: 0.8rem;
+        padding: 0 12px;
+        gap: 8px;
+        border-radius: 10px;
+    }
+    
+    #contact-form .icon-wrap {
+        width: 24px;
+        height: 24px;
+        font-size: 0.75rem;
+        border-radius: 6px;
+    }
+    
+    #contact-success {
+        min-height: 200px;
+        padding: 20px 14px;
+        justify-content: center;
+    }
+    
+    #contact-success .icon-wrap {
+        width: 44px;
+        height: 44px;
+        font-size: 1.1rem;
+        margin: 0 auto 12px;
+        border-radius: 12px;
+    }
+    
+    #contact-success h4 {
+        font-size: 1rem;
+        margin: 0 0 4px 0;
+    }
+    
+    #contact-success p {
+        font-size: 0.75rem;
+        line-height: 1.4;
+    }
+}
+
+/* ULTRA PETIT (≤ 360px) */
+@media (max-width: 360px) {
+    .contact-modal, .modal-content {
+        border-radius: 14px 14px 0 0;
+    }
+    
+    .contact-modal-header { padding: 14px 12px 10px; }
+    .contact-modal-body { padding: 12px; gap: 10px; }
+    
+    .contact-header-text h2 { font-size: 0.95rem; }
+    .contact-header-text p { font-size: 0.68rem; }
+    .contact-header-icon { width: 32px; height: 32px; font-size: 0.9rem; }
+    
+    .form-group input,
+    .form-group textarea {
+        font-size: 0.78rem;
+        padding: 9px 10px;
+    }
+    
+    .form-group textarea { min-height: 90px; }
+    
+    #contact-form .btn-premium,
+    #contact-form button[type="submit"] {
+        height: 38px;
+        font-size: 0.76rem;
+        padding: 0 10px;
+        gap: 6px;
+    }
+    
+    #contact-success {
+        min-height: 180px;
+        padding: 16px 12px;
+    }
+    
+    #contact-success h4 { font-size: 0.95rem; }
+    #contact-success p { font-size: 0.7rem; }
+    #contact-success .icon-wrap { width: 40px; height: 40px; font-size: 1rem; margin-bottom: 10px; }
 }
