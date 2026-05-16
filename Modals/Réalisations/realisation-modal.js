@@ -1,4 +1,4 @@
-import { bindOverlayModal } from '../shared/modal-utils.js';
+﻿import { bindOverlayModal } from '../shared/modal-utils.js';
 
 const REAL_PROJECTS = {
     glpi: {
@@ -26,6 +26,14 @@ const REAL_PROJECTS = {
             { n: 3, title: 'Sécurité réseau', text: "Mise en place d'ACL pour filtrage du trafic inter-VLAN et accès DMZ." },
             { n: 4, title: 'Documentation', text: "Export des schémas et rédaction des plans d'adressage IP associés." },
         ]
+    },
+    openvpn: {
+        icon: 'fa-shield-halved', iconBg: 'rgba(34,211,238,0.12)', iconBorder: 'rgba(34,211,238,0.32)',
+        name: 'Lab OpenVPN', sub: 'Tunnel VPN Windows ↔ Ubuntu',
+        color: '#22d3ee',
+        desc: "Mise en place d'un tunnel VPN sécurisé entre une machine hôte Windows et un serveur Ubuntu virtualisé, avec configuration du routage, gestion des certificats et validation de la connexion.",
+        tags: ['OpenVPN', 'Ubuntu', 'Windows', 'VirtualBox', 'Bash', 'Réseau'],
+        steps: []
     },
     virtualbox: {
         icon: 'fa-box', iconBg: 'rgba(180,100,255,0.1)', iconBorder: 'rgba(180,100,255,0.3)',
@@ -361,6 +369,96 @@ export function initRealModal() {
                 detailContent && (detailContent.scrollTop = 0);
                 requestAnimationFrame(scrollModalTop);
             });
+        } else if (id === 'openvpn') {
+            detailContent.innerHTML = `
+                <article class="oralink-article openvpn-article">
+                    <header class="oralink-cover openvpn-cover">
+                        <div class="oralink-cover__content">
+                            <div class="oralink-brand-row openvpn-brand-row">
+                                <figure class="oralink-brand-logo openvpn-brand-logo">
+                                    <img src="./assets/Realisation/Intro/OpenVPN.jpg" alt="Logo OpenVPN" loading="lazy" class="openvpn-brand-logo-image zoomable-image">
+                                </figure>
+                                <div class="oralink-brand-text">
+                                    <span class="oralink-brand-kicker">Lab OpenVPN</span>
+                                    <span class="oralink-brand-sub">Projet personnel de pratique</span>
+                                </div>
+                            </div>
+                            <p class="oralink-eyebrow">BTS SIO • SISR • Expérimentation technique</p>
+                            <h1 class="openvpn-title">Déploiement d'une infrastructure OpenVPN</h1>
+                            <p class="oralink-cover__lead">Mise en place d'un tunnel VPN sécurisé entre une machine hôte Windows et un serveur Ubuntu virtualisé. Configuration du routage réseau, gestion des certificats et résolution des conflits de métrique système.</p>
+                            <div class="oralink-badge-row">
+                                ${p.tags.map(t => `<span class="oralink-badge">${t}</span>`).join('')}
+                            </div>
+                        </div>
+                        <aside class="oralink-cover__aside openvpn-aside">
+                            <article class="oralink-kpi-card"><strong>Lab</strong><span>Projet personnel BTS SIO</span></article>
+                            <article class="oralink-kpi-card"><strong>Réseau</strong><span>Bridge VirtualBox</span></article>
+                            <article class="oralink-kpi-card"><strong>Client</strong><span>OpenVPN GUI Windows</span></article>
+                            <article class="oralink-kpi-card"><strong>Validation</strong><span>Ping 10.8.0.1 OK</span></article>
+                        </aside>
+                    </header>
+
+                    <section class="openvpn-section openvpn-summary">
+                        <div class="oralink-section-head"><span>01</span><div><h2>Contexte et objectif</h2><p>Un lab personnel pour sécuriser l'accès à un serveur Ubuntu depuis Windows.</p></div></div>
+                        <div class="openvpn-summary-grid">
+                            <article class="openvpn-summary-card"><strong>Objectif</strong><span>Créer un tunnel VPN stable entre l'hôte Windows et la VM Ubuntu.</span></article>
+                            <article class="openvpn-summary-card"><strong>Contexte</strong><span>Projet personnel BTS SIO SISR centré sur réseau, sécurité et virtualisation.</span></article>
+                        </div>
+                    </section>
+
+                    <section class="openvpn-section">
+                        <div class="oralink-section-head"><span>02</span><div><h2>Phases 1 à 4</h2><p>Réseau, préparation Ubuntu, installation et sécurité</p></div></div>
+                        <div class="openvpn-phase-grid">
+                            <article class="openvpn-phase-card"><div class="openvpn-phase-head"><span class="openvpn-phase-index">1</span><h3>Configuration réseau VirtualBox</h3></div><p>Adaptateur 1 réglé en <strong>Accès par pont</strong> pour communiquer directement avec l'interface physique active.</p></article>
+                            <article class="openvpn-phase-card"><div class="openvpn-phase-head"><span class="openvpn-phase-index">2</span><h3>Préparation du serveur Ubuntu</h3></div><p>Identification de l'IP locale puis mise à jour complète du système avant l'installation du VPN.</p><div class="openvpn-cmd-stack"><code class="openvpn-cmd">sudo apt update && sudo apt upgrade -y</code></div></article>
+                            <article class="openvpn-phase-card"><div class="openvpn-phase-head"><span class="openvpn-phase-index">3</span><h3>Installation et configuration</h3></div><p>Script officiel OpenVPN lancé depuis le serveur pour générer la configuration et les certificats.</p><div class="openvpn-cmd-stack"><code class="openvpn-cmd">wget https://git.io/vpn -O openvpn-install.sh</code><code class="openvpn-cmd">sudo bash openvpn-install.sh</code></div><figure class="openvpn-phase-figure"><img src="./assets/Realisation/openVPN/Config.png" alt="Configuration OpenVPN Ubuntu" class="openvpn-phase-image zoomable-image" loading="lazy"><figcaption>Configuration du serveur Ubuntu pendant l'installation.</figcaption></figure></article>
+                            <article class="openvpn-phase-card"><div class="openvpn-phase-head"><span class="openvpn-phase-index">4</span><h3>Routage et pare-feu</h3></div><p>Activation de l'IP forwarding et ouverture du port VPN pour laisser circuler le trafic tunnelisé.</p><div class="openvpn-cmd-stack"><code class="openvpn-cmd">sudo sysctl -w net.ipv4.ip_forward=1</code><code class="openvpn-cmd">sudo ufw allow 1194/udp</code><code class="openvpn-cmd">sudo ufw allow OpenSSH</code></div></article>
+                        </div>
+                    </section>
+
+                    <section class="openvpn-section">
+                        <div class="oralink-section-head"><span>03</span><div><h2>Phases 5 à 8</h2><p>Export client, métrique Windows et validation finale</p></div></div>
+                        <div class="openvpn-phase-grid">
+                            <article class="openvpn-phase-card"><div class="openvpn-phase-head"><span class="openvpn-phase-index">5</span><h3>Export du profil client</h3></div><p>Le profil .ovpn est transféré vers l'hôte via le dossier partagé VirtualBox.</p><div class="openvpn-cmd-stack"><code class="openvpn-cmd">sudo cp ~/client-windows.ovpn /media/sf_Partage_VM/</code></div></article>
+                            <article class="openvpn-phase-card"><div class="openvpn-phase-head"><span class="openvpn-phase-index">6</span><h3>Configuration Windows</h3></div><p>Installation d'OpenVPN GUI, lancement en administrateur puis import du profil client.</p><div class="openvpn-note"><strong>Points clés</strong><span>Importer le profil .ovpn, vérifier l'icône verte et tester la connexion avec la VM.</span></div></article>
+                            <article class="openvpn-phase-card"><div class="openvpn-phase-head"><span class="openvpn-phase-index">7</span><h3>Correction de la métrique</h3></div><p>La métrique automatique est désactivée pour prioriser le tunnel VPN dans Windows.</p><div class="openvpn-note openvpn-note--soft"><strong>Impact</strong><span>Le trafic part bien vers le tunnel au lieu de rester sur la route classique.</span></div><ul class="openvpn-mini-list"><li>IPv4 avancé</li><li>Métrique = 1</li><li>Route VPN prioritaire</li></ul></article>
+                            <article class="openvpn-phase-card"><div class="openvpn-phase-head"><span class="openvpn-phase-index">8</span><h3>Validation du tunnel</h3></div><p>Le statut <strong>Initialization Sequence Completed</strong> confirme la mise en place du VPN.</p><div class="openvpn-cmd-stack"><code class="openvpn-cmd">ping 10.8.0.1</code></div><figure class="openvpn-phase-figure"><img src="./assets/Realisation/openVPN/Preuve.png" alt="Preuve de connexion OpenVPN" class="openvpn-phase-image zoomable-image" loading="lazy"><figcaption>Validation finale de la communication VPN.</figcaption></figure></article>
+                        </div>
+                        <div id="openvpn-lightbox-overlay" class="oralink-lightbox-overlay">
+                            <span class="lightbox-close"><i class="fa-solid fa-xmark"></i></span>
+                            <img id="openvpn-lightbox-img" src="" alt="Aperçu OpenVPN">
+                        </div>
+                    </section>
+                </article>
+            `;
+
+            const openvpnLightboxOverlay = detailContent.querySelector('#openvpn-lightbox-overlay');
+            const openvpnLightboxImg = detailContent.querySelector('#openvpn-lightbox-img');
+
+            if (openvpnLightboxOverlay && openvpnLightboxImg) {
+                const closeOpenvpnLightbox = () => {
+                    openvpnLightboxOverlay.classList.remove('active');
+                    setTimeout(() => { openvpnLightboxImg.src = ''; }, 250);
+                };
+
+                detailContent.querySelectorAll('.zoomable-image').forEach(img => {
+                    img.addEventListener('click', () => {
+                        openvpnLightboxImg.src = img.getAttribute('src') || '';
+                        openvpnLightboxImg.alt = img.getAttribute('alt') || 'Aperçu OpenVPN';
+                        openvpnLightboxOverlay.classList.add('active');
+                    });
+                });
+
+                openvpnLightboxOverlay.addEventListener('click', (event) => {
+                    if (event.target === openvpnLightboxOverlay) closeOpenvpnLightbox();
+                });
+                openvpnLightboxOverlay.querySelector('.lightbox-close')?.addEventListener('click', closeOpenvpnLightbox);
+                document.addEventListener('keydown', function onOpenvpnEscape(event) {
+                    if (event.key === 'Escape' && openvpnLightboxOverlay.classList.contains('active')) {
+                        closeOpenvpnLightbox();
+                    }
+                }, { once: true });
+            }
         } else if (id === 'eebiscus') {
             const media = p.media || {};
             const manualSources = media.manuals || [];

@@ -1,4 +1,4 @@
-/* === MODALE AGRANDIE === */
+﻿/* === MODALE AGRANDIE === */
 .real-modal {
     width: 96vw !important;
     max-width: 1800px !important;
@@ -1175,6 +1175,295 @@
 
 @media (max-width: 900px) {
     .eebiscus-backlog-card {
+        grid-template-columns: 1fr;
+    }
+}
+
+.real-proj-card--openvpn {
+    background: linear-gradient(145deg, rgba(7, 22, 30, 0.98), rgba(7, 16, 25, 0.98));
+}
+
+.real-proj-card--openvpn::after {
+    background: linear-gradient(180deg, rgba(7, 34, 46, 0.12) 0%, rgba(7, 34, 46, 0.46) 100%);
+}
+
+.real-proj-card--openvpn .real-proj-name,
+.real-proj-card--openvpn .real-proj-meta,
+.real-proj-card--openvpn .real-proj-desc {
+    color: #f3fbff;
+}
+
+.real-proj-card--openvpn .real-tag {
+    background: rgba(34,211,238,0.08);
+    border-color: rgba(34,211,238,0.16);
+}
+
+.openvpn-article {
+    gap: 12px;
+}
+
+.openvpn-cover {
+    background: linear-gradient(135deg, rgba(255, 76, 92, 0.22), rgba(18, 8, 10, 0.95));
+    border-color: rgba(255, 92, 122, 0.22);
+}
+
+.openvpn-brand-row {
+    gap: 10px;
+}
+
+.openvpn-brand-logo {
+    width: 54px;
+    height: 54px;
+    background: rgba(255,255,255,0.95);
+    border-color: rgba(255,255,255,0.16);
+    border-radius: 16px;
+    padding: 0;
+}
+
+.openvpn-brand-logo-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.openvpn-title {
+    margin: 0;
+    color: #fff;
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    line-height: 1.08;
+    letter-spacing: -.03em;
+    max-width: 18ch;
+}
+
+.openvpn-aside .oralink-kpi-card strong {
+    color: #ff8a9a;
+}
+
+.openvpn-section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 14px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255, 92, 122, 0.12);
+}
+
+.openvpn-summary-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+}
+
+.openvpn-summary-card,
+.openvpn-phase-card {
+    border-radius: 18px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255, 92, 122, 0.12);
+}
+
+.openvpn-summary-card {
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.openvpn-summary-card strong {
+    color: #ff8a9a;
+    font-size: .78rem;
+    text-transform: uppercase;
+    letter-spacing: .12em;
+}
+
+.openvpn-summary-card span,
+.openvpn-phase-card p {
+    color: #c4d0dd;
+    line-height: 1.7;
+    font-size: .85rem;
+}
+
+.openvpn-phase-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+}
+
+.openvpn-phase-card {
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.openvpn-phase-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.openvpn-phase-index {
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 92, 122, 0.14);
+    border: 1px solid rgba(255, 92, 122, 0.26);
+    color: #ff8a9a;
+    font-size: .72rem;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.openvpn-phase-head h3 {
+    margin: 0;
+    color: #fff;
+    font-size: .95rem;
+    line-height: 1.35;
+}
+
+.openvpn-cmd-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.openvpn-cmd {
+    display: block;
+    width: 100%;
+    font-family: 'Consolas', 'Fira Code', 'Courier New', monospace;
+    font-size: .76rem;
+    line-height: 1.5;
+    color: #d6ecff;
+    background: linear-gradient(180deg, rgba(18, 6, 10, 0.96), rgba(34, 8, 12, 0.96));
+    border: 1px solid rgba(255, 92, 122, 0.24);
+    border-radius: 10px;
+    padding: 9px 11px;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.openvpn-note {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 12px 13px;
+    border-radius: 14px;
+    background: linear-gradient(180deg, rgba(255, 92, 122, 0.10), rgba(255,255,255,0.03));
+    border: 1px solid rgba(255, 92, 122, 0.18);
+}
+
+.openvpn-note strong {
+    color: #ff8a9a;
+    font-size: .74rem;
+    text-transform: uppercase;
+    letter-spacing: .12em;
+}
+
+.openvpn-note span {
+    color: #d6c8cc;
+    font-size: .8rem;
+    line-height: 1.55;
+}
+
+.openvpn-note--soft {
+    background: linear-gradient(180deg, rgba(255, 92, 122, 0.08), rgba(255,255,255,0.02));
+}
+
+.openvpn-phase-figure {
+    margin: 0;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 92, 122, 0.18);
+    background: rgba(4, 13, 20, 0.75);
+}
+
+.openvpn-phase-image {
+    width: 100%;
+    display: block;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+}
+
+.openvpn-phase-figure figcaption {
+    padding: 10px 12px 11px;
+    color: #a8bccf;
+    font-size: .75rem;
+    line-height: 1.55;
+    border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+.openvpn-mini-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.openvpn-mini-list li {
+    padding: 5px 8px;
+    border-radius: 999px;
+    background: rgba(255, 92, 122, 0.10);
+    border: 1px solid rgba(255, 92, 122, 0.16);
+    color: #f0dfe2;
+    font-size: .68rem;
+    letter-spacing: .02em;
+}
+
+.openvpn-section .oralink-section-head > span {
+    width: 42px;
+    height: 42px;
+    border-radius: 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 92, 122, 0.12);
+    border-color: rgba(255, 92, 122, 0.24);
+    color: #ff8a9a;
+}
+
+.openvpn-section .oralink-section-head h2 {
+    color: #fff;
+    margin: 0 0 4px;
+    font-size: 1.08rem;
+}
+
+.openvpn-section .oralink-section-head p {
+    color: #d8cdd0;
+    margin: 0;
+}
+
+.openvpn-section .oralink-section-head {
+    margin-bottom: 2px;
+}
+
+.openvpn-summary,
+.openvpn-section {
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.02);
+}
+
+.openvpn-summary-grid,
+.openvpn-phase-grid {
+    align-items: start;
+}
+
+.openvpn-section .oralink-section-head h2,
+.openvpn-section .oralink-section-head p {
+    color: #fff;
+}
+
+@media (max-width: 980px) {
+    .openvpn-summary-grid,
+    .openvpn-phase-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .openvpn-cover {
         grid-template-columns: 1fr;
     }
 }
