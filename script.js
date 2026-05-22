@@ -31,4 +31,27 @@ document.addEventListener("DOMContentLoaded", () => {
             a.click();
         });
     }
+
+    // Accordéons timeline Parcours
+    const accordionToggles = document.querySelectorAll('.accordion-toggle');
+    accordionToggles.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const item = btn.closest('.timeline-item');
+            const isOpen = item.classList.contains('open');
+            // Close other items
+            document.querySelectorAll('.timeline-item.open').forEach(openItem => {
+                if (openItem !== item) {
+                    openItem.classList.remove('open');
+                    openItem.querySelector('.accordion-toggle')?.setAttribute('aria-expanded', 'false');
+                }
+            });
+            if (isOpen) {
+                item.classList.remove('open');
+                btn.setAttribute('aria-expanded', 'false');
+            } else {
+                item.classList.add('open');
+                btn.setAttribute('aria-expanded', 'true');
+            }
+        });
+    });
 });

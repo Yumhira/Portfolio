@@ -100,13 +100,14 @@ body::before {
     grid-template-columns: 210px 1fr auto;
     grid-template-rows: auto 1fr;
     gap: 12px 24px;
-    width: 100%;
-    height: 100%;
-    align-items: start;
-}
-
-.profil-photo {
-    grid-row: 1 / 3;
+    align-items: center;
+    padding: 18px 16px;
+    border-radius: 14px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.005));
+    margin-bottom: 14px;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 8px 30px rgba(2,6,12,0.6);
     width: 210px;
     height: 100%;
     align-self: stretch;
@@ -569,8 +570,9 @@ body::before {
 ======================== */
 .column-right-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1.3fr 0.9fr;
+    /* Réduire légèrement la colonne de gauche (Veille) pour agrandir Parcours */
+    grid-template-columns: 0.6fr 1.4fr;
+    grid-template-rows: 1.25fr 0.95fr;
     gap: 16px;
     min-height: 0;
 }
@@ -583,34 +585,168 @@ body::before {
    PARCOURS
 ======================== */
 #tile-parcours {
+    display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    padding: 22px 24px;
+    padding: 18px 20px;
+    overflow: hidden;
 }
 
-.timeline { position: relative; padding-left: 28px; border-left: 1px solid rgba(255,255,255,0.07); }
-.timeline-item { position: relative; margin-bottom: 22px; }
-.timeline-item:last-child { margin-bottom: 0; }
+/* Nouvelle mise en page : items en cartes avec colonne meta (point + date) */
+.timeline {
+    position: relative;
+    display: block;
+    padding: 6px 6px 6px 6px;
+    max-height: 100%;
+}
+
+/* ligne verticale fine à l'intérieur pour l'effet timeline */
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 48px;
+    top: 16px;
+    bottom: 16px;
+    width: 2px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 2px;
+    z-index: 0;
+}
+
+.timeline-item {
+    display: grid;
+    grid-template-columns: 96px 1fr;
+    gap: 16px;
+    align-items: center;
+    padding: 18px 18px;
+    border-radius: 14px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.005));
+    margin-bottom: 14px;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 10px 30px rgba(2,6,12,0.6);
+}
+
+.timeline-item:hover { background: rgba(255,255,255,0.02); }
+
+.timeline-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    min-width: 96px;
+}
+/* Icon style for cards */
+.timeline-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+    color: rgba(255,255,255,0.95);
+    font-size: 18px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.45);
+}
+.timeline-icon.special { background: linear-gradient(135deg,#B197FC,#7B61F2); color: #fff; box-shadow: 0 10px 30px rgba(123,97,242,0.16); }
 
 .timeline-dot {
-    position: absolute; left: -33px; top: 5px; width: 10px; height: 10px;
-    background: rgba(255,255,255,0.1); border: 1.5px solid rgba(255,255,255,0.15);
-    border-radius: 50%; z-index: 2;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.08);
+    border: 2px solid rgba(255,255,255,0.12);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.35);
+    z-index: 2;
 }
-.timeline-dot.special { background: #b197fc; border-color: #b197fc; box-shadow: 0 0 12px rgba(177,151,252,0.6); }
+.timeline-dot.special { background: #b197fc; border-color: #b197fc; box-shadow: 0 6px 18px rgba(177,151,252,0.18); }
 
-.timeline-date { font-size: 0.65rem; color: rgba(255,255,255,0.22); margin-bottom: 3px; font-weight: 500; letter-spacing: 0.3px; }
-.timeline-content h4 { font-size: 0.82rem; margin: 0 0 3px 0; color: rgba(255,255,255,0.88); font-weight: 600; }
-.timeline-content p { font-size: 0.72rem; color: rgba(255,255,255,0.3); margin: 0; line-height: 1.5; font-weight: 400; }
+.timeline-date {
+    font-size: 0.74rem;
+    color: rgba(255,255,255,0.36);
+    text-align: center;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+}
+
+.timeline-content h4 { font-size: 1.02rem; margin: 0 0 8px 0; color: rgba(255,255,255,0.96); font-weight: 800; }
+.timeline-content p { font-size: 0.86rem; color: rgba(255,255,255,0.46); margin: 0; line-height: 1.6; }
+
+/* Accordéon compact */
+.accordion-toggle {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    border: none;
+    background: transparent;
+    padding: 0;
+    text-align: left;
+    cursor: pointer;
+}
+
+.accordion-toggle:focus { outline: none; }
+
+.accordion-summary h4 { font-size: 0.95rem; margin: 0; color: rgba(255,255,255,0.94); font-weight: 700; }
+
+.accordion-content {
+    grid-column: 2 / -1;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 280ms ease, opacity 220ms ease;
+    opacity: 0;
+    padding-top: 8px;
+}
+
+.timeline-item.open .accordion-content { max-height: 240px; opacity: 1; }
+
+.timeline-meta { justify-content: center; }
+
+
+/* Scrollable area for long timelines */
+#tile-parcours .timeline {
+    max-height: calc(100vh - 220px);
+    overflow-y: auto;
+    padding-right: 8px;
+    scrollbar-gutter: stable both-edges;
+}
+#tile-parcours .timeline {
+    max-height: calc(100vh - 220px);
+    overflow-y: auto;
+    padding-right: 10px;
+    scrollbar-gutter: stable both-edges;
+}
+
+/* Scrollbar styling */
+#tile-parcours .timeline::-webkit-scrollbar { width: 10px; }
+#tile-parcours .timeline::-webkit-scrollbar-track { background: transparent; }
+#tile-parcours .timeline::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.06); border-radius: 8px; }
+#tile-parcours .timeline { scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.06) transparent; }
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+    .timeline-item { grid-template-columns: 64px 1fr; padding: 12px; }
+    .timeline::before { left: 40px; }
+    .timeline-meta { min-width: 64px; }
+}
+
 
 /* ========================
    TUILE VEILLE
 ======================== */
 #tile-veille {
     flex-direction: column;
-    padding: 22px;
+    /* Alléger visuellement la tuile veille */
+    padding: 14px 16px;
     overflow: hidden;
     justify-content: space-between;
+    background: rgba(18,18,28,0.86);
+}
+
+/* Donner plus d'espace au tile parcours (typographie légèrement plus grande) */
+#tile-parcours {
+    padding: 20px 22px;
 }
 
 .veille-top-row { display: flex; align-items: center; justify-content: space-between; position: relative; z-index: 1; }
